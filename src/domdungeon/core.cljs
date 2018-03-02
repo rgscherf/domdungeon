@@ -94,36 +94,45 @@
 
 ;; 5: views
 
-(defn skill-card
-  [{:keys [atb skills]} rowstart colstart]
-  (when (>= atb 1)
-    ^{:key rowstart}
-    [:div.charCard.charCard__skillCard
-     {:style {:grid-area (str rowstart "/ " colstart "/ span 2 / span 2")}}
-     #_[:img {:src "/img/scroll_w_003.png"}]
-     [:div.charCard__arrow
-      [:i.fas.fa-chevron-double-right]]
-     (map (fn [s] [:div.charCard__skillName (get skill-names s)]) skills)
-     ]))
-
-(defn character-card
+(defn charGrid
   [{:keys [maxhealth health maxmana mana name atb skills]} rowstart colstart]
   ^{:key rowstart}
-  [:div.charCard {:style {:grid-area (str rowstart " / " colstart " / span 2 / span 5")}}
-   [:div.charCard__row #_{:style {:margin-top "5px" :margin-bottom "5px"}}
-    [:div.charCard__name name]
-    [:div.charCard__hp (str health "/" maxhealth)]
-    [:div.charCard__mp (str mana "/" maxmana)]]
-   [:div.charCard__row.charCard__atb
-    [:div {:style {:background "white"
+  [:div.charGrid {:style {:grid-area (str rowstart " / " colstart " / span 2 / span 6")}}
 
-                   :height     "100%"
-                   :width      (str (Math/floor atb) "%")}}]]
-   #_[:div.charCard__row {:style {:flex            "2 2 auto"
-                                  :align-items     "center"
-                                  :justify-content "space-between"}}
-      (map skill-card skills)]]
+   ;; charname
+   [:div.charGrid__name
+    [:div.leftPad {:style {:font-size "250%"}} name]]
+
+   ;; hp/mp
+   [:div.charGrid__primaryStats
+    [:div.charGrid__primaryStatsChild.leftPad (str "HP " health "/" maxhealth)]
+    [:div.charGrid__primaryStatsChild.leftPad (str "MP " mana "/" maxmana)]]
+
+   ;; secondary/combat stats
+   [:div.charGrid__secondaryStats.leftPad
+    (map (fn [s] [:div s])
+         (repeat 5 " PA 34  "))
+    ]
+
+   ;; atb gauge
+   [:div.charGrid__atb
+    [:div.charGrid__atbOutline
+     [:div.charGrid__atbFill {:style {:width (str (Math/floor atb) "%")}}]]]
+
+   ;; skills
+   (when (= atb 100)
+     [:div.charGrid__skills.leftPadLg
+      (map (fn [s]
+             ^{:key s} [:div.charGrid__skillName (get skill-names s)])
+           skills)])
+
+   ;; border
+   (if (= atb 100)
+     [:div.charGrid__border {:style {:grid-area "1/1/span 4/span 12"}}]
+     [:div.charGrid__border {:style {:grid-area "1/1/span 4/span 9"}}]
+     )]
   )
+
 
 (defn battle-viz
   []
@@ -143,8 +152,8 @@
 (defn root []
   [:div.screen__background
    [:div.screen__grid
-    (map character-card @(rf/subscribe [:characters]) [7 9 11] (repeat 1))
-    (map skill-card @(rf/subscribe [:characters]) [7 9 11] (repeat 6))
+    (map charGrid @(rf/subscribe [:characters]) [7 9 11] (repeat 1))
+    #_(map skill-card @(rf/subscribe [:characters]) [7 9 11] (repeat 6))
     [battle-viz]
     [enemy-card 6 2]
     [enemy-card 6 5]
