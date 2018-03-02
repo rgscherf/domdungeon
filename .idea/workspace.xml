@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7f64e007-46c7-4d59-bfc5-57032e530a77" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.56319445">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="core.cljs" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/domdungeon/core.cljs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="354">
+                  <caret line="110" column="17" lean-forward="false" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="17" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/public/index.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/resources/public/css/style.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="241">
+                  <caret line="89" column="18" lean-forward="false" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Clojure Namespace" />
+        <option value="ClojureScript Namespace" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>script</find>
+      <find>line-h</find>
+      <find>currentmana</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>mana</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/script/repl.clj" />
+        <option value="$PROJECT_DIR$/script/fig_repl.clj" />
+        <option value="$PROJECT_DIR$/src/figrepl/old.cljs" />
+        <option value="$PROJECT_DIR$/project.clj" />
+        <option value="$PROJECT_DIR$/src/figrepl/core.cljs" />
+        <option value="$PROJECT_DIR$/resources/public/index.html" />
+        <option value="$PROJECT_DIR$/src/domdungeon/core.cljs" />
+        <option value="$PROJECT_DIR$/resources/public/css/style.css" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="81" />
+    <option name="y" value="23" />
+    <option name="width" value="1359" />
+    <option name="height" value="877" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="domdungeon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="domdungeon" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="domdungeon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="domdungeon" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="domdungeon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="domdungeon" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="domdungeon" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SearchEverywhereHistoryKey" value="index&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/resources/public/index.html&#10;index.&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/resources/public/index.html&#10;style.css&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/resources/public/css/style.css&#10;project.&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/figrepl/project.clj&#10;proje&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/figrepl/project.clj" />
+    <property name="cursive.last.file.extension./Users/rgscherf/projects/clojure/figrepl/src" value="cljs" />
+  </component>
+  <component name="ReplState" timestamp="1520026211583">{:repl-history {:ide [], :local [{:command &quot;(defn mount []\n  (r/render [base]\n            (.getElementById js/document \&quot;app\&quot;)))&quot;, :offset 83, :ns &quot;figrepl.core&quot;} {:command &quot;(defn selectable-div [n]\n  (let [style (if (= n (:cursor-position @app-state))\n                (assoc-in selectable-style [:style :background] \&quot;purple\&quot;)\n                selectable-style)]\n    [:div (merge {:on-click #(select-div n)} style)\n     [:span (str \&quot;I am div #\&quot; n)]]))&quot;, :offset 276, :ns &quot;figrepl.core&quot;} {:command &quot;(defn selectable-div [n]\n  (let [style (if (= n @(rf/subscribe [:cursor-position]))\n                (assoc-in selectable-style [:style :background] \&quot;purple\&quot;)\n                selectable-style)]\n    [:div (merge {:on-click #(select-div n)} style)\n     [:span (str \&quot;I am div #\&quot; n)]]))&quot;, :offset 281, :ns &quot;figrepl.core&quot;} {:command &quot;(defn base []\n  (-&gt;&gt; (range @(rf/subscribe [:divs]))\n       (map #(selectable-div %))\n       (cons [:div (str \&quot;Current pos is \&quot; (:cursor-position @app-state))])\n       (cons :div)\n       (into [])))&quot;, :offset 198, :ns &quot;figrepl.core&quot;} {:command &quot;(defn base []\n  (-&gt;&gt; (range @(rf/subscribe [:divs]))\n       (map #(selectable-div %))\n       (cons [:div (str \&quot;Current pos is \&quot; (rf/subscribe [:cursor-position]) )])\n       (cons :div)\n       (into [])))&quot;, :offset 203, :ns &quot;figrepl.core&quot;} {:command &quot;(defn base []\n  (-&gt;&gt; (range @(rf/subscribe [:divs]))\n       (map #(selectable-div %))\n       (cons [:div (str \&quot;Current pos is \&quot; @(rf/subscribe [:cursor-position]) )])\n       (cons :div)\n       (into [])))&quot;, :offset 204, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :init\n  (fn [_ _]\n    {:divs 5\n     :cursor-position 0}))&quot;, :offset 76, :ns &quot;figrepl.core&quot;} {:command &quot;(ns figrepl.core\n  (:require [goog.events]\n            [re-frame.core :as rf]\n            [goog.dom]\n            [reagent.core :as r]))&quot;, :offset 135, :ns &quot;user&quot;} {:command &quot;(rf/reg-event-db\n  :init\n  (fn [_ _]\n    {:divs            5\n     :cursor-position 0}))&quot;, :offset 87, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :select\n  (fn [db [_ n]]\n    (assoc db :cursor-position n)))&quot;, :offset 79, :ns &quot;figrepl.core&quot;} {:command &quot;(defn select-div\n  [n]\n  (rf/dispatch [:select n]))&quot;, :offset 51, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-sub\n  :cursor\n  (fn [db _]\n    (:cursor-position db)))&quot;, :offset 62, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-sub\n  :n-divs\n  (fn [db _]\n    (:divs db)))&quot;, :offset 51, :ns &quot;figrepl.core&quot;} {:command &quot;(def selectable-style\n  {:style {:margin          \&quot;10px\&quot;\n           :display         \&quot;flex\&quot;\n           :align-items     \&quot;center\&quot;\n           :justify-content \&quot;center\&quot;\n           :height          \&quot;50px\&quot;\n           :width           \&quot;300px\&quot;\n           :background      \&quot;blue\&quot;}})&quot;, :offset 274, :ns &quot;figrepl.core&quot;} {:command &quot;(defn selectable-div [n]\n  (let [style (if (= n @(rf/subscribe [:cursor]))\n                (assoc-in selectable-style [:style :background] \&quot;purple\&quot;)\n                selectable-style)]\n    [:div (merge {:on-click #(select-div n)} style)\n     [:span (str \&quot;I am div #\&quot; n)]]))&quot;, :offset 272, :ns &quot;figrepl.core&quot;} {:command &quot;(defn base []\n  (-&gt;&gt; (range @(rf/subscribe [:n-divs]))\n       (map #(selectable-div %))\n       (cons [:div (str \&quot;Current pos is \&quot; @(rf/subscribe [:cursor]))])\n       (cons :div)\n       (into [])))&quot;, :offset 196, :ns &quot;figrepl.core&quot;} {:command &quot;(defn mount []\n  (rf/dispatch-sync [:init])\n  (r/render [base]\n            (.getElementById js/document \&quot;app\&quot;)))&quot;, :offset 112, :ns &quot;figrepl.core&quot;} {:command &quot;(defn root []\n  [:div\n   [:div (str \&quot;Current pos: \&quot; @(rf/subscribe [:cursor]))]\n   (map #(selectable-div %)\n        (range @(rf/subscribe [:n-divs])))])&quot;, :offset 152, :ns &quot;figrepl.core&quot;} {:command &quot;(defn add-clickable\n  []\n  (rf/dispatch [:add-div]))&quot;, :offset 52, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :add-div\n  (fn [db _]\n    (update db :divs inc)))&quot;, :offset 68, :ns &quot;figrepl.core&quot;} {:command &quot;(defn root []\n  [:div\n   [:button {:on-click #(add-clickable)} \&quot;Add a clickable button!\&quot;]\n   [:div (str \&quot;Current pos: \&quot; @(rf/subscribe [:cursor]))]\n   (map #(selectable-div %)\n        (range @(rf/subscribe [:n-divs])))])&quot;, :offset 220, :ns &quot;figrepl.core&quot;} {:command &quot;(defn root []\n  [:div\n   [:div\n    [:button {:on-click #(add-clickable)} \&quot;Add a clickable button!\&quot;]]\n   [:div (str \&quot;Current pos: \&quot; @(rf/subscribe [:cursor]))]\n   (map #(selectable-div %)\n        (range @(rf/subscribe [:n-divs])))])&quot;, :offset 231, :ns &quot;figrepl.core&quot;} {:command &quot;(defn root []\n  [:div.screen__background\n   [:div.screen__grid\n    [:div {:style {:background \&quot;pink\&quot;}}]\n    [:div {:style {:background \&quot;pink\&quot;}}]]]\n  )&quot;, :offset 150, :ns &quot;figrepl.core&quot;} {:command &quot;(defn root []\n  [:div.screen__background\n   [:div.screen__grid\n    [character-card charcard 1 1]\n    [character-card charcard 1 2]\n    ]]\n  )&quot;, :offset 141, :ns &quot;figrepl.core&quot;} {:command &quot;(mod 1345 100)&quot;, :offset 14, :ns &quot;figrepl.core&quot;} {:command &quot;(mod 1399 100)&quot;, :offset 14, :ns &quot;figrepl.core&quot;} {:command &quot;(mod 1397 100)&quot;, :offset 14, :ns &quot;figrepl.core&quot;} {:command &quot;(mod 1396 100)&quot;, :offset 14, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :increment-time\n  (fn [db _]\n    (update db :atb-time inc)))&quot;, :offset 79, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :init\n  (fn [_ _]\n    {:atb-time 0}\n    ))&quot;, :offset 61, :ns &quot;figrepl.core&quot;} {:command &quot;(def charcard\n  {:maxhealth     100\n   :currenthealth 90\n   :maxmana       100\n   :currentmana   30\n   :name          \&quot;Hexen\&quot;\n   :atb           70})&quot;, :offset 148, :ns &quot;figrepl.core&quot;} {:command &quot;(defn character-card\n  [{:keys [maxhealth currenthealth maxmana currentmana name atb]} rowstart colstart]\n  (let [time-pct (mod @(rf/subscribe [:atb-time])\n                      100)]\n    [:div.charCard {:style {:grid-area (str rowstart \&quot; / \&quot; colstart \&quot; / span 1 / span 4\&quot;)}}\n     [:div.charCard__row\n      [:div.charCard__name name]\n      [:div.charCard__hp (str currenthealth \&quot; / \&quot; maxhealth)]\n      [:div.charCard__mp (str currentmana \&quot; / \&quot; maxmana)]]\n     [:div.charCard__row {:style {:width (str time-pct \&quot;%\&quot;)}}\n      [:div {:style {:flex-grow 1 :background \&quot;gray\&quot;}} time-pct]]\n     ]))&quot;, :offset 591, :ns &quot;figrepl.core&quot;} {:command &quot;(defn root []\n  [:div.screen__background\n   [:div.screen__grid\n    [character-card charcard 1 1]\n    [character-card charcard 2 1]\n    ]]\n  )&quot;, :offset 141, :ns &quot;figrepl.core&quot;} {:command &quot;(defonce set-interval!\n         (.setInterval js/document increment-time 10))&quot;, :offset 77, :ns &quot;figrepl.core&quot;} {:command &quot;(.setInterval js/document increment-time 10)&quot;, :offset 44, :ns &quot;figrepl.core&quot;} {:command &quot;(increment-time)&quot;, :offset 16, :ns &quot;figrepl.core&quot;} {:command &quot;(defonce set-interval!\n         (.setInterval js/window increment-time 10))&quot;, :offset 75, :ns &quot;figrepl.core&quot;} {:command &quot;(not false)&quot;, :offset 11, :ns &quot;figrepl.core&quot;} {:command &quot;(defn switch-atb\n  []\n  (rf-dispatch [:switch-atb]))&quot;, :offset 52, :ns &quot;figrepl.core&quot;} {:command &quot;(switch-atb)&quot;, :offset 12, :ns &quot;figrepl.core&quot;} {:command &quot;(defonce set-interval!\n         (.setInterval js/window increment-time 100))&quot;, :offset 76, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :increment-time\n  (fn [db _]\n    (if (:atb-active db)\n      (update db :atb-time inc))))&quot;, :offset 107, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :init\n  (fn [_ _]\n    {:atb-time   0\n     :atb-active true}\n    ))&quot;, :offset 85, :ns &quot;figrepl.core&quot;} {:command &quot;(def charcard\n  {:maxhealth     100\n   :currenthealth 90\n   :maxmana       100\n   :currentmana   30\n   :name          \&quot;Hexen\&quot;\n   :speed         4\n   })&quot;, :offset 151, :ns &quot;figrepl.core&quot;} {:command &quot;(defn character-card\n  [{:keys [maxhealth currenthealth maxmana currentmana name]} rowstart colstart]\n  (let [time-pct (mod @(rf/subscribe [:atb-time])\n                      100)]\n    [:div.charCard {:style {:grid-area (str rowstart \&quot; / \&quot; colstart \&quot; / span 2 / span 4\&quot;)}}\n     [:div.charCard__row\n      [:div.charCard__name name]\n      [:div.charCard__hp (str currenthealth \&quot; / \&quot; maxhealth)]\n      [:div.charCard__mp (str currentmana \&quot; / \&quot; maxmana)]]\n     [:div.charCard__row {:style {:width (str time-pct \&quot;%\&quot;)}}\n      [:div.charCard__atb time-pct]]\n     ]))&quot;, :offset 558, :ns &quot;figrepl.core&quot;} {:command &quot;(defn battle-viz\n  []\n  [:div {:style {:grid-area \&quot;1 / 1 / span 5 / span 12\&quot; :border \&quot;5px solid lightgrey\&quot; :border-radius 10}}])&quot;, :offset 128, :ns &quot;figrepl.core&quot;} {:command &quot;(defn enemy-card\n  [rowstart colstart]\n  [:div.charCard {:style {:grid-area (str rowstart \&quot; / \&quot; colstart \&quot; / span 1 / span 3\&quot;)}}\n   [:div.charCard__row\n    [:div.charCard__name \&quot;Whoops!\&quot;]\n    [:div.charCard__hp \&quot;HEALTHY\&quot;]]\n   [:div.charCard__row\n    [:div.charCard__name \&quot;Waiting...\&quot;]]])&quot;, :offset 287, :ns &quot;figrepl.core&quot;} {:command &quot;(defn root []\n  [:div.screen__background\n   [:div.screen__grid\n    [character-card charcard 12 9]\n    [character-card charcard 11 9]\n    [character-card charcard 10 9]\n    [battle-viz]\n    [enemy-card 10 1]\n    [enemy-card 11 1]\n    [enemy-card 12 1]\n    [enemy-card 10 4]\n    [enemy-card 11 4]\n    [enemy-card 12 4]\n    ]]\n  )&quot;, :offset 327, :ns &quot;figrepl.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (map (fn [c] (update c :atb\n                       #(+ (/ (:speed c) 10)\n                           timescale\n                           )))\n       chars))&quot;, :offset 191, :ns &quot;figrepl.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (map (fn [c] (update c :atb\n                       #(max 100 (+ (/ (:speed c) 10)\n                                    timescale\n                                    %))))\n       chars))&quot;, :offset 220, :ns &quot;figrepl.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (map (fn [c] (update c :atb\n                       #(min 100.1 (+ (/ (:speed c) 10)\n                                    timescale\n                                    %))))\n       chars))&quot;, :offset 222, :ns &quot;figrepl.core&quot;} {:command &quot;(inc-atb chars 10)&quot;, :offset 18, :ns &quot;figrepl.core&quot;} {:command &quot;(iterate (inc-atb chars 10) 5)&quot;, :offset 30, :ns &quot;figrepl.core&quot;} {:command &quot;(.unbindRoot #'chars)&quot;, :offset 21, :ns &quot;figrepl.core&quot;} {:command &quot;(ns figrepl.core\n  (:require [re-frame.core :as rf]\n            [reagent.core :as r]))&quot;, :offset 86, :ns &quot;dev:cljs.user&quot;} {:command &quot;(def chars [{:name      \&quot;ZEKE\&quot;\n             :maxhealth 150\n             :maxmana   50\n             :health    70\n             :mana      12\n             :speed     12\n             :atb       0}\n            {:name      \&quot;HELIO\&quot;\n             :maxhealth 100\n             :maxmana   230\n             :health    80\n             :mana      210\n             :speed     8\n             :atb       0}\n            {:name      \&quot;BUSTR\&quot;\n             :maxhealth 50\n             :maxmana   100\n             :health    40\n             :mana      100\n             :speed     17\n             :atb       0}])&quot;, :offset 587, :ns &quot;figrepl.core&quot;} {:command &quot;(def characters [{:name      \&quot;ZEKE\&quot;\n                  :maxhealth 150\n                  :maxmana   50\n                  :health    70\n                  :mana      12\n                  :speed     12\n                  :atb       0}\n                 {:name      \&quot;HELIO\&quot;\n                  :maxhealth 100\n                  :maxmana   230\n                  :health    80\n                  :mana      210\n                  :speed     8\n                  :atb       0}\n                 {:name      \&quot;BUSTR\&quot;\n                  :maxhealth 50\n                  :maxmana   100\n                  :health    40\n                  :mana      100\n                  :speed     17\n                  :atb       0}])&quot;, :offset 692, :ns &quot;figrepl.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (map (fn [c] (update c :atb\n                       #(min 101 (+ (/ (:speed c) 10)\n                                    timescale\n                                    %))))\n       chars))&quot;, :offset 220, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :increment-time\n  (fn [db _]\n    (if (:atb-active db)\n      (let [timescale 0.3]\n        (-&gt; db\n            (update :chars inc-atb timescale))))))&quot;, :offset 165, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :init\n  (fn [_ _]\n    {:chars      characters\n     :atb-active true}\n    ))&quot;, :offset 94, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-sub\n  :chars\n  (fn [db _]\n    (:chars db)))&quot;, :offset 51, :ns &quot;figrepl.core&quot;} {:command &quot;(defn root []\n  [:div.screen__background\n   [:div.screen__grid\n    [(map character-card @(rf/subscribe [:chars]) [7 9 11] (repeat 1))]\n    ;[character-card charcard 7 1]\n    ;[character-card charcard 9 1]\n    ;[character-card charcard 11 1]\n    [battle-viz]\n    [enemy-card 6 2]\n    [enemy-card 6 5]\n    [enemy-card 6 8]\n    [enemy-card 6 11]\n    ;[enemy-card 5 4]\n    ;[enemy-card 5 4]\n    ]]\n  )&quot;, :offset 397, :ns &quot;figrepl.core&quot;} {:command &quot;(defonce set-interval!\n         (.setInterval js/window increment-time 20))&quot;, :offset 75, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :init\n  (fn [_ _]\n    {:characters      characters\n     :atb-active true}\n    ))&quot;, :offset 99, :ns &quot;figrepl.core&quot;} {:command &quot;(defn character-card\n  [{:keys [maxhealth health maxmana mana name atb]} rowstart colstart]\n  (let [time-pct atb]\n    [:div.charCard {:style {:grid-area (str rowstart \&quot; / \&quot; colstart \&quot; / span 2 / span 4\&quot;)}}\n     [:div.charCard__row\n      [:div.charCard__name name]\n      [:div.charCard__hp (str health \&quot; / \&quot; maxhealth)]\n      [:div.charCard__mp (str mana \&quot; / \&quot; maxmana)]]\n     [:div.charCard__row {:style {:width (str time-pct \&quot;%\&quot;)}}\n      [:div.charCard__atb time-pct]]\n     ]))&quot;, :offset 478, :ns &quot;figrepl.core&quot;} {:command &quot;(map character-card characters [7 9 11] (repeat 1))&quot;, :offset 51, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-sub\n  :chars\n  (fn [db _]\n    (:characters db)))&quot;, :offset 56, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :increment-time\n  (fn [db _]\n    (if (:atb-active db)\n      (let [timescale 0.3]\n        (-&gt; db\n            (update :characters inc-atb timescale))))))&quot;, :offset 170, :ns &quot;figrepl.core&quot;} {:command &quot;(defn root []\n  [:div.screen__background\n   [:div.screen__grid\n    (map character-card @(rf/subscribe [:characters]) [7 9 11] (repeat 1))\n    ;[character-card charcard 7 1]\n    ;[character-card charcard 9 1]\n    ;[character-card charcard 11 1]\n    [battle-viz]\n    [enemy-card 6 2]\n    [enemy-card 6 5]\n    [enemy-card 6 8]\n    [enemy-card 6 11]\n    ;[enemy-card 5 4]\n    ;[enemy-card 5 4]\n    ]]\n  )&quot;, :offset 400, :ns &quot;figrepl.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (map (fn [c] (update c :atb\n                       #(min 100 (+ (/ (:speed c) 10)\n                                    timescale\n                                    %))))\n       chars))&quot;, :offset 220, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :increment-time\n  (fn [db _]\n    (if (:atb-active db)\n      (let [timescale 0.02]\n        (-&gt; db\n            (update :characters inc-atb timescale))))))&quot;, :offset 171, :ns &quot;figrepl.core&quot;} {:command &quot;(rf/reg-event-db\n  :increment-time\n  (fn [db _]\n    (if (:atb-active db)\n      (let [timescale 0.0002]\n        (-&gt; db\n            (update :characters inc-atb timescale))))))&quot;, :offset 173, :ns &quot;figrepl.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (map (fn [c] (update c :atb\n                       #(min 100 (+ (/ (:speed c) 100)\n                                    timescale\n                                    %))))\n       chars))&quot;, :offset 221, :ns &quot;figrepl.core&quot;} {:command &quot;(defn character-card\n  [{:keys [maxhealth health maxmana mana name atb]} rowstart colstart]\n  [:div.charCard {:style {:grid-area (str rowstart \&quot; / \&quot; colstart \&quot; / span 2 / span 4\&quot;)}}\n   [:div.charCard__row\n    [:div.charCard__name name]\n    [:div.charCard__hp (str health \&quot; / \&quot; maxhealth)]\n    [:div.charCard__mp (str mana \&quot; / \&quot; maxmana)]]\n   [:div.charCard__row {:style {:width (str (min 99 (Math/floor atb)) \&quot;%\&quot;)}}\n    [:div.charCard__atb (Math/floor atb)]]])&quot;, :offset 460, :ns &quot;figrepl.core&quot;} {:command &quot;(defn character-card\n  [{:keys [maxhealth health maxmana mana name atb]} rowstart colstart]\n  [:div.charCard {:style {:grid-area (str rowstart \&quot; / \&quot; colstart \&quot; / span 2 / span 4\&quot;)}}\n   [:div.charCard__row\n    [:div.charCard__name name]\n    [:div.charCard__hp (str health \&quot; / \&quot; maxhealth)]\n    [:div.charCard__mp (str mana \&quot; / \&quot; maxmana)]]\n   [:div.charCard__row {:style {:width (str (min 97 (Math/floor atb)) \&quot;%\&quot;)}}\n    [:div.charCard__atb (Math/floor atb)]]])&quot;, :offset 460, :ns &quot;figrepl.core&quot;} {:command &quot;(def characters [{:name      \&quot;ZEKE\&quot;\n                  :maxhealth 150\n                  :maxmana   50\n                  :health    70\n                  :mana      12\n                  :speed     1\n                  :atb       0}\n                 {:name      \&quot;HELIO\&quot;\n                  :maxhealth 100\n                  :maxmana   230\n                  :health    80\n                  :mana      210\n                  :speed     10\n                  :atb       0}\n                 {:name      \&quot;BUSTR\&quot;\n                  :maxhealth 50\n                  :maxmana   100\n                  :health    40\n                  :mana      100\n                  :speed     20\n                  :atb       0}])&quot;, :offset 692, :ns &quot;figrepl.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (map (fn [c] (update c :atb\n                       #(min 100 (+ #_(/ (:speed c) 100)\n                                    timescale\n                                    %))))\n       chars))&quot;, :offset 223, :ns &quot;figrepl.core&quot;} {:command &quot;(defn root []\n  [:div.screen__background\n   [:div.screen__grid\n    (map character-card @(rf/subscribe [:characters]) [7 9 11] (repeat 1))\n    [battle-viz]\n    [enemy-card 6 2]\n    [enemy-card 6 5]\n    [enemy-card 6 8]\n    [enemy-card 6 11]\n    ]]\n  )&quot;, :offset 250, :ns &quot;figrepl.core&quot;} {:command &quot;(def skill-names\n  {:attack \&quot;ATTACK\&quot;\n   :item \&quot;ITEM\&quot;\n   :rage \&quot;RAGE\&quot;\n   :tools \&quot;TOOLS\&quot;\n   :berserk \&quot;B.ZERK\&quot;\n   :blackmagic \&quot;BLK.MAG\&quot;\n   :whitemagic \&quot;WHT.MAG\&quot;})&quot;, :offset 159, :ns &quot;figrepl.core&quot;} {:command &quot;(defn character-card\n  [{:keys [maxhealth health maxmana mana name atb skills]} rowstart colstart]\n  [:div.charCard {:style {:grid-area (str rowstart \&quot; / \&quot; colstart \&quot; / span 2 / span 4\&quot;)}}\n   [:div.charCard__row #_{:style {:margin-top \&quot;5px\&quot; :margin-bottom \&quot;5px\&quot;}}\n    [:div.charCard__name name]\n    [:div.charCard__hp (str health \&quot;/\&quot; maxhealth)]\n    [:div.charCard__mp (str mana \&quot;/\&quot; maxmana)]]\n   [:div.charCard__row {:style {:width (str (min 85 (Math/floor atb)) \&quot;%\&quot;)\n                                :flex \&quot;0.5 0.5 auto\&quot;\n                                :margin-left \&quot;6px\&quot;\n                                :border-radius \&quot;1px\&quot;\n                                :background \&quot;darkgrey\&quot;}}]\n   [:div.charCard__row {:style {:flex \&quot;2 2 auto\&quot;\n                                :align-items \&quot;center\&quot;\n                                :justify-content \&quot;space-between\&quot;}}\n    (map skill-card skills)]]\n  )&quot;, :offset 887, :ns &quot;figrepl.core&quot;} {:command &quot;(ns domdungeon.core\n  (:require [re-frame.core :as rf]\n            [reagent.core :as r]))&quot;, :offset 89, :ns &quot;dev:cljs.user&quot;} {:command &quot;(enable-console-print!)&quot;, :offset 23, :ns &quot;domdungeon.core&quot;} {:command &quot;(def skill-names\n  {:attack     \&quot;FIGHT\&quot;\n   :item       \&quot;ITEM\&quot;\n   :rage       \&quot;RAGE\&quot;\n   :tools      \&quot;TOOLS\&quot;\n   :blackmagic \&quot;B.MAG\&quot;\n   :whitemagic \&quot;W.MAG\&quot;})&quot;, :offset 154, :ns &quot;domdungeon.core&quot;} {:command &quot;(def characters [{:name      \&quot;ZEKE\&quot;\n                  :maxhealth 150\n                  :maxmana   50\n                  :health    70\n                  :mana      12\n                  :speed     1\n                  :atb       0\n                  :skills    [:attack :item :blackmagic]}\n                 {:name      \&quot;HELIO\&quot;\n                  :maxhealth 100\n                  :maxmana   230\n                  :health    80\n                  :mana      210\n                  :speed     20\n                  :atb       0\n                  :skills    [:blackmagic :whitemagic :attack]}\n                 {:name      \&quot;BUSTR\&quot;\n                  :maxhealth 50\n                  :maxmana   100\n                  :health    40\n                  :mana      100\n                  :speed     40\n                  :atb       0\n                  :skills    [:rage :item :blackmagic]}])&quot;, :offset 867, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn increment-time []\n  (rf/dispatch [:increment-time]))&quot;, :offset 58, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn init-app\n  []\n  (rf/dispatch-sync [:init]))&quot;, :offset 49, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn switch-atb\n  []\n  (rf/dispatch [:switch-atb]))&quot;, :offset 52, :ns &quot;domdungeon.core&quot;} {:command &quot;(rf/reg-event-db\n  :switch-atb\n  (fn [db _]\n    (update db :atb-active not)))&quot;, :offset 77, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (map (fn [c] (update c :atb\n                       #(min 100 (+ (/ (:speed c) 500)      ;; 40 spd is about 50% faster than 0\n                                    timescale\n                                    %))))\n       chars))&quot;, :offset 263, :ns &quot;domdungeon.core&quot;} {:command &quot;(rf/reg-event-db\n  :increment-time\n  (fn [db _]\n    (if (:atb-active db)\n      (let [timescale 0.1]\n        (-&gt; db\n            (update :characters inc-atb timescale))))))&quot;, :offset 170, :ns &quot;domdungeon.core&quot;} {:command &quot;(rf/reg-event-db\n  :init\n  (fn [_ _]\n    {:characters characters\n     :atb-active true}))&quot;, :offset 89, :ns &quot;domdungeon.core&quot;} {:command &quot;(rf/reg-sub\n  :atb-time\n  (fn [db _]\n    (:atb-time db)))&quot;, :offset 57, :ns &quot;domdungeon.core&quot;} {:command &quot;(rf/reg-sub\n  :characters\n  (fn [db _]\n    (:characters db)))&quot;, :offset 61, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn skill-card\n  [{:keys [atb skills]} rowstart colstart]\n  [:div.charCard {:style {:grid-area (str rowstart \&quot;/ \&quot; colstart \&quot;/ span 2 / span 2\&quot;)}}\n   (map #([:div.charCard__skillName %]) skills)\n   ])&quot;, :offset 201, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn character-card\n  [{:keys [maxhealth health maxmana mana name atb skills]} rowstart colstart]\n  [:div.charCard {:style {:grid-area (str rowstart \&quot; / \&quot; colstart \&quot; / span 2 / span 5\&quot;)}}\n   [:div.charCard__row #_{:style {:margin-top \&quot;5px\&quot; :margin-bottom \&quot;5px\&quot;}}\n    [:div.charCard__name name]\n    [:div.charCard__hp (str health \&quot;/\&quot; maxhealth)]\n    [:div.charCard__mp (str mana \&quot;/\&quot; maxmana)]]\n   [:div.charCard__row.charCard__atb\n    [:div {:style {:background \&quot;white\&quot;\n\n                   :height     \&quot;100%\&quot;\n                   :width      (str (Math/floor atb) \&quot;%\&quot;)}}]]\n   #_[:div.charCard__row {:style {:flex            \&quot;2 2 auto\&quot;\n                                :align-items     \&quot;center\&quot;\n                                :justify-content \&quot;space-between\&quot;}}\n    (map skill-card skills)]]\n  )&quot;, :offset 791, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn battle-viz\n  []\n  [:div.battleViz])&quot;, :offset 41, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn enemy-card\n  [rowstart colstart]\n  [:div.enemyCard {:style {:grid-area (str rowstart \&quot; / \&quot; colstart \&quot; / span 1 / span 3\&quot;)}}\n   [:div.charCard__row\n    [:div.charCard__name \&quot;ENEMY\&quot;]\n    [:div.charCard__hp \&quot;HEALTHY\&quot;]]\n   [:div.charCard__row\n    [:div.charCard__name \&quot;Waiting...\&quot;]]])&quot;, :offset 286, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn root []\n  [:div.screen__background\n   [:div.screen__grid\n    (map character-card @(rf/subscribe [:characters]) [7 9 11] (repeat 1))\n    (map skill-card @(rf/subscribe [:characters]) [7 9 11] (repeat 6))\n    [battle-viz]\n    [enemy-card 6 2]\n    [enemy-card 6 5]\n    [enemy-card 6 8]\n    [enemy-card 6 11]\n    ]]\n  )&quot;, :offset 321, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn mount []\n  (init-app)\n  (r/render [root]\n            (.getElementById js/document \&quot;app\&quot;)))&quot;, :offset 96, :ns &quot;domdungeon.core&quot;} {:command &quot;(defonce set-interval!\n         (.setInterval js/window increment-time (/ 1000 60)))&quot;, :offset 84, :ns &quot;domdungeon.core&quot;} {:command &quot;(mount)&quot;, :offset 7, :ns &quot;domdungeon.core&quot;}], :remote []}}</component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration name="Figwheel REPL" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false">
+      <setting name="replType" value="2" />
+      <module name="domdungeon" />
+      <setting name="jvmArgs" value="" />
+      <setting name="parameters" value="script/fig_repl.clj" />
+      <setting name="workingDir" value="$PROJECT_DIR$" />
+      <setting name="profiles" value="" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="figrepl" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Twisted Trial">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="figrepl" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="figrepl" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="figrepl" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="REPL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2647059" sideWeight="0.5032258" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.4967742" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Leiningen" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14444445" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/project.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="39" column="54" lean-forward="false" selection-start-line="39" selection-start-column="54" selection-end-line="39" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/public/index.html" />
+    <entry file="file://$PROJECT_DIR$/src/figrepl/core.cljs" />
+    <entry file="file://$PROJECT_DIR$/resources/public/css/style.css" />
+    <entry file="file://$PROJECT_DIR$/project.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="39" column="54" lean-forward="false" selection-start-line="39" selection-start-column="54" selection-end-line="39" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/public/index.html" />
+    <entry file="file://$PROJECT_DIR$/src/figrepl/core.cljs" />
+    <entry file="file://$PROJECT_DIR$/resources/public/css/style.css" />
+    <entry file="file://$PROJECT_DIR$/project.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/fig_repl.clj" />
+    <entry file="file://$PROJECT_DIR$/resources/public/index.html" />
+    <entry file="file://$PROJECT_DIR$/src/figrepl/core.cljs" />
+    <entry file="file://$PROJECT_DIR$/project.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/fig_repl.clj" />
+    <entry file="file://$PROJECT_DIR$/src/figrepl/core.cljs" />
+    <entry file="file://$PROJECT_DIR$/resources/public/index.html" />
+    <entry file="file://$PROJECT_DIR$/project.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/fig_repl.clj" />
+    <entry file="file://$PROJECT_DIR$/src/figrepl/core.cljs" />
+    <entry file="file://$PROJECT_DIR$/script/fig_repl.clj" />
+    <entry file="file://$PROJECT_DIR$/src/figrepl/old.cljs" />
+    <entry file="file://$PROJECT_DIR$/project.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/figrepl/core.cljs" />
+    <entry file="file://$PROJECT_DIR$/src/domdungeon/old.cljs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="11" lean-forward="false" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="89" column="18" lean-forward="false" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domdungeon/core.cljs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="110" column="17" lean-forward="false" selection-start-line="110" selection-start-column="17" selection-end-line="110" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>IDE SDK</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

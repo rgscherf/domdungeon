@@ -1,0 +1,94 @@
+/* some style */
+
+html {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'VT323', monospace;
+}
+
+.screen__background {
+    background: black;
+    color: white;
+    width: calc(1.6 * 95vh);
+    height: 95vh;
+}
+
+.battleViz {
+    grid-area: 2 / 1 / span 5 / span 20;
+    border: 4px solid lightgray;
+    border-radius: 8px;
+    margin: 2px;
+}
+
+.screen__grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template: repeat(12, minmax(auto,1fr)) / repeat(20, minmax(auto,1fr));
+    grid-gap: 1% 1%;
+    font-size: 2.1vmin;
+    line-height: 0;
+}
+
+.enemyCard {
+    margin: 10px;
+    border-radius: 5px;
+    border: 2px solid lightgrey;
+}
+
+.charCard {
+    margin: 3px;
+    border-radius: 5px;
+    border: 2px solid lightgrey;
+    display:flex;
+    flex-direction:column;
+    justify-content: space-around;
+}
+
+.charCard__row {
+    margin: 3px;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    flex: 1 1 auto;
+}
+
+.charCard__name {
+    font-size: 155%;
+    flex-grow: 8;
+}
+
+.charCard__mp {
+    flex-grow: 1;
+    color: dodgerblue;
+}
+
+.charCard__hp {
+    flex-grow: 1;
+    color: limegreen;
+}
+
+.charCard__atb {
+    flex: 0.3 0.3 auto;
+    border-radius: 3px;
+    border: 1px solid darkgrey;
+    margin-left: 4px;
+    padding: 0px;
+}
+
+.charCard__skillName {
+    font-size: 160%;
+}
+
+.charCard__skillCard {
+    padding-left: 10%;
+    position:relative;
+}
+
+.charCard__arrow {
+    font-size: 1.5em;
+    position: absolute;
+    transform-origin: right;
+    transform: translateX(-140%);
+}
