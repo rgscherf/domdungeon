@@ -60,6 +60,12 @@
                  :maxhealth 50
                  :health    40
                  :speed     40
+                 :atb       0}
+              5 {:name      "GOOMBA5"
+                 :id        5
+                 :maxhealth 50
+                 :health    40
+                 :speed     40
                  :atb       0}})
 
 (defn event-game-coords

@@ -38,10 +38,15 @@
   ;; e.g. the mouse moves to the gutter between two targetable enemies.
   :mouse-unset-friendly-state
   (fn [db _]
-    (if (not (:active-targeting db))
+    (if (or (not (:active-targeting db))
+            (not (mouse-pos-is-targetable? db)))
       db
-      (let [state-for-friendliness (not (get-in db [:active-targeting :skill-is-friendly?]))]
-        (assoc-in db [:active-targeting :current-pos-is-friendly?] state-for-friendliness)))))
+      (let [state-for-friendliness (not (get-in
+                                          db
+                                          [:active-targeting :skill-is-friendly?]))]
+        (assoc-in db [:active-targeting
+                      :current-pos-is-friendly?]
+                  state-for-friendliness)))))
 
 (rf/reg-event-db
   :mouse-is-on-friendly
@@ -77,7 +82,8 @@
     (if (:atb-active db)
       (let [timescale 0.1]
         (-> db
-            (update :characters inc-atb timescale))))))
+            (update :characters inc-atb timescale)
+            (update :enemies inc-atb timescale))))))
 
 (rf/reg-event-db
   :mouse-coords
@@ -122,4 +128,5 @@
      :mouse-anchor-point     nil
      :mouse-current-location nil
      :atb-active             true}))
+
 

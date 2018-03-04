@@ -13,9 +13,15 @@
   [:div.screen__background
    [:div#game.screen__grid {:on-mouse-move #(be/record-mouse-coords %)
                             :on-click #(rf/dispatch [:cancel-click])}
-    (map char/charGrid @(rf/subscribe [:characters]) [7 9 11] (repeat 1))
+    (map char/charGrid
+         @(rf/subscribe [:characters])
+         (iterate #(+ 2 %) 7)
+         (repeat 1))
     [battle-viz]
-    (map enemy/enemy-card @(rf/subscribe [:enemies]) (repeat 6) [2 5 8 11])
+    (map enemy/enemy-card
+         @(rf/subscribe [:enemies])
+         (iterate #(+ 1 %) 7)
+         (repeat 14))
     (when @(rf/subscribe [:target-line])
       (bu/draw-targeting-line @(rf/subscribe [:target-line])))
     ]]
