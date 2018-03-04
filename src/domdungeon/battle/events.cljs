@@ -25,6 +25,13 @@
 
 ;; 2: event handlers : used with rf/dispatch
 
+(defn mouse-pos-is-targetable?
+  [db]
+  (when (:active-targeting db)
+    (let [friendliness (get-in db [:active-targeting :skill-is-friendly?])
+          current-state (get-in db [:active-targeting :current-pos-is-friendly?])]
+      (= friendliness current-state))))
+
 (rf/reg-event-db
   ;; When the mouse leave an element that would display targeting status,
   ;; always reset the target status to a "disallowed" state.
@@ -97,6 +104,14 @@
           (update-in [:enemies enemy-id :health] dec)
           (assoc :active-targeting nil)
           (assoc :mouse-anchor-point nil)))))
+
+(rf/reg-event-db
+  :cancel-click
+  (fn [db _]
+    (if (or (not (:active-targeting db))
+            (mouse-pos-is-targetable? db))
+      db
+      (assoc db :active-targeting nil))))
 
 (rf/reg-event-db
   :init
