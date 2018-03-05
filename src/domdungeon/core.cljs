@@ -2,6 +2,7 @@
   (:require [domdungeon.battle.subs]
             [domdungeon.battle.events :as be]
             [domdungeon.battle.views.main :as bv]
+            [re-frame.core :as rf]
             [reagent.core :as r]))
 (enable-console-print!)
 
@@ -10,7 +11,9 @@
   (r/render [bv/root]
             (.getElementById js/document "app")))
 
-(defonce set-interval!
-         (.setInterval js/window be/increment-time (/ 1000 60)))
+(def one-frame (/ 1000 60))
+
+(js/window.setInterval #(rf/dispatch [:increment-atb]) one-frame)
+(js/window.setInterval #(rf/dispatch [:timestamp]) one-frame)
 
 (mount)

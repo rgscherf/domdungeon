@@ -9,6 +9,15 @@
    :blackmagic "B.MAG"
    :whitemagic "W.MAG"})
 
+(def skills {:attack {:name             "ATTACK"
+                      :action-delay     5000
+                      :friendly?        false
+                      :update-target-fn (fn [targeter target]
+                                          (assoc target
+                                            :health
+                                            (- (:health target)
+                                               (:pstr targeter))))}})
+
 (def characters {1 {:name      "ZEKE"
                     :id        1
                     :maxhealth 150
@@ -17,6 +26,8 @@
                     :mana      12
                     :speed     1
                     :atb       0
+                    :team      :characters
+                    :pstr      10
                     :skills    [:attack :item :blackmagic]}
                  2 {:name      "HELIO"
                     :id        2
@@ -26,6 +37,8 @@
                     :mana      210
                     :speed     20
                     :atb       0
+                    :team      :characters
+                    :pstr      10
                     :skills    [:blackmagic :whitemagic :attack]}
                  3 {:name      "BUSTR"
                     :id        3
@@ -35,6 +48,8 @@
                     :mana      100
                     :speed     40
                     :atb       0
+                    :team      :characters
+                    :pstr      10
                     :skills    [:rage :item :blackmagic]}})
 
 (def enemies {1 {:name      "GOOMBA1"
@@ -42,30 +57,40 @@
                  :maxhealth 50
                  :health    50
                  :speed     40
+                 :team      :enemies
+                 :pstr      10
                  :atb       0}
               2 {:name      "GOOMBA2"
                  :id        2
                  :maxhealth 50
                  :health    40
                  :speed     40
+                 :team      :enemies
+                 :pstr      10
                  :atb       0}
               3 {:name      "GOOMBA3"
                  :id        3
                  :maxhealth 50
                  :health    40
                  :speed     40
+                 :team      :enemies
+                 :pstr      10
                  :atb       0}
               4 {:name      "GOOMBA4"
                  :id        4
                  :maxhealth 50
                  :health    40
                  :speed     40
+                 :team      :enemies
+                 :pstr      10
                  :atb       0}
               5 {:name      "GOOMBA5"
                  :id        5
                  :maxhealth 50
                  :health    40
                  :speed     40
+                 :pstr      10
+                 :team      :enemies
                  :atb       0}})
 
 (defn event-game-coords

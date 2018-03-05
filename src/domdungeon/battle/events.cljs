@@ -4,9 +4,6 @@
 
 ;; 1: event dispatch : call these to init rf/dispatch
 
-(defn increment-time []
-  (rf/dispatch [:increment-time]))
-
 (defn init-app
   []
   (rf/dispatch-sync [:init]))
@@ -37,8 +34,9 @@
   ;; always reset the target status to a "disallowed" state.
   ;; e.g. the mouse moves to the gutter between two targetable enemies.
   :mouse-unset-friendly-state
-  (fn [db _]
-    (if (or (not (:active-targeting db))
+  (fn [db [_ event]]
+    (if (or (not (= "screen__grid" event))
+            (not (:active-targeting db))
             (not (mouse-pos-is-targetable? db)))
       db
       (let [state-for-friendliness (not (get-in
@@ -77,13 +75,37 @@
              chars)))
 
 (rf/reg-event-db
-  :increment-time
+  :increment-atb
   (fn [db _]
     (if (:atb-active db)
       (let [timescale 0.1]
         (-> db
             (update :characters inc-atb timescale)
             (update :enemies inc-atb timescale))))))
+
+(defn increment-action-time
+  [delay item]
+  (update item :action-time + delay))
+
+(rf/reg-event-fx
+  :check-action-queue
+  (fn [{:keys [db]} _]
+    (if (empty? (:action-queue db))
+      {:db db}
+      (let [sorted-actions (into [] (sort-by :action-time
+                                             (:action-queue db)))]
+        (if (>= (:current-time db)
+                (:action-time (first sorted-actions)))
+          {:db       (assoc db :action-queue (mapv (partial increment-action-time 2000)
+                                                   (rest sorted-actions)))
+           :dispatch [:perform-action (first sorted-actions)]}
+          {:db db})))))
+
+(rf/reg-event-fx
+  :timestamp
+  (fn [{:keys [db]} _]
+    {:db       (assoc db :current-time (js/Date.now))
+     :dispatch [:check-action-queue]}))
 
 (rf/reg-event-db
   :mouse-coords
@@ -101,15 +123,20 @@
                 :current-pos-is-friendly? false})
         (assoc :mouse-anchor-point (:mouse-current-location db)))))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   :enemy-click
-  (fn [db [_ enemy-id]]
-    (if (not (:active-targeting db))
-      db
-      (-> db
-          (update-in [:enemies enemy-id :health] dec)
-          (assoc :active-targeting nil)
-          (assoc :mouse-anchor-point nil)))))
+  (fn [{:keys [db]} [_ enemy-id]]
+    (if (or (not (mouse-pos-is-targetable? db))
+            (not (:active-targeting db)))
+      {:db db}
+      (let [action {:action   (get bu/skills (get-in db [:active-targeting :skill]))
+                    :target   (get-in db [:enemies enemy-id])
+                    :targeter {:team :characters
+                               :id   (get-in db [:active-targeting :char-id])}}]
+        {:dispatch [:enqueue-action action]
+         :db       (-> db
+                       (assoc :active-targeting nil)
+                       (assoc :mouse-anchor-point nil))}))))
 
 (rf/reg-event-db
   :cancel-click
@@ -120,6 +147,26 @@
       (assoc db :active-targeting nil))))
 
 (rf/reg-event-db
+  :enqueue-action
+  (fn [db [_ action]]
+    (let [action-time (+ (get-in action [:action :action-delay])
+                         (:current-time db))]
+      (update db :action-queue conj
+              (assoc action :action-time action-time)))))
+
+(defn entity-coords
+  [{:keys [team id]}]
+  [team id])
+
+(rf/reg-event-db
+  :perform-action
+  (fn [db [_ {:keys [action target targeter]}]]
+    (assoc-in db (entity-coords target)
+              ((:update-target-fn action)
+                (get-in db (entity-coords targeter))
+                (get-in db (entity-coords target))))))
+
+(rf/reg-event-db
   :init
   (fn [_ _]
     {:characters             bu/characters
@@ -127,6 +174,8 @@
      :active-targeting       nil
      :mouse-anchor-point     nil
      :mouse-current-location nil
+     :current-time           0
+     :action-queue           []
      :atb-active             true}))
 
 

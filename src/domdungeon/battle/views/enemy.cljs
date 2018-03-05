@@ -7,9 +7,7 @@
   ^{:key id}
   [:div.enemyGrid {:on-click      #(be/click-enemy id)
                    :on-mouse-over #(rf/dispatch [:mouse-is-on-enemy])
-                   :on-mouse-out  #(if
-                                     (= "screen__grid" (-> % .-relatedTarget .-className))
-                                     (rf/dispatch [:mouse-unset-friendly-state]))
+                   :on-mouse-out  #(rf/dispatch [:mouse-unset-friendly-state (-> % .-relatedTarget .-className)])
                    :style         {:grid-area (str rowstart " / " colstart " / span 1 / span 3")}}
    [:div.enemyGrid__name name]
    [:div.enemyGrid__status (let [healthpct (* 100 (/ health maxhealth))]

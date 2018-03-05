@@ -7,9 +7,7 @@
   [[_ {:keys [id maxhealth health maxmana mana name atb skills]}] rowstart colstart]
   ^{:key rowstart}
   [:div.charGrid {:on-mouse-enter #(rf/dispatch [:mouse-is-on-friendly])
-                  :on-mouse-leave #(if
-                                     (= "screen__grid" (-> % .-relatedTarget .-className))
-                                     (rf/dispatch [:mouse-unset-friendly-state]))
+                  :on-mouse-leave #(rf/dispatch [:mouse-unset-friendly-state (-> % .-relatedTarget .-className)])
                   :style          {:grid-area (str rowstart " / " colstart " / span 2 / span 6")}}
 
    ;; charname
