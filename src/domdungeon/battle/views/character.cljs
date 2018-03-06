@@ -42,6 +42,6 @@
       (map (fn [s]
              ^{:key s} [:div.charGrid__skillName
                         {:on-click #(be/skill-click id s false)}
-                        (get bu/skill-names s)])
+                        (get-in bu/skills [s :name])])
            skills)])])
 

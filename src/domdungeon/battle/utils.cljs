@@ -1,13 +1,4 @@
-(ns domdungeon.battle.utils
-  (:require [re-frame.core :as rf]))
-
-(def skill-names
-  {:attack     "FIGHT"
-   :item       "ITEM"
-   :rage       "RAGE"
-   :tools      "TOOLS"
-   :blackmagic "B.MAG"
-   :whitemagic "W.MAG"})
+(ns domdungeon.battle.utils)
 
 (defn other-team [team]
   (if (= team :enemies) :characters :enemies))
@@ -35,13 +26,13 @@
       desired-coords
       (default-fn targeter db))))
 
-(def items {:potion {:name      "POTION"
-                     :desc      "Heals 20 HP"
-                     :action-fn (fn [target]
-                                  (assoc target
-                                    :health
-                                    (min (+ 20 (:health target))
-                                         (:maxhealth target))))}})
+(def items {:potion {:name        "POTION"
+                     :description "Heals 20 HP"
+                     :action-fn   (fn [target]
+                                    (assoc target
+                                      :health
+                                      (min (+ 20 (:health target))
+                                           (:maxhealth target))))}})
 
 (def skills {:item       {:name          "ITEM"
                           :action-delay  2000
@@ -58,7 +49,7 @@
              :blackmagic {:name "B.MAG"}
              :whitemagic {:name "W.MAG"}
 
-             :attack     {:name         "ATTACK"
+             :fight      {:name         "FIGHT"
                           :action-delay 2000
                           :friendly?    false
                           :targeting-fn target-random-opponent
@@ -78,7 +69,7 @@
                     :atb       0
                     :team      :characters
                     :pstr      10
-                    :skills    [:attack :item :blackmagic]}
+                    :skills    [:fight :item :blackmagic]}
                  2 {:name      "HELIO"
                     :id        2
                     :maxhealth 100
@@ -89,7 +80,7 @@
                     :atb       0
                     :team      :characters
                     :pstr      10
-                    :skills    [:blackmagic :whitemagic :attack]}
+                    :skills    [:blackmagic :whitemagic :fight]}
                  3 {:name      "BUSTR"
                     :id        3
                     :maxhealth 50
