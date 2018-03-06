@@ -129,10 +129,14 @@
     (if (or (not (mouse-pos-is-targetable? db))
             (not (:active-targeting db)))
       {:db db}
-      (let [action {:action   (get bu/skills (get-in db [:active-targeting :skill]))
-                    :target   (get-in db [:enemies enemy-id])
-                    :targeter {:team :characters
-                               :id   (get-in db [:active-targeting :char-id])}}]
+      (let [action-data (get bu/skills (get-in db [:active-targeting :skill]))
+            action (-> action-data
+                       (assoc :targeting-fn (bu/wrap-target-fn [:enemies enemy-id]
+                                                               (:targeting-fn action-data)))
+                       (assoc :targeter [:characters (get-in db [:active-targeting :char-id])])) #_{:action   (get bu/skills (get-in db [:active-targeting :skill]))
+                                                                                                    :target   (get-in db [:enemies enemy-id])
+                                                                                                    :targeter {:team :characters
+                                                                                                               :id   (get-in db [:active-targeting :char-id])}}]
         {:dispatch [:enqueue-action action]
          :db       (-> db
                        (assoc :active-targeting nil)
@@ -149,22 +153,20 @@
 (rf/reg-event-db
   :enqueue-action
   (fn [db [_ action]]
-    (let [action-time (+ (get-in action [:action :action-delay])
+    (let [action-time (+ (:action-delay action)
                          (:current-time db))]
       (update db :action-queue conj
               (assoc action :action-time action-time)))))
 
-(defn entity-coords
-  [{:keys [team id]}]
-  [team id])
-
 (rf/reg-event-db
   :perform-action
-  (fn [db [_ {:keys [action target targeter]}]]
-    (assoc-in db (entity-coords target)
-              ((:update-target-fn action)
-                (get-in db (entity-coords targeter))
-                (get-in db (entity-coords target))))))
+  (fn [db [_ {:keys [targeting-fn action-fn targeter] :as action}]]
+    (let [target-coords (targeting-fn targeter db)]
+      (assoc-in db target-coords
+                (action-fn
+                  (get-in db targeter)
+                  (get-in db target-coords)
+                  action)))))
 
 (rf/reg-event-db
   :init

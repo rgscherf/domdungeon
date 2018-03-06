@@ -9,10 +9,60 @@
    :blackmagic "B.MAG"
    :whitemagic "W.MAG"})
 
-(def skills {:attack {:name             "ATTACK"
-                      :action-delay     5000
-                      :friendly?        false
-                      :update-target-fn (fn [targeter target]
+(defn other-team [team]
+  (if (= team :enemies) :characters :enemies))
+
+(defn target-random-friendly
+  "Target a random friendly."
+  [targeter db]
+  (let [myself (get-in db targeter)
+        targeted-member (->> myself :team (get db) count rand-int inc)]
+    [(:team myself) targeted-member]))
+
+(defn target-random-opponent
+  "Target a random opponent."
+  [targeter db]
+  (let [myself (get-in db targeter)
+        other-team (get db (other-team (:team myself)))
+        targeted-member (-> other-team count rand-int inc)]
+    [other-team targeted-member]))
+
+(defn wrap-target-fn
+  "Wrap a skill's defauly targeting fn with the desired coordinates."
+  [desired-coords default-fn]
+  (fn [targeter db]
+    (if (get-in db desired-coords)
+      desired-coords
+      (default-fn targeter db))))
+
+(def items {:potion {:name      "POTION"
+                     :desc      "Heals 20 HP"
+                     :action-fn (fn [target]
+                                  (assoc target
+                                    :health
+                                    (min (+ 20 (:health target))
+                                         (:maxhealth target))))}})
+
+(def skills {:item       {:name          "ITEM"
+                          :action-delay  2000
+                          :friendly?     true
+                          :selected-item :potion
+                          :targeting-fn  target-random-friendly
+                          :action-fn     (fn [_ target this]
+                                           (let [{:keys [action-fn]}
+                                                 (get items (:selected-item this))]
+                                             (action-fn target)))}
+
+             :rage       {:name "RAGE"}
+             :tools      {:name "TOOLS"}
+             :blackmagic {:name "B.MAG"}
+             :whitemagic {:name "W.MAG"}
+
+             :attack     {:name         "ATTACK"
+                          :action-delay 2000
+                          :friendly?    false
+                          :targeting-fn target-random-opponent
+                          :action-fn    (fn [targeter target _]
                                           (assoc target
                                             :health
                                             (- (:health target)
