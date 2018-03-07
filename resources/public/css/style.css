@@ -17,10 +17,17 @@ html {
 }
 
 .battleViz {
-    grid-area: 2 / 1 / span 5 / span 16;
-    border: 4px solid lightgray;
+    grid-area: 1 / 1 / span 5 / span 16;
+    border: 3px solid lightgray;
     border-radius: 8px;
     margin: 2px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.battleVis__logItem {
+    font-size: 200%;
+    line-height: 1em;
 }
 
 .screen__grid {

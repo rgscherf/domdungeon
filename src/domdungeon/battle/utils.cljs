@@ -7,16 +7,16 @@
   "Target a random friendly."
   [targeter db]
   (let [myself (get-in db targeter)
-        targeted-member (->> myself :team (get db) count rand-int inc)]
+        targeted-member (->> myself :team (get db) vals (remove #((:status %) :dead)) (map :id) rand-nth)]
     [(:team myself) targeted-member]))
 
 (defn target-random-opponent
   "Target a random opponent."
   [targeter db]
   (let [myself (get-in db targeter)
-        other-team (get db (other-team (:team myself)))
-        targeted-member (-> other-team count rand-int inc)]
-    [other-team targeted-member]))
+        other-chars (get db (-> myself :team other-team))
+        targeted-member (->> other-chars vals (remove #((:status %) :dead)) (map :id) rand-nth)]
+    [(other-team (:team myself)) targeted-member]))
 
 (defn wrap-target-fn
   "Wrap a skill's default targeting fn with the desired coordinates."
@@ -29,20 +29,24 @@
 (def items {:potion {:name        "POTION"
                      :description "Heals 20 HP"
                      :action-fn   (fn [target]
-                                    (assoc target
-                                      :health
-                                      (min (+ 20 (:health target))
-                                           (:maxhealth target))))}})
+                                    (let [newhealth (min (+ 20 (:health target))
+                                                         (:maxhealth target))]
+                                      [(assoc target :health newhealth)
+                                       (str " healed "
+                                            (:name target)
+                                            " for "
+                                            (- newhealth (:health target)))]))}})
 
 (def skills {:item       {:name          "ITEM"
                           :action-delay  2000
                           :friendly?     true
                           :selected-item :potion
                           :targeting-fn  target-random-friendly
-                          :action-fn     (fn [_ target this]
-                                           (let [{:keys [action-fn]}
-                                                 (get items (:selected-item this))]
-                                             (action-fn target)))}
+                          :action-fn     (fn [targeter target this]
+                                           (let [{:keys [action-fn]} (get items (:selected-item this))
+                                                 [newentity msgstub] (action-fn target)]
+                                             [newentity
+                                              (str (:name targeter) msgstub)]))}
 
              :rage       {:name "RAGE"}
              :tools      {:name "TOOLS"}
@@ -54,12 +58,20 @@
                           :friendly?    false
                           :targeting-fn target-random-opponent
                           :action-fn    (fn [targeter target _]
-                                          (let [newhealth (- (:health target)
-                                                             (:pstr targeter))
+                                          (let [newhealth (max 0
+                                                               (- (:health target)
+                                                                  (:pstr targeter)))
                                                 newstate (assoc target :health newhealth)]
-                                            (if (>= 0 newhealth)
-                                              (assoc newstate :status #{:dead})
-                                              newstate)))}})
+                                            [(if (>= 0 newhealth)
+                                               (assoc newstate :status #{:dead})
+                                               newstate)
+                                             (str
+                                               (:name targeter)
+                                               " hit "
+                                               (:name target)
+                                               " for "
+                                               (- (:health target) (:health newstate))
+                                               " damage!")]))}})
 
 (def stats
   [:pstr :mstr :pdef :mdef :speed :maxhealth :maxmp])
@@ -70,7 +82,7 @@
                     :id        1
                     :maxhealth 150
                     :maxmana   50
-                    :health    70
+                    :health    150
                     :mana      12
                     :atb-on?   true
                     :atb       0
@@ -86,7 +98,7 @@
                     :id        2
                     :maxhealth 100
                     :maxmana   230
-                    :health    80
+                    :health    100
                     :mana      210
                     :atb-on?   true
                     :atb       0
@@ -102,7 +114,7 @@
                     :id        3
                     :maxhealth 50
                     :maxmana   100
-                    :health    40
+                    :health    50
                     :mana      100
                     :atb-on?   true
                     :atb       0
@@ -121,8 +133,9 @@
                         :maxhealth 60
                         :health    60
                         :team      :enemies
+                        :skills    [:fight]
                         :speed     40
-                        :pstr      40
+                        :pstr      1
                         :mstr      40
                         :pdef      40
                         :mdef      20}})

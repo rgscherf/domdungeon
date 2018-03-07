@@ -7,7 +7,10 @@
   [[_ {:keys [id maxhealth health maxmana mana name atb skills
               pstr pdef mstr mdef status]}] rowstart colstart]
   ^{:key rowstart}
-  [:div.charGrid {:on-mouse-enter #(rf/dispatch [:mouse-is-on-friendly])
+  [:div.charGrid {:on-click       #(do
+                                     (.stopPropagation %)
+                                     (rf/dispatch [:friendly-click id]))
+                  :on-mouse-enter #(rf/dispatch [:mouse-is-on-friendly])
                   :on-mouse-leave #(rf/dispatch [:mouse-unset-friendly-state (-> % .-relatedTarget .-className)])
                   :style          {:grid-area (str rowstart " / " colstart " / span 2 / span 6")}}
 
@@ -17,11 +20,11 @@
 
    ;; hp/mp
    [:div.charGrid__primaryStats
-    (if (status :dead)
-      [:div "DEAD"]
-      (list
-        [:div.charGrid__primaryStatsChild.leftPad (str "HP " health "/" maxhealth)]
-        [:div.charGrid__primaryStatsChild.leftPad (str "MP " mana "/" maxmana)]))]
+    ;(if (status :dead)
+    ;  [:div "DEAD"])
+    ;(list)
+    [:div.charGrid__primaryStatsChild.leftPad (str "HP " health "/" maxhealth)]
+    [:div.charGrid__primaryStatsChild.leftPad (str "MP " mana "/" maxmana)]]
 
    [:div.charGrid__secondaryAndResists
     [:div.charGrid__secondaryStats
@@ -51,7 +54,9 @@
      [:div.charGrid__skills.leftPadLg
       (map (fn [s]
              ^{:key s} [:div.charGrid__skillName
-                        {:on-click #(be/skill-click id s false)}
+                        {:on-click #(do
+                                      (.stopPropagation %)
+                                      (rf/dispatch [:skill-click id s]))}
                         (get-in bu/skills [s :name])])
            skills)])])
 

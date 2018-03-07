@@ -25,3 +25,7 @@
        (= (get-in db [:active-targeting :current-pos-is-friendly?])
           (get-in db [:active-targeting :skill-is-friendly?]))])))
 
+(rf/reg-sub
+  :battle-log
+  (fn [db _]
+    (:battle-log db)))

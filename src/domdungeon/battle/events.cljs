@@ -8,10 +8,6 @@
   []
   (rf/dispatch-sync [:init]))
 
-(defn skill-click
-  [char-id skill friendly?]
-  (rf/dispatch [:skill-click char-id skill friendly?]))
-
 (defn click-enemy
   [enemy-id]
   (rf/dispatch [:enemy-click enemy-id]))
@@ -70,20 +66,38 @@
   (into {}
         (map (fn [[i c]] [i (if (:atb-on? c)
                               (assoc c :atb
-                                       (min 100 (+ (/ (:speed c) 500) ;; 40 spd is about 50% faster than 0
-                                                   timescale
+                                       (min 100 (+ (* (:speed c) timescale) ;; 40 spd is about 50% faster than 0
                                                    (:atb c))))
                               c)])
              chars)))
 
-(rf/reg-event-db
+(defn make-enemy-action
+  [enemy]
+  (let [selected-skill (rand-nth (:skills enemy))
+        action (selected-skill bu/skills)]
+    [:enqueue-action (assoc action :targeter [:enemies (:id enemy)])]))
+
+
+(rf/reg-event-fx
   :increment-atb
-  (fn [db _]
+  (fn [{:keys [db]} _]
     (if (:atb-active db)
-      (let [timescale 0.1]
-        (-> db
-            (update :characters inc-atb timescale)
-            (update :enemies inc-atb timescale))))))
+      (let [timescale 0.009
+            new-db (-> db
+                       (update :characters inc-atb timescale)
+                       (update :enemies inc-atb timescale))
+            enemies-to-act (->> new-db
+                                :enemies
+                                (map second)
+                                (filter (fn [{:keys [atb-on? atb status] :as en}]
+                                          (and (> atb 90)
+                                               atb-on?
+                                               (not (status :dead))))))
+            enemy-actions (map make-enemy-action enemies-to-act)]
+        (if (empty? enemies-to-act)
+          {:db new-db}
+          {:db         new-db
+           :dispatch-n enemy-actions})))))
 
 (defn increment-action-time
   [delay item]
@@ -106,8 +120,9 @@
 (rf/reg-event-fx
   :timestamp
   (fn [{:keys [db]} _]
-    {:db       (assoc db :current-time (js/Date.now))
-     :dispatch [:check-action-queue]}))
+    (if (:time-active db)
+      {:db       (assoc db :current-time (js/Date.now))
+       :dispatch [:check-action-queue]})))
 
 (rf/reg-event-db
   :mouse-coords
@@ -116,30 +131,40 @@
 
 (rf/reg-event-db
   :skill-click
-  (fn [db [_ char-id skill friendly?]]
-    (-> db
-        (assoc :active-targeting
-               {:char-id                  char-id
-                :skill                    skill
-                :skill-is-friendly?       friendly?
-                :current-pos-is-friendly? false})
-        (assoc :mouse-anchor-point (:mouse-current-location db)))))
+  (fn [db [_ char-id skill-kw]]
+    (let [skill-data (get bu/skills skill-kw)]
+      (-> db
+          (assoc :active-targeting
+                 {:char-id                  char-id
+                  :skill                    skill-kw
+                  :skill-is-friendly?       (:friendly? skill-data)
+                  :current-pos-is-friendly? false})
+          (assoc :mouse-anchor-point (:mouse-current-location db))))))
+
+(defn receive-click
+  [db target-coords]
+  (if (or (not (mouse-pos-is-targetable? db))
+          (not (:active-targeting db)))
+    {:db db}
+    (let [action-data (get bu/skills (get-in db [:active-targeting :skill]))
+          action (-> action-data
+                     (assoc :targeting-fn (bu/wrap-target-fn target-coords
+                                                             (:targeting-fn action-data)))
+                     (assoc :targeter [:characters (get-in db [:active-targeting :char-id])]))]
+      {:dispatch [:enqueue-action action]
+       :db       (-> db
+                     (assoc :active-targeting nil)
+                     (assoc :mouse-anchor-point nil))})))
+
+(rf/reg-event-fx
+  :friendly-click
+  (fn [{:keys [db]} [_ char-id]]
+    (receive-click db [:characters char-id])))
 
 (rf/reg-event-fx
   :enemy-click
   (fn [{:keys [db]} [_ enemy-id]]
-    (if (or (not (mouse-pos-is-targetable? db))
-            (not (:active-targeting db)))
-      {:db db}
-      (let [action-data (get bu/skills (get-in db [:active-targeting :skill]))
-            action (-> action-data
-                       (assoc :targeting-fn (bu/wrap-target-fn [:enemies enemy-id]
-                                                               (:targeting-fn action-data)))
-                       (assoc :targeter [:characters (get-in db [:active-targeting :char-id])]))]
-        {:dispatch [:enqueue-action action]
-         :db       (-> db
-                       (assoc :active-targeting nil)
-                       (assoc :mouse-anchor-point nil))}))))
+    (receive-click db [:enemies enemy-id])))
 
 (rf/reg-event-db
   :cancel-click
@@ -174,20 +199,26 @@
   :perform-action
   (fn [{:keys [db]} [_ {:keys [targeting-fn action-fn targeter] :as action}]]
     (let [target-coords (targeting-fn targeter db)
-          new-entity-state (action-fn
-                             (get-in db targeter)
-                             (get-in db target-coords)
-                             action)
+          [new-entity-state logmsg] (action-fn
+                                      (get-in db targeter)
+                                      (get-in db target-coords)
+                                      action)
           new-db (-> db
+                     (update :battle-log conj logmsg)
                      (assoc-in target-coords new-entity-state)
                      (assoc-in (conj targeter :atb-on?) true))]
+      #_(if ((:status new-entity-state) :dead)
+          {:db             new-db
+           :dispatch-later [{:ms 200 :dispatch [:is-dead (:team new-entity-state) (:id new-entity-state)]}]})
+      {:db new-db})))
 
-      (if ((:status new-entity-state) :dead)
-        {:db             new-db
-         :dispatch-later {:ms 200 :dispatch [:is-dead (:team new-entity-state) (:id new-entity-state)]}}
-        {:db new-db}))))
+(rf/reg-event-db
+  :toggle-time
+  (fn [db _]
+    (-> db
+        (update :atb-active not)
+        (update :time-active not))))
 
-(contains? [:yes :no] :no)
 (rf/reg-event-db
   :init
   (fn [_ _]
@@ -198,6 +229,8 @@
      :mouse-current-location nil
      :current-time           0
      :action-queue           []
-     :atb-active             true}))
+     :battle-log             '()
+     :atb-active             true
+     :time-active            true}))
 
 

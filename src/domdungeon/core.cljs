@@ -11,7 +11,7 @@
   (r/render [bv/root]
             (.getElementById js/document "app")))
 
-(def one-frame (/ 1000 60))
+(def one-frame (/ 1000 24))
 
 (js/window.setInterval #(rf/dispatch [:increment-atb]) one-frame)
 (js/window.setInterval #(rf/dispatch [:timestamp]) one-frame)
