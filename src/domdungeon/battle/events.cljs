@@ -68,10 +68,12 @@
 (defn inc-atb
   [chars timescale]
   (into {}
-        (map (fn [[i c]] [i (assoc c :atb
-                                     (min 100 (+ (/ (:speed c) 500) ;; 40 spd is about 50% faster than 0
-                                                 timescale
-                                                 (:atb c))))])
+        (map (fn [[i c]] [i (if (:atb-on? c)
+                              (assoc c :atb
+                                       (min 100 (+ (/ (:speed c) 500) ;; 40 spd is about 50% faster than 0
+                                                   timescale
+                                                   (:atb c))))
+                              c)])
              chars)))
 
 (rf/reg-event-db
@@ -133,10 +135,7 @@
             action (-> action-data
                        (assoc :targeting-fn (bu/wrap-target-fn [:enemies enemy-id]
                                                                (:targeting-fn action-data)))
-                       (assoc :targeter [:characters (get-in db [:active-targeting :char-id])])) #_{:action   (get bu/skills (get-in db [:active-targeting :skill]))
-                                                                                                    :target   (get-in db [:enemies enemy-id])
-                                                                                                    :targeter {:team :characters
-                                                                                                               :id   (get-in db [:active-targeting :char-id])}}]
+                       (assoc :targeter [:characters (get-in db [:active-targeting :char-id])]))]
         {:dispatch [:enqueue-action action]
          :db       (-> db
                        (assoc :active-targeting nil)
@@ -154,20 +153,41 @@
   :enqueue-action
   (fn [db [_ action]]
     (let [action-time (+ (:action-delay action)
-                         (:current-time db))]
-      (update db :action-queue conj
-              (assoc action :action-time action-time)))))
+                         (:current-time db))
+          new-targeter-state (-> (get-in db (:targeter action))
+                                 (assoc :atb-on? false)
+                                 (assoc :atb 0))]
+      (->
+        (update db :action-queue conj (assoc action :action-time action-time))
+        (assoc-in (:targeter action) new-targeter-state)))))
 
 (rf/reg-event-db
-  :perform-action
-  (fn [db [_ {:keys [targeting-fn action-fn targeter] :as action}]]
-    (let [target-coords (targeting-fn targeter db)]
-      (assoc-in db target-coords
-                (action-fn
-                  (get-in db targeter)
-                  (get-in db target-coords)
-                  action)))))
+  :is-dead
+  (fn [db [_ team id]]
+    (let [new-entity-state
+          (-> (get-in db [team id])
+              (assoc :atb-on? false)
+              (assoc :status #{:dead}))]
+      (assoc-in db [team id] new-entity-state))))
 
+(rf/reg-event-fx
+  :perform-action
+  (fn [{:keys [db]} [_ {:keys [targeting-fn action-fn targeter] :as action}]]
+    (let [target-coords (targeting-fn targeter db)
+          new-entity-state (action-fn
+                             (get-in db targeter)
+                             (get-in db target-coords)
+                             action)
+          new-db (-> db
+                     (assoc-in target-coords new-entity-state)
+                     (assoc-in (conj targeter :atb-on?) true))]
+
+      (if ((:status new-entity-state) :dead)
+        {:db             new-db
+         :dispatch-later {:ms 200 :dispatch [:is-dead (:team new-entity-state) (:id new-entity-state)]}}
+        {:db new-db}))))
+
+(contains? [:yes :no] :no)
 (rf/reg-event-db
   :init
   (fn [_ _]

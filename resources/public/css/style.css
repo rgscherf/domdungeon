@@ -53,7 +53,7 @@ html {
     /*background-color: orange;*/
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .enemyGrid__status {
@@ -64,12 +64,27 @@ html {
     justify-content: center;
 }
 
-.enemyGrid__stats {
+.enemyGrid__statsAndResists {
     grid-area: 3 / 1 / span 3 / span 18;
     /*background-color: pink;*/
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.enemyGrid__stats {
+    height: 90%;
+    flex: 2;
+    display: grid;
+    grid-template: 2fr 1fr / repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+.enemyGrid__resists {
+    height: 90%;
+    /*background: green;*/
+    flex: 1;
 }
 
 .enemyGrid__atb {
@@ -82,7 +97,7 @@ html {
 }
 
 .leftPad {
-    padding-left: 2%;
+    padding-left: 5%;
 }
 
 .leftPadLg {
@@ -104,6 +119,7 @@ html {
     /*background: blue;*/
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .charGrid__primaryStats {
@@ -118,11 +134,36 @@ html {
     font-size: 155%;
 }
 
-.charGrid__secondaryStats {
+.charGrid__secondaryAndResists {
     grid-area: 3 / 1 / span 1 / span 9;
-    /*background: green;*/
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.charGrid__secondaryStats {
+    height: 100%;
+    flex: 2;
+    display: grid;
+    grid-template: 2fr 1fr / repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+.charGrid__resists {
+    height: 100%;
+    /*background: green;*/
+    flex: 1;
+}
+
+.charGrid__small {
+    font-size: 90%;
+    color: lightgray;
+}
+
+.charGrid__large {
+    font-size: 125%;
 }
 
 .charGrid__atb {

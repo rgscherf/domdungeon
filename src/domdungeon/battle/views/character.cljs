@@ -4,7 +4,8 @@
             [domdungeon.battle.events :as be]))
 
 (defn charGrid
-  [[_ {:keys [id maxhealth health maxmana mana name atb skills]}] rowstart colstart]
+  [[_ {:keys [id maxhealth health maxmana mana name atb skills
+              pstr pdef mstr mdef status]}] rowstart colstart]
   ^{:key rowstart}
   [:div.charGrid {:on-mouse-enter #(rf/dispatch [:mouse-is-on-friendly])
                   :on-mouse-leave #(rf/dispatch [:mouse-unset-friendly-state (-> % .-relatedTarget .-className)])
@@ -12,18 +13,27 @@
 
    ;; charname
    [:div.charGrid__name
-    [:div.leftPad {:style {:font-size "250%"}} name]]
+    [:div {:style {:font-size "250%"}} name]]
 
    ;; hp/mp
    [:div.charGrid__primaryStats
-    [:div.charGrid__primaryStatsChild.leftPad (str "HP " health "/" maxhealth)]
-    [:div.charGrid__primaryStatsChild.leftPad (str "MP " mana "/" maxmana)]]
+    (if (status :dead)
+      [:div "DEAD"]
+      (list
+        [:div.charGrid__primaryStatsChild.leftPad (str "HP " health "/" maxhealth)]
+        [:div.charGrid__primaryStatsChild.leftPad (str "MP " mana "/" maxmana)]))]
 
-   ;; secondary/combat stats
-   #_[:div.charGrid__secondaryStats.leftPad
-      (map (fn [s] [:div s])
-           (repeat 5 " PA 34  "))
-      ]
+   [:div.charGrid__secondaryAndResists
+    [:div.charGrid__secondaryStats
+     [:div.charGrid__large pstr]
+     [:div.charGrid__large pdef]
+     [:div.charGrid__large mstr]
+     [:div.charGrid__large mdef]
+     [:div.charGrid__small "pstr"]
+     [:div.charGrid__small "pdef"]
+     [:div.charGrid__small "mstr"]
+     [:div.charGrid__small "mdef"]]
+    [:div.charGrid__resists]]
 
    ;; atb gauge
    [:div.charGrid__atb
@@ -37,7 +47,7 @@
      )
 
    ;; skills
-   (when (<= atb 100)
+   (when (= atb 100)
      [:div.charGrid__skills.leftPadLg
       (map (fn [s]
              ^{:key s} [:div.charGrid__skillName

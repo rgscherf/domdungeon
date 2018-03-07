@@ -19,7 +19,7 @@
     [other-team targeted-member]))
 
 (defn wrap-target-fn
-  "Wrap a skill's defauly targeting fn with the desired coordinates."
+  "Wrap a skill's default targeting fn with the desired coordinates."
   [desired-coords default-fn]
   (fn [targeter db]
     (if (get-in db desired-coords)
@@ -54,85 +54,92 @@
                           :friendly?    false
                           :targeting-fn target-random-opponent
                           :action-fn    (fn [targeter target _]
-                                          (assoc target
-                                            :health
-                                            (- (:health target)
-                                               (:pstr targeter))))}})
+                                          (let [newhealth (- (:health target)
+                                                             (:pstr targeter))
+                                                newstate (assoc target :health newhealth)]
+                                            (if (>= 0 newhealth)
+                                              (assoc newstate :status #{:dead})
+                                              newstate)))}})
+
+(def stats
+  [:pstr :mstr :pdef :mdef :speed :maxhealth :maxmp])
+
 
 (def characters {1 {:name      "ZEKE"
+                    :status    #{}
                     :id        1
                     :maxhealth 150
                     :maxmana   50
                     :health    70
                     :mana      12
-                    :speed     1
+                    :atb-on?   true
                     :atb       0
                     :team      :characters
-                    :pstr      10
+                    :pstr      25
+                    :pdef      30
+                    :mstr      10
+                    :mdef      20
+                    :speed     30
                     :skills    [:fight :item :blackmagic]}
                  2 {:name      "HELIO"
+                    :status    #{}
                     :id        2
                     :maxhealth 100
                     :maxmana   230
                     :health    80
                     :mana      210
-                    :speed     20
+                    :atb-on?   true
                     :atb       0
                     :team      :characters
-                    :pstr      10
+                    :pstr      20
+                    :pdef      30
+                    :mstr      40
+                    :mdef      30
+                    :speed     20
                     :skills    [:blackmagic :whitemagic :fight]}
                  3 {:name      "BUSTR"
+                    :status    #{}
                     :id        3
                     :maxhealth 50
                     :maxmana   100
                     :health    40
                     :mana      100
-                    :speed     40
+                    :atb-on?   true
                     :atb       0
                     :team      :characters
-                    :pstr      10
+                    :pstr      30
+                    :pdef      30
+                    :mstr      10
+                    :mdef      10
+                    :speed     40
                     :skills    [:rage :item :blackmagic]}})
 
-(def enemies {1 {:name      "GOOMBA1"
-                 :id        1
-                 :maxhealth 50
-                 :health    50
-                 :speed     40
-                 :team      :enemies
-                 :pstr      10
-                 :atb       0}
-              2 {:name      "GOOMBA2"
-                 :id        2
-                 :maxhealth 50
-                 :health    40
-                 :speed     40
-                 :team      :enemies
-                 :pstr      10
-                 :atb       0}
-              3 {:name      "GOOMBA3"
-                 :id        3
-                 :maxhealth 50
-                 :health    40
-                 :speed     40
-                 :team      :enemies
-                 :pstr      10
-                 :atb       0}
-              4 {:name      "GOOMBA4"
-                 :id        4
-                 :maxhealth 50
-                 :health    40
-                 :speed     40
-                 :team      :enemies
-                 :pstr      10
-                 :atb       0}
-              5 {:name      "GOOMBA5"
-                 :id        5
-                 :maxhealth 50
-                 :health    40
-                 :speed     40
-                 :pstr      10
-                 :team      :enemies
-                 :atb       0}})
+(def bestiary {:goomba {:name      "GOOMBA"
+                        :status    #{}
+                        :atb-on?   true
+                        :atb       0
+                        :maxhealth 60
+                        :health    60
+                        :team      :enemies
+                        :speed     40
+                        :pstr      40
+                        :mstr      40
+                        :pdef      40
+                        :mdef      20}})
+
+(defn make-enemy
+  [proto id tag]
+  (let [enemy (get bestiary proto)]
+    (-> enemy
+        (assoc :id id)
+        (assoc :tag tag))))
+
+(def enemies
+  (reduce (fn [collector n] (assoc collector (:id n) n))
+          {}
+          (map (partial make-enemy :goomba)
+               (range 1 6)
+               (seq "ABCDEFGHIJKLMNOP"))))
 
 (defn event-game-coords
   [event]

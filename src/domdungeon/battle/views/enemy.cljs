@@ -3,21 +3,36 @@
             [domdungeon.battle.events :as be]))
 
 (defn enemy-card
-  [[_ {:keys [id name maxhealth health atb]}] rowstart colstart]
+  [[_ {:keys [id name maxhealth health atb
+              pstr pdef mstr mdef status]}] rowstart colstart]
   ^{:key id}
   [:div.enemyGrid {:on-click      #(be/click-enemy id)
                    :on-mouse-over #(rf/dispatch [:mouse-is-on-enemy])
                    :on-mouse-out  #(rf/dispatch [:mouse-unset-friendly-state (-> % .-relatedTarget .-className)])
                    :style         {:grid-area (str rowstart " / " colstart " / span 1 / span 3")}}
-   [:div.enemyGrid__name name]
+   [:div.enemyGrid__name.leftPad name]
    [:div.enemyGrid__status (let [healthpct (* 100 (/ health maxhealth))]
                              (cond
+                               (status :dead) "DEAD"
                                (< healthpct 10) "CRIT"
                                (< healthpct 25) "LOW"
                                (< healthpct 50) "WOUND"
                                (< healthpct 75) "OK"
                                :else "FINE"))]
-   [:div.enemyGrid__stats]
+
+   [:div.enemyGrid__statsAndResists
+    [:div.enemyGrid__stats
+     [:div.charGrid__small pstr]
+     [:div.charGrid__small pdef]
+     [:div.charGrid__small mstr]
+     [:div.charGrid__small mdef]
+     [:div.charGrid__small "pstr"]
+     [:div.charGrid__small "pdef"]
+     [:div.charGrid__small "mstr"]
+     [:div.charGrid__small "mdef"]
+     ]
+    [:div.enemyGrid__resists]]
+
    [:div.enemyGrid__atb
     [:div.charGrid__atbOutline
      [:div.charGrid__atbFill {:style {:width (str (Math/floor atb) "%")}}]]]
