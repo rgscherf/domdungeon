@@ -26,56 +26,67 @@
       desired-coords
       (default-fn targeter db))))
 
-(def items {:potion {:name        "POTION"
-                     :description "Heals 20 HP"
-                     :action-fn   (fn [target]
-                                    (let [newhealth (min (+ 20 (:health target))
-                                                         (:maxhealth target))]
-                                      [(assoc target :health newhealth)
-                                       (str " healed "
-                                            (:name target)
-                                            " for "
-                                            (- newhealth (:health target)))]))}})
+(defn item-action-fn-wrap
+  "Wraps item action-fns to include targeter information."
+  [action-fn]
+  (fn [targeter target this]
+    (let [[newentity msgstub] (action-fn target)]
+      [newentity
+       (str (:name targeter) msgstub)])))
 
-(def skills {:item       {:name          "ITEM"
-                          :action-delay  2000
-                          :friendly?     true
-                          :selected-item :potion
-                          :targeting-fn  target-random-friendly
-                          :action-fn     (fn [targeter target this]
-                                           (let [{:keys [action-fn]} (get items (:selected-item this))
-                                                 [newentity msgstub] (action-fn target)]
-                                             [newentity
-                                              (str (:name targeter) msgstub)]))}
+(def skills {:item         {:name          "ITEM"
+                            :action-delay  2000
+                            :submenu?      true
+                            :submenu-items #{:items/potion}
+                            :targeting-fn  target-random-friendly
+                            :action-fn     nil #_(fn [targeter target this]
+                                                   (let [{:keys [action-fn]} (get items (:selected-item this))
+                                                         [newentity msgstub] (action-fn target)]
+                                                     [newentity
+                                                      (str (:name targeter) msgstub)]))}
 
-             :rage       {:name "RAGE"}
-             :tools      {:name "TOOLS"}
-             :blackmagic {:name "B.MAG"}
-             :whitemagic {:name "W.MAG"}
+             :items/potion {:name         "POTION"
+                            :description  "Heals 20 HP"
+                            :action-delay 2000
+                            :submenu?     false
+                            :friendly?    true
+                            :targeting-fn target-random-friendly
+                            :action-fn    (item-action-fn-wrap (fn [target]
+                                                                 (let [newhealth (min (+ 20 (:health target))
+                                                                                      (:maxhealth target))]
+                                                                   [(assoc target :health newhealth)
+                                                                    (str " healed "
+                                                                         (:name target)
+                                                                         " for "
+                                                                         (- newhealth (:health target)))])))}
+             :rage         {:name "RAGE"}
+             :tools        {:name "TOOLS"}
+             :blackmagic   {:name "B.MAG"}
+             :whitemagic   {:name "W.MAG"}
 
-             :fight      {:name         "FIGHT"
-                          :action-delay 2000
-                          :friendly?    false
-                          :targeting-fn target-random-opponent
-                          :action-fn    (fn [targeter target _]
-                                          (let [newhealth (max 0
-                                                               (- (:health target)
-                                                                  (:pstr targeter)))
-                                                newstate (assoc target :health newhealth)]
-                                            [(if (>= 0 newhealth)
-                                               (assoc newstate :status #{:dead})
-                                               newstate)
-                                             (str
-                                               (:name targeter)
-                                               " hit "
-                                               (:name target)
-                                               " for "
-                                               (- (:health target) (:health newstate))
-                                               " damage!")]))}})
+             :fight        {:name         "FIGHT"
+                            :action-delay 2000
+                            :submenu?     false
+                            :friendly?    false
+                            :targeting-fn target-random-opponent
+                            :action-fn    (fn [targeter target _]
+                                            (let [newhealth (max 0
+                                                                 (- (:health target)
+                                                                    (:pstr targeter)))
+                                                  newstate (assoc target :health newhealth)]
+                                              [(if (>= 0 newhealth)
+                                                 (assoc newstate :status #{:dead})
+                                                 newstate)
+                                               (str
+                                                 (:name targeter)
+                                                 " hit "
+                                                 (:name target)
+                                                 " for "
+                                                 (- (:health target) (:health newstate))
+                                                 " damage!")]))}})
 
 (def stats
   [:pstr :mstr :pdef :mdef :speed :maxhealth :maxmp])
-
 
 (def characters {1 {:name      "ZEKE"
                     :status    #{}

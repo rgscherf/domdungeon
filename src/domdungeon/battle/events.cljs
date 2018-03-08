@@ -132,14 +132,17 @@
 (rf/reg-event-db
   :skill-click
   (fn [db [_ char-id skill-kw]]
-    (let [skill-data (get bu/skills skill-kw)]
-      (-> db
-          (assoc :active-targeting
-                 {:char-id                  char-id
-                  :skill                    skill-kw
-                  :skill-is-friendly?       (:friendly? skill-data)
-                  :current-pos-is-friendly? false})
-          (assoc :mouse-anchor-point (:mouse-current-location db))))))
+    (let [skill-data (get bu/skills skill-kw)
+          newdb (assoc db :open-submenu nil)]
+      (if (:submenu? skill-data)
+        (assoc newdb :open-submenu (:submenu-items skill-data))
+        (-> newdb
+            (assoc :active-targeting
+                   {:char-id                  char-id
+                    :skill                    skill-kw
+                    :skill-is-friendly?       (:friendly? skill-data)
+                    :current-pos-is-friendly? (:friendly? skill-data)})
+            (assoc :mouse-anchor-point (:mouse-current-location newdb)))))))
 
 (defn receive-click
   [db target-coords]
@@ -153,6 +156,7 @@
                      (assoc :targeter [:characters (get-in db [:active-targeting :char-id])]))]
       {:dispatch [:enqueue-action action]
        :db       (-> db
+                     (assoc :open-submenu nil)
                      (assoc :active-targeting nil)
                      (assoc :mouse-anchor-point nil))})))
 
@@ -169,10 +173,13 @@
 (rf/reg-event-db
   :cancel-click
   (fn [db _]
-    (if (or (not (:active-targeting db))
+    #_(if (or (not (:active-targeting db))
             (mouse-pos-is-targetable? db))
-      db
-      (assoc db :active-targeting nil))))
+      db)
+    (-> db
+        (assoc :open-submenu nil)
+        (assoc :active-targeting nil)
+        (assoc :open-submenu nil))))
 
 (rf/reg-event-db
   :enqueue-action
@@ -227,6 +234,7 @@
      :active-targeting       nil
      :mouse-anchor-point     nil
      :mouse-current-location nil
+     :open-submenu           nil
      :current-time           0
      :action-queue           []
      :battle-log             '()

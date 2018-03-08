@@ -1,5 +1,6 @@
 (ns domdungeon.battle.subs
-  (:require [re-frame.core :as rf]))
+  (:require [domdungeon.battle.utils :as bu]
+            [re-frame.core :as rf]))
 
 (rf/reg-sub
   :atb-time
@@ -29,3 +30,11 @@
   :battle-log
   (fn [db _]
     (:battle-log db)))
+
+(rf/reg-sub
+  :skills-submenu
+  (fn [db _]
+    (let [sub (:open-submenu db)]
+      (when sub
+        (map #(get bu/skills %) sub)))))
+

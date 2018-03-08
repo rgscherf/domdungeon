@@ -12,6 +12,19 @@
           [:div.battleVis__logItem msg])
         (take 8 @(rf/subscribe [:battle-log])))])
 
+(defn submenu-entry
+  [collected entry]
+  (conj collected
+        [:div.skillsSubMenu__entry (:name entry)]
+        [:div.skillsSubMenu__entry (:description entry)]))
+
+(defn submenu
+  [skill-set]
+  (let [sorted (sort-by :name skill-set)]
+    (println sorted)
+    [:div.skillsSubMenu {:on-click #(.stopPropagation %)}
+     (seq (reduce submenu-entry [] sorted))]))
+
 (defn root []
   [:div.screen__background
    [:div#game.screen__grid {:on-mouse-move #(be/record-mouse-coords %)
@@ -25,6 +38,8 @@
          (iterate #(+ 2 %) 6)
          (repeat 1))
     [battle-viz]
+    (when @(rf/subscribe [:skills-submenu])
+      [submenu @(rf/subscribe [:skills-submenu])])
     (map enemy/enemy-card
          @(rf/subscribe [:enemies])
          (iterate #(+ 1 %) 6)

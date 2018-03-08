@@ -25,9 +25,25 @@ html {
     flex-direction: column-reverse;
 }
 
+
+
 .battleVis__logItem {
     font-size: 200%;
     line-height: 1em;
+}
+
+.skillsSubMenu {
+    grid-area: 6 / 7 / span 6 / span 6;
+    border: 2px solid lightgray;
+    margin-left: 3%;
+    display:grid;
+    grid-template: auto / 1fr 1fr;
+    font-size: 200%;
+    line-height: 1em;
+}
+
+.skillsSubMenu__entry {
+
 }
 
 .screen__grid {
