@@ -1,11 +1,11 @@
 (ns domdungeon.battle.views.character
   (:require [re-frame.core :as rf]
             [domdungeon.battle.utils :as bu]
-            [domdungeon.battle.events :as be]))
+            [domdungeon.battle.views.utils :as vu]))
 
 (defn charGrid
   [[_ {:keys [id maxhealth health maxmana mana name atb skills
-              pstr pdef mstr mdef status]}] rowstart colstart]
+              pstr pdef mstr mdef status] :as char}] rowstart colstart]
   ^{:key rowstart}
   [:div.charGrid {:on-click       #(do
                                      (.stopPropagation %)
@@ -41,7 +41,8 @@
    ;; atb gauge
    [:div.charGrid__atb
     [:div.charGrid__atbOutline
-     [:div.charGrid__atbFill {:style {:width (str (Math/floor atb) "%")}}]]]
+     [:div.charGrid__atbFill {:style {:background (if (:atb-on? char) "white" "cyan")
+                                      :width (vu/atb-pct-fill char)}}]]]
 
    ;; border
    (if (= atb 100)

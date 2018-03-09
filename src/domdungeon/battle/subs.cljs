@@ -36,5 +36,15 @@
   (fn [db _]
     (let [sub (:open-submenu db)]
       (when sub
-        (map #(get bu/skills %) sub)))))
+        {:char-id (:char-id sub)
+         :items   (map #(assoc (get bu/skills %) :id %) (:items sub))}))))
 
+
+(rf/reg-sub
+  :actor-enqueued-actions
+  (fn [db [_ team id]]
+    (when (not (empty? (:action-queue db)))
+      (if-let [this-char-actions (seq (filter #(= [team id]
+                                               (:targeter %))
+                                           (:action-queue db)))]
+        (assoc (first this-char-actions) :current-time (:current-time db))))))

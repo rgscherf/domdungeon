@@ -36,7 +36,6 @@
 
 (def skills {:item         {:name          "ITEM"
                             :action-delay  2000
-                            :submenu?      true
                             :submenu-items #{:items/potion}
                             :targeting-fn  target-random-friendly
                             :action-fn     nil #_(fn [targeter target this]
@@ -46,9 +45,9 @@
                                                       (str (:name targeter) msgstub)]))}
 
              :items/potion {:name         "POTION"
-                            :description  "Heals 20 HP"
+                            :description  "Ally: heal 20HP"
                             :action-delay 2000
-                            :submenu?     false
+                            :parent-skill :items
                             :friendly?    true
                             :targeting-fn target-random-friendly
                             :action-fn    (item-action-fn-wrap (fn [target]
@@ -59,14 +58,34 @@
                                                                          (:name target)
                                                                          " for "
                                                                          (- newhealth (:health target)))])))}
-             :rage         {:name "RAGE"}
+             :rage         {:name         "RAGE"
+                            :action-delay 2000
+                            :friendly?    false
+                            :targeting-fn target-random-opponent
+                            :action-fn    (fn [targeter target _]
+                                            (let [ragefactor 2
+                                                  newhealth (max 0
+                                                                 (- (:health target)
+                                                                    (* ragefactor
+                                                                       (:pstr targeter))))
+                                                  newstate (assoc target :health newhealth)]
+                                              [(if (>= 0 newhealth)
+                                                 (assoc newstate :status #{:dead})
+                                                 newstate)
+                                               (str
+                                                 "RAGE!! "
+                                                 (:name targeter)
+                                                 " hit "
+                                                 (:name target)
+                                                 " for "
+                                                 (- (:health target) (:health newstate))
+                                                 " damage.")]))}
              :tools        {:name "TOOLS"}
              :blackmagic   {:name "B.MAG"}
              :whitemagic   {:name "W.MAG"}
 
              :fight        {:name         "FIGHT"
                             :action-delay 2000
-                            :submenu?     false
                             :friendly?    false
                             :targeting-fn target-random-opponent
                             :action-fn    (fn [targeter target _]

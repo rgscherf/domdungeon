@@ -8,22 +8,27 @@
 (defn battle-viz
   []
   [:div.battleViz
-   (map (fn [msg]
-          [:div.battleVis__logItem msg])
-        (take 8 @(rf/subscribe [:battle-log])))])
+   (map (fn [msg id]
+          ^{:key id} [:div.battleVis__logItem msg])
+        (take 8 @(rf/subscribe [:battle-log]))
+        (range 8))])
 
 (defn submenu-entry
-  [collected entry]
-  (conj collected
-        [:div.skillsSubMenu__entry (:name entry)]
-        [:div.skillsSubMenu__entry (:description entry)]))
+  [char-id entry]
+  ^{:key (:id entry)}
+  [:div.skillsSubMenu__entry {:on-click #(do
+                                           (.stopPropagation %)
+                                           (rf/dispatch [:skill-click char-id (:id entry)]))}
+   [:div.skillsSubMenu__entryNum "55"]
+   [:div.skillsSubMenu__entryName (:name entry)]
+   [:div.skillsSubMenu__entryDesc (:description entry)]
+   ])
 
 (defn submenu
-  [skill-set]
-  (let [sorted (sort-by :name skill-set)]
-    (println sorted)
-    [:div.skillsSubMenu {:on-click #(.stopPropagation %)}
-     (seq (reduce submenu-entry [] sorted))]))
+  [{:keys [char-id items]}]
+  (let [sorted (sort-by :name items)]
+    [:div.skillsSubMenu
+     (map (partial submenu-entry char-id) sorted)]))
 
 (defn root []
   [:div.screen__background
@@ -32,7 +37,9 @@
                                               (js/console.log (-> % .-key))
                                               (if (-> % .-key (= "P"))
                                                 (rf/dispatch [:toggle-time])))
-                            :on-click      #(rf/dispatch [:cancel-click])}
+                            :on-click      #(do
+                                              (js/console.log (.-target %))
+                                              (rf/dispatch [:cancel-click]))}
     (map char/charGrid
          @(rf/subscribe [:characters])
          (iterate #(+ 2 %) 6)

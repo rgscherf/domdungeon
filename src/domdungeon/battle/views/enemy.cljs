@@ -1,10 +1,11 @@
 (ns domdungeon.battle.views.enemy
   (:require [re-frame.core :as rf]
+            [domdungeon.battle.views.utils :as vu]
             [domdungeon.battle.events :as be]))
 
 (defn enemy-card
-  [[_ {:keys [id name maxhealth health atb
-              pstr pdef mstr mdef status]}] rowstart colstart]
+  [[_ {:keys [id name maxhealth health
+              pstr pdef mstr mdef status] :as enemy}] rowstart colstart]
   ^{:key id}
   [:div.enemyGrid {:on-click      #(do
                                      (.stopPropagation %)
@@ -37,6 +38,7 @@
 
    [:div.enemyGrid__atb
     [:div.charGrid__atbOutline
-     [:div.charGrid__atbFill {:style {:width (str (Math/floor atb) "%")}}]]]
+     [:div.charGrid__atbFill {:style {:width (vu/atb-pct-fill enemy)
+                                      :background (if (:atb-on? enemy) "white" "cyan")}}]]]
    ])
 

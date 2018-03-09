@@ -78,6 +78,16 @@
     [:enqueue-action (assoc action :targeter [:enemies (:id enemy)])]))
 
 
+(defn is-charged-with-rage
+  [char]
+  (and ((:status char) :rage)
+       (= (:atb char) 100)))
+
+(defn enraged-action
+  [char]
+  (let [skill (get bu/skills :rage)]
+    [:enqueue-action (assoc skill :targeter [:characters (:id char)])]) )
+
 (rf/reg-event-fx
   :increment-atb
   (fn [{:keys [db]} _]
@@ -86,15 +96,27 @@
             new-db (-> db
                        (update :characters inc-atb timescale)
                        (update :enemies inc-atb timescale))
+            enraged-chars (filter is-charged-with-rage (-> db :characters vals))
             enemies-to-act (->> new-db
                                 :enemies
                                 (map second)
-                                (filter (fn [{:keys [atb-on? atb status] :as en}]
-                                          (and (> atb 90)
+                                (filter (fn [{:keys [atb-on? atb status]}]
+                                          (and (= atb 100)
                                                atb-on?
                                                (not (status :dead))))))
             enemy-actions (map make-enemy-action enemies-to-act)]
-        (if (empty? enemies-to-act)
+        (cond
+          ;; enqueue enemy actions.
+          (not (empty? enemies-to-act))
+          {:db         new-db
+           :dispatch-n enemy-actions}
+          ;; enqueue actions for ragers, and set their ATB to 0.
+          (not (empty? enraged-chars))
+          {:db         new-db
+           :dispatch-n (map (fn [c] (enraged-action c)) enraged-chars)}
+          :else
+          {:db new-db} )
+        #_(if (empty? enemies-to-act)
           {:db new-db}
           {:db         new-db
            :dispatch-n enemy-actions})))))
@@ -102,6 +124,8 @@
 (defn increment-action-time
   [delay item]
   (update item :action-time + delay))
+
+(def action-increment-amount 500)
 
 (rf/reg-event-fx
   :check-action-queue
@@ -112,8 +136,7 @@
                                              (:action-queue db)))]
         (if (>= (:current-time db)
                 (:action-time (first sorted-actions)))
-          {:db       (assoc db :action-queue (mapv (partial increment-action-time 2000)
-                                                   (rest sorted-actions)))
+          {:db       (assoc db :action-queue (rest sorted-actions))
            :dispatch [:perform-action (first sorted-actions)]}
           {:db db})))))
 
@@ -133,9 +156,17 @@
   :skill-click
   (fn [db [_ char-id skill-kw]]
     (let [skill-data (get bu/skills skill-kw)
-          newdb (assoc db :open-submenu nil)]
-      (if (:submenu? skill-data)
-        (assoc newdb :open-submenu (:submenu-items skill-data))
+          ;; don't cancel the submenu if we clicked a child skill.
+          newdb (if (:parent-skill skill-data)
+                  db
+                  (assoc db :open-submenu nil))]
+      (cond
+        (:submenu-items skill-data)
+        (assoc newdb :open-submenu {:char-id char-id
+                                    :items   (:submenu-items skill-data)})
+        (#{:rage} skill-kw)
+        (update-in newdb [:characters char-id :status] conj skill-kw)
+        :else
         (-> newdb
             (assoc :active-targeting
                    {:char-id                  char-id
@@ -174,8 +205,8 @@
   :cancel-click
   (fn [db _]
     #_(if (or (not (:active-targeting db))
-            (mouse-pos-is-targetable? db))
-      db)
+              (mouse-pos-is-targetable? db))
+        db)
     (-> db
         (assoc :open-submenu nil)
         (assoc :active-targeting nil)
@@ -214,9 +245,6 @@
                      (update :battle-log conj logmsg)
                      (assoc-in target-coords new-entity-state)
                      (assoc-in (conj targeter :atb-on?) true))]
-      #_(if ((:status new-entity-state) :dead)
-          {:db             new-db
-           :dispatch-later [{:ms 200 :dispatch [:is-dead (:team new-entity-state) (:id new-entity-state)]}]})
       {:db new-db})))
 
 (rf/reg-event-db
