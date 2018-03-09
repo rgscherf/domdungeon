@@ -1,5 +1,5 @@
 (ns domdungeon.battle.subs
-  (:require [domdungeon.battle.utils :as bu]
+  (:require [domdungeon.battle.skills :as bs]
             [re-frame.core :as rf]))
 
 (rf/reg-sub
@@ -37,7 +37,7 @@
     (let [sub (:open-submenu db)]
       (when sub
         {:char-id (:char-id sub)
-         :items   (map #(assoc (get bu/skills %) :id %) (:items sub))}))))
+         :items   (map #(assoc (get bs/skills %) :id %) (:items sub))}))))
 
 
 (rf/reg-sub

@@ -1,5 +1,6 @@
 (ns domdungeon.battle.events
   (:require [re-frame.core :as rf]
+            [domdungeon.battle.skills :as bs]
             [domdungeon.battle.utils :as bu]))
 
 ;; 1: event dispatch : call these to init rf/dispatch
@@ -74,7 +75,7 @@
 (defn make-enemy-action
   [enemy]
   (let [selected-skill (rand-nth (:skills enemy))
-        action (selected-skill bu/skills)]
+        action (selected-skill bs/skills)]
     [:enqueue-action (assoc action :targeter [:enemies (:id enemy)])]))
 
 
@@ -85,7 +86,7 @@
 
 (defn enraged-action
   [char]
-  (let [skill (get bu/skills :rage)]
+  (let [skill (get bs/skills :rage)]
     [:enqueue-action (assoc skill :targeter [:characters (:id char)])]) )
 
 (rf/reg-event-fx
@@ -121,12 +122,6 @@
           {:db         new-db
            :dispatch-n enemy-actions})))))
 
-(defn increment-action-time
-  [delay item]
-  (update item :action-time + delay))
-
-(def action-increment-amount 500)
-
 (rf/reg-event-fx
   :check-action-queue
   (fn [{:keys [db]} _]
@@ -155,7 +150,7 @@
 (rf/reg-event-db
   :skill-click
   (fn [db [_ char-id skill-kw]]
-    (let [skill-data (get bu/skills skill-kw)
+    (let [skill-data (get bs/skills skill-kw)
           ;; don't cancel the submenu if we clicked a child skill.
           newdb (if (:parent-skill skill-data)
                   db
@@ -180,9 +175,9 @@
   (if (or (not (mouse-pos-is-targetable? db))
           (not (:active-targeting db)))
     {:db db}
-    (let [action-data (get bu/skills (get-in db [:active-targeting :skill]))
+    (let [action-data (get bs/skills (get-in db [:active-targeting :skill]))
           action (-> action-data
-                     (assoc :targeting-fn (bu/wrap-target-fn target-coords
+                     (assoc :targeting-fn (bs/wrap-target-fn target-coords
                                                              (:targeting-fn action-data)))
                      (assoc :targeter [:characters (get-in db [:active-targeting :char-id])]))]
       {:dispatch [:enqueue-action action]
@@ -204,9 +199,6 @@
 (rf/reg-event-db
   :cancel-click
   (fn [db _]
-    #_(if (or (not (:active-targeting db))
-              (mouse-pos-is-targetable? db))
-        db)
     (-> db
         (assoc :open-submenu nil)
         (assoc :active-targeting nil)

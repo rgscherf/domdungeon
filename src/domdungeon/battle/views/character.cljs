@@ -1,6 +1,6 @@
 (ns domdungeon.battle.views.character
   (:require [re-frame.core :as rf]
-            [domdungeon.battle.utils :as bu]
+            [domdungeon.battle.skills :as bs]
             [domdungeon.battle.views.utils :as vu]))
 
 (defn charGrid
@@ -58,6 +58,6 @@
                         {:on-click #(do
                                       (.stopPropagation %)
                                       (rf/dispatch [:skill-click id s]))}
-                        (get-in bu/skills [s :name])])
+                        (get-in bs/skills [s :name])])
            skills)])])
 

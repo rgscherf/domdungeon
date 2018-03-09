@@ -1,108 +1,7 @@
 (ns domdungeon.battle.utils)
 
-(defn other-team [team]
-  (if (= team :enemies) :characters :enemies))
 
-(defn target-random-friendly
-  "Target a random friendly."
-  [targeter db]
-  (let [myself (get-in db targeter)
-        targeted-member (->> myself :team (get db) vals (remove #((:status %) :dead)) (map :id) rand-nth)]
-    [(:team myself) targeted-member]))
 
-(defn target-random-opponent
-  "Target a random opponent."
-  [targeter db]
-  (let [myself (get-in db targeter)
-        other-chars (get db (-> myself :team other-team))
-        targeted-member (->> other-chars vals (remove #((:status %) :dead)) (map :id) rand-nth)]
-    [(other-team (:team myself)) targeted-member]))
-
-(defn wrap-target-fn
-  "Wrap a skill's default targeting fn with the desired coordinates."
-  [desired-coords default-fn]
-  (fn [targeter db]
-    (if (get-in db desired-coords)
-      desired-coords
-      (default-fn targeter db))))
-
-(defn item-action-fn-wrap
-  "Wraps item action-fns to include targeter information."
-  [action-fn]
-  (fn [targeter target this]
-    (let [[newentity msgstub] (action-fn target)]
-      [newentity
-       (str (:name targeter) msgstub)])))
-
-(def skills {:item         {:name          "ITEM"
-                            :action-delay  2000
-                            :submenu-items #{:items/potion}
-                            :targeting-fn  target-random-friendly
-                            :action-fn     nil #_(fn [targeter target this]
-                                                   (let [{:keys [action-fn]} (get items (:selected-item this))
-                                                         [newentity msgstub] (action-fn target)]
-                                                     [newentity
-                                                      (str (:name targeter) msgstub)]))}
-
-             :items/potion {:name         "POTION"
-                            :description  "Ally: heal 20HP"
-                            :action-delay 2000
-                            :parent-skill :items
-                            :friendly?    true
-                            :targeting-fn target-random-friendly
-                            :action-fn    (item-action-fn-wrap (fn [target]
-                                                                 (let [newhealth (min (+ 20 (:health target))
-                                                                                      (:maxhealth target))]
-                                                                   [(assoc target :health newhealth)
-                                                                    (str " healed "
-                                                                         (:name target)
-                                                                         " for "
-                                                                         (- newhealth (:health target)))])))}
-             :rage         {:name         "RAGE"
-                            :action-delay 2000
-                            :friendly?    false
-                            :targeting-fn target-random-opponent
-                            :action-fn    (fn [targeter target _]
-                                            (let [ragefactor 2
-                                                  newhealth (max 0
-                                                                 (- (:health target)
-                                                                    (* ragefactor
-                                                                       (:pstr targeter))))
-                                                  newstate (assoc target :health newhealth)]
-                                              [(if (>= 0 newhealth)
-                                                 (assoc newstate :status #{:dead})
-                                                 newstate)
-                                               (str
-                                                 "RAGE!! "
-                                                 (:name targeter)
-                                                 " hit "
-                                                 (:name target)
-                                                 " for "
-                                                 (- (:health target) (:health newstate))
-                                                 " damage.")]))}
-             :tools        {:name "TOOLS"}
-             :blackmagic   {:name "B.MAG"}
-             :whitemagic   {:name "W.MAG"}
-
-             :fight        {:name         "FIGHT"
-                            :action-delay 2000
-                            :friendly?    false
-                            :targeting-fn target-random-opponent
-                            :action-fn    (fn [targeter target _]
-                                            (let [newhealth (max 0
-                                                                 (- (:health target)
-                                                                    (:pstr targeter)))
-                                                  newstate (assoc target :health newhealth)]
-                                              [(if (>= 0 newhealth)
-                                                 (assoc newstate :status #{:dead})
-                                                 newstate)
-                                               (str
-                                                 (:name targeter)
-                                                 " hit "
-                                                 (:name target)
-                                                 " for "
-                                                 (- (:health target) (:health newstate))
-                                                 " damage!")]))}})
 
 (def stats
   [:pstr :mstr :pdef :mdef :speed :maxhealth :maxmp])
@@ -160,19 +59,36 @@
                         :status    #{}
                         :atb-on?   true
                         :atb       0
-                        :maxhealth 60
-                        :health    60
+                        :maxhealth 200
+                        :health    200
                         :team      :enemies
                         :skills    [:fight]
                         :speed     40
-                        :pstr      1
+                        :pstr      10
                         :mstr      40
                         :pdef      40
                         :mdef      20}})
 
+(defn rand-in-10pct-range
+  [n]
+  (rand-nth (range (* n 0.9) (* n 1.1))))
+
+(defn gen-creature
+  [creature-tag]
+  (let [prototype (creature-tag bestiary)
+        new-max-health (:maxhealth prototype)]
+    (assoc prototype :maxhealth new-max-health
+                     :health new-max-health
+                     :pstr (rand-in-10pct-range (:pstr prototype))
+                     :mstr (rand-in-10pct-range (:mstr prototype))
+                     :speed (rand-in-10pct-range (:speed prototype))
+                     :pdef (rand-in-10pct-range (:pdef prototype))
+                     :mdef (rand-in-10pct-range (:mdef prototype))
+                     :atb (rand-nth (range 25)))))
+
 (defn make-enemy
   [proto id tag]
-  (let [enemy (get bestiary proto)]
+  (let [enemy (gen-creature proto)]
     (-> enemy
         (assoc :id id)
         (assoc :tag tag))))
@@ -181,7 +97,7 @@
   (reduce (fn [collector n] (assoc collector (:id n) n))
           {}
           (map (partial make-enemy :goomba)
-               (range 1 6)
+               (range 1 4)
                (seq "ABCDEFGHIJKLMNOP"))))
 
 (defn event-game-coords
