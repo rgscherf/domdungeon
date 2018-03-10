@@ -48,3 +48,8 @@
                                                (:targeter %))
                                            (:action-queue db)))]
         (assoc (first this-char-actions) :current-time (:current-time db))))))
+
+(rf/reg-sub
+  :battle-outcome
+  (fn [db _]
+    (:outcome db)))

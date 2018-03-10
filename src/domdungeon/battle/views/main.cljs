@@ -32,26 +32,34 @@
 
 (defn root []
   [:div.screen__background
-   [:div#game.screen__grid {:on-mouse-move #(be/record-mouse-coords %)
-                            :on-key-up     #(do
-                                              (js/console.log (-> % .-key))
-                                              (if (-> % .-key (= "P"))
-                                                (rf/dispatch [:toggle-time])))
-                            :on-click      #(do
-                                              (js/console.log (.-target %))
-                                              (rf/dispatch [:cancel-click]))}
-    (map char/charGrid
-         @(rf/subscribe [:characters])
-         (iterate #(+ 2 %) 6)
-         (repeat 1))
-    [battle-viz]
-    (when @(rf/subscribe [:skills-submenu])
-      [submenu @(rf/subscribe [:skills-submenu])])
-    (map enemy/enemy-card
-         @(rf/subscribe [:enemies])
-         (iterate #(+ 1 %) 6)
-         (repeat 14))
-    (when @(rf/subscribe [:target-line])
-      (bu/draw-targeting-line @(rf/subscribe [:target-line])))
-    ]]
-  )
+   (let [battle-outcome @(rf/subscribe [:battle-outcome])]
+     (cond
+       (= battle-outcome :player-wins)
+       [:div "YOU WIN."]
+
+       (= battle-outcome :player-loses)
+       [:div "YOU LOST."]
+
+       (= battle-outcome :undecided)
+       [:div#game.screen__grid {:on-mouse-move #(be/record-mouse-coords %)
+                                :on-key-up     #(do
+                                                  (js/console.log (-> % .-key))
+                                                  (if (-> % .-key (= "P"))
+                                                    (rf/dispatch [:toggle-time])))
+                                :on-click      #(do
+                                                  (js/console.log (.-target %))
+                                                  (rf/dispatch [:cancel-click]))}
+        (map char/charGrid
+             @(rf/subscribe [:characters])
+             (iterate #(+ 2 %) 6)
+             (repeat 1))
+        [battle-viz]
+        (when @(rf/subscribe [:skills-submenu])
+          [submenu @(rf/subscribe [:skills-submenu])])
+        (map enemy/enemy-card
+             @(rf/subscribe [:enemies])
+             (iterate #(+ 1 %) 6)
+             (repeat 14))
+        (when @(rf/subscribe [:target-line])
+          (bu/draw-targeting-line @(rf/subscribe [:target-line])))
+        ]))])

@@ -65,10 +65,14 @@
 (defn inc-atb
   [chars timescale]
   (into {}
-        (map (fn [[i c]] [i (if (:atb-on? c)
+        (map (fn [[i c]] [i (cond
+                              ((:status c) :dead)
+                              (assoc c :atb 0)
+                              (:atb-on? c)
                               (assoc c :atb
                                        (min 100 (+ (* (:speed c) timescale) ;; 40 spd is about 50% faster than 0
                                                    (:atb c))))
+                              :else
                               c)])
              chars)))
 
@@ -87,7 +91,26 @@
 (defn enraged-action
   [char]
   (let [skill (get bs/skills :rage)]
-    [:enqueue-action (assoc skill :targeter [:characters (:id char)])]) )
+    [:enqueue-action (assoc skill :targeter [:characters (:id char)])]))
+
+(defn check-health
+  [team]
+  (reduce (fn [coll [k v]]
+            (conj coll
+                  {k
+                   (if (<= (:health v) 0)
+                     (update v :status conj :dead)
+                     v)}))
+          {}
+          team))
+
+(defn count-of-dead-on-team
+  [team]
+  (->> team
+       vals
+       (filter #((:status %) :dead))
+       count))
+
 
 (rf/reg-event-fx
   :increment-atb
@@ -95,6 +118,8 @@
     (if (:atb-active db)
       (let [timescale 0.009
             new-db (-> db
+                       (update :characters check-health)
+                       (update :enemies check-health)
                        (update :characters inc-atb timescale)
                        (update :enemies inc-atb timescale))
             enraged-chars (filter is-charged-with-rage (-> db :characters vals))
@@ -106,21 +131,33 @@
                                                atb-on?
                                                (not (status :dead))))))
             enemy-actions (map make-enemy-action enemies-to-act)]
+
         (cond
-          ;; enqueue enemy actions.
+
+          ;; player win condition
+          (= (count (:enemies db))
+             (count-of-dead-on-team (:enemies db)))
+          {:db new-db
+           :dispatch [:decide-outcome :player-wins]}
+
+          ;; player lose condition
+          (= (count (:characters db))
+             (count-of-dead-on-team (:characters db)))
+          {:db new-db
+           :dispatch [:decide-outcome :player-loses]}
+
+          ;; enqueue enemy actions
           (not (empty? enemies-to-act))
           {:db         new-db
            :dispatch-n enemy-actions}
+
           ;; enqueue actions for ragers, and set their ATB to 0.
           (not (empty? enraged-chars))
           {:db         new-db
            :dispatch-n (map (fn [c] (enraged-action c)) enraged-chars)}
+
           :else
-          {:db new-db} )
-        #_(if (empty? enemies-to-act)
-          {:db new-db}
-          {:db         new-db
-           :dispatch-n enemy-actions})))))
+          {:db new-db})))))
 
 (rf/reg-event-fx
   :check-action-queue
@@ -247,6 +284,13 @@
         (update :time-active not))))
 
 (rf/reg-event-db
+  :decide-outcome
+  (fn [db [_ outcome]]
+    (-> db
+        (assoc :atb-active false)
+        (assoc :outcome outcome))))
+
+(rf/reg-event-db
   :init
   (fn [_ _]
     {:characters             bu/characters
@@ -259,6 +303,7 @@
      :action-queue           []
      :battle-log             '()
      :atb-active             true
+     :outcome                :undecided
      :time-active            true}))
 
 

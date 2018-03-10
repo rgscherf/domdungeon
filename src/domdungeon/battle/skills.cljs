@@ -40,11 +40,7 @@
                               :action-delay  standard-action-delay
                               :submenu-items #{:items/potion :items/ambrosia}
                               :targeting-fn  target-random-friendly
-                              :action-fn     nil #_(fn [targeter target this]
-                                                     (let [{:keys [action-fn]} (get items (:selected-item this))
-                                                           [newentity msgstub] (action-fn target)]
-                                                       [newentity
-                                                        (str (:name targeter) msgstub)]))}
+                              :action-fn     nil}
 
              :items/ambrosia {:name         "AMBROSIA"
                               :description  "Ally: heal 40MP"

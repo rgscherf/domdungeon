@@ -1,8 +1,5 @@
 (ns domdungeon.battle.utils)
 
-
-
-
 (def stats
   [:pstr :mstr :pdef :mdef :speed :maxhealth :maxmp])
 
@@ -74,9 +71,11 @@
   (rand-nth (range (* n 0.9) (* n 1.1))))
 
 (defn gen-creature
+  "Generate a creature (from the bestiary map),
+  with stats within a certain range of the creature's prototype."
   [creature-tag]
   (let [prototype (creature-tag bestiary)
-        new-max-health (:maxhealth prototype)]
+        new-max-health (rand-in-10pct-range (:maxhealth prototype))]
     (assoc prototype :maxhealth new-max-health
                      :health new-max-health
                      :pstr (rand-in-10pct-range (:pstr prototype))
@@ -131,6 +130,5 @@
                                 :left      x1
                                 :top       y1}
                         :class (if targetable? "targetLine__targetable"
-                                               "targetLine__notTargetable")}]
-      )))
+                                               "targetLine__notTargetable")}])))
 
