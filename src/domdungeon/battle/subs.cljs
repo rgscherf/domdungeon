@@ -3,22 +3,22 @@
             [re-frame.core :as rf]))
 
 (rf/reg-sub
-  :atb-time
+  ::atb-time
   (fn [db _]
     (:atb-time db)))
 
 (rf/reg-sub
-  :characters
+  ::characters
   (fn [db _]
     (:characters db)))
 
 (rf/reg-sub
-  :enemies
+  ::enemies
   (fn [db _]
     (:enemies db)))
 
 (rf/reg-sub
-  :target-line
+  ::target-line
   (fn [db _]
     (when (:active-targeting db)
       [(:mouse-anchor-point db)
@@ -27,12 +27,12 @@
           (get-in db [:active-targeting :skill-is-friendly?]))])))
 
 (rf/reg-sub
-  :battle-log
+  ::battle-log
   (fn [db _]
     (:battle-log db)))
 
 (rf/reg-sub
-  :skills-submenu
+  ::skills-submenu
   (fn [db _]
     (let [sub (:open-submenu db)]
       (when sub
@@ -41,15 +41,15 @@
 
 
 (rf/reg-sub
-  :actor-enqueued-actions
+  ::actor-enqueued-actions
   (fn [db [_ team id]]
     (when (not (empty? (:action-queue db)))
       (if-let [this-char-actions (seq (filter #(= [team id]
-                                               (:targeter %))
-                                           (:action-queue db)))]
+                                                  (:targeter %))
+                                              (:action-queue db)))]
         (assoc (first this-char-actions) :current-time (:current-time db))))))
 
 (rf/reg-sub
-  :battle-outcome
+  ::battle-outcome
   (fn [db _]
     (:outcome db)))

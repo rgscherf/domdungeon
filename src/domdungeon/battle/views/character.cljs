@@ -1,5 +1,6 @@
 (ns domdungeon.battle.views.character
   (:require [re-frame.core :as rf]
+            [domdungeon.battle.events :as bevts]
             [domdungeon.battle.skills :as bs]
             [domdungeon.battle.views.utils :as vu]))
 
@@ -9,9 +10,9 @@
   ^{:key rowstart}
   [:div.charGrid {:on-click       #(do
                                      (.stopPropagation %)
-                                     (rf/dispatch [:friendly-click id]))
-                  :on-mouse-enter #(rf/dispatch [:mouse-is-on-friendly])
-                  :on-mouse-leave #(rf/dispatch [:mouse-unset-friendly-state (-> % .-relatedTarget .-className)])
+                                     (rf/dispatch [::bevts/friendly-click id]))
+                  :on-mouse-enter #(rf/dispatch [::bevts/mouse-is-on-friendly])
+                  :on-mouse-leave #(rf/dispatch [::bevts/mouse-unset-friendly-state (-> % .-relatedTarget .-className)])
                   :style          {:grid-area (str rowstart " / " colstart " / span 2 / span 6")}}
 
    ;; charname
@@ -57,7 +58,7 @@
              ^{:key s} [:div.charGrid__skillName
                         {:on-click #(do
                                       (.stopPropagation %)
-                                      (rf/dispatch [:skill-click id s]))}
+                                      (rf/dispatch [::bevts/skill-click id s]))}
                         (get-in bs/skills [s :name])])
            skills)])])
 

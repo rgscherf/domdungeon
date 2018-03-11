@@ -1,5 +1,6 @@
 (ns domdungeon.battle.views.enemy
   (:require [re-frame.core :as rf]
+            [domdungeon.battle.events :as bevts]
             [domdungeon.battle.views.utils :as vu]
             [domdungeon.battle.events :as be]))
 
@@ -9,9 +10,9 @@
   ^{:key id}
   [:div.enemyGrid {:on-click      #(do
                                      (.stopPropagation %)
-                                     (be/click-enemy id))
-                   :on-mouse-over #(rf/dispatch [:mouse-is-on-enemy])
-                   :on-mouse-out  #(rf/dispatch [:mouse-unset-friendly-state (-> % .-relatedTarget .-className)])}
+                                     (bevts/click-enemy id))
+                   :on-mouse-over #(rf/dispatch [::bevts/mouse-is-on-enemy])
+                   :on-mouse-out  #(rf/dispatch [::bevts/mouse-unset-friendly-state (-> % .-relatedTarget .-className)])}
    [:div.enemyGrid__name.leftPad name]
    [:div.enemyGrid__status (let [healthpct (* 100 (/ health maxhealth))]
                              (cond
