@@ -5,14 +5,13 @@
 
 (defn enemy-card
   [[_ {:keys [id name maxhealth health
-              pstr pdef mstr mdef status] :as enemy}] rowstart colstart]
+              pstr pdef mstr mdef status] :as enemy}]]
   ^{:key id}
   [:div.enemyGrid {:on-click      #(do
                                      (.stopPropagation %)
                                      (be/click-enemy id))
                    :on-mouse-over #(rf/dispatch [:mouse-is-on-enemy])
-                   :on-mouse-out  #(rf/dispatch [:mouse-unset-friendly-state (-> % .-relatedTarget .-className)])
-                   :style         {:grid-area (str rowstart " / " colstart " / span 1 / span 3")}}
+                   :on-mouse-out  #(rf/dispatch [:mouse-unset-friendly-state (-> % .-relatedTarget .-className)])}
    [:div.enemyGrid__name.leftPad name]
    [:div.enemyGrid__status (let [healthpct (* 100 (/ health maxhealth))]
                              (cond

@@ -5,13 +5,18 @@
             [domdungeon.battle.views.enemy :as enemy]
             [domdungeon.battle.views.character :as char]))
 
+(defn enemy-viz
+  []
+  [:div.enemyViz
+   (map enemy/enemy-card @(rf/subscribe [:enemies]))])
+
 (defn battle-viz
   []
   [:div.battleViz
    (map (fn [msg id]
           ^{:key id} [:div.battleVis__logItem msg])
-        (take 8 @(rf/subscribe [:battle-log]))
-        (range 8))])
+        @(rf/subscribe [:battle-log])
+        (range))])
 
 (defn submenu-entry
   [char-id entry]
@@ -53,13 +58,10 @@
              @(rf/subscribe [:characters])
              (iterate #(+ 2 %) 6)
              (repeat 1))
+        [enemy-viz]
         [battle-viz]
         (when @(rf/subscribe [:skills-submenu])
           [submenu @(rf/subscribe [:skills-submenu])])
-        (map enemy/enemy-card
-             @(rf/subscribe [:enemies])
-             (iterate #(+ 1 %) 6)
-             (repeat 14))
         (when @(rf/subscribe [:target-line])
           (bu/draw-targeting-line @(rf/subscribe [:target-line])))
         ]))])

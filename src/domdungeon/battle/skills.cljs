@@ -26,14 +26,23 @@
       desired-coords
       (default-fn targeter db))))
 
+(defn wrap-battle-log-msg
+  [targeter target this rest]
+  (str (:name targeter)
+       ": "
+       (:name this)
+       " "
+       (:name target)
+       ", "
+       rest))
+
 (defn item-action-fn-wrap
   "Wraps item action-fns to include targeter information."
   [action-fn]
   (fn [targeter target this]
     (let [[newentity msgstub] (action-fn target)]
       [newentity
-       (str (:name targeter) msgstub)])))
-
+       (wrap-battle-log-msg targeter target this msgstub)])))
 
 (def standard-action-delay 5000)
 (def skills {:item           {:name          "ITEM"
@@ -52,10 +61,9 @@
                                                                    (let [newmana (min (+ 40 (:mana target))
                                                                                       (:maxmana target))]
                                                                      [(assoc target :mana newmana)
-                                                                      (str " restored "
+                                                                      (str "restored "
                                                                            (- newmana (:mana target))
-                                                                           "MP to "
-                                                                           (:name target))])))}
+                                                                           "MP")])))}
 
              :items/potion   {:name         "POTION"
                               :description  "Ally: heal 20HP"
@@ -67,16 +75,15 @@
                                                                    (let [newhealth (min (+ 20 (:health target))
                                                                                         (:maxhealth target))]
                                                                      [(assoc target :health newhealth)
-                                                                      (str " healed "
-                                                                           (:name target)
-                                                                           " for "
-                                                                           (- newhealth (:health target)))])))}
+                                                                      (str "healed "
+                                                                           (- newhealth (:health target))
+                                                                           "HP")])))}
 
              :rage           {:name         "RAGE"
                               :action-delay standard-action-delay
                               :friendly?    false
                               :targeting-fn target-random-opponent
-                              :action-fn    (fn [targeter target _]
+                              :action-fn    (fn [targeter target this]
                                               (let [ragefactor 2
                                                     newhealth (max 0
                                                                    (Math/round (- (:health target)
@@ -86,14 +93,9 @@
                                                 [(if (>= 0 newhealth)
                                                    (assoc newstate :status #{:dead})
                                                    newstate)
-                                                 (str
-                                                   "RAGE!! "
-                                                   (:name targeter)
-                                                   " hit "
-                                                   (:name target)
-                                                   " for "
-                                                   (- (:health target) (:health newstate))
-                                                   " damage.")]))}
+                                                 (wrap-battle-log-msg targeter target this
+                                                                      (str (- (:health target) (:health newstate))
+                                                                           " DMG"))]))}
 
              :tools          {:name "TOOLS"}
              :blackmagic     {:name "B.MAG"}
@@ -103,7 +105,7 @@
                               :action-delay standard-action-delay
                               :friendly?    false
                               :targeting-fn target-random-opponent
-                              :action-fn    (fn [targeter target _]
+                              :action-fn    (fn [targeter target this]
                                               (let [newhealth (max 0
                                                                    (Math/round (- (:health target)
                                                                                   (:pstr targeter))))
@@ -112,10 +114,5 @@
                                                 [(if (>= 0 newhealth)
                                                    (assoc newstate :status #{:dead})
                                                    newstate)
-                                                 (str
-                                                   (:name targeter)
-                                                   " hit "
-                                                   (:name target)
-                                                   " for "
-                                                   damage
-                                                   " damage!")]))}})
+                                                 (wrap-battle-log-msg targeter target this
+                                                                      (str damage " DMG"))]))}})

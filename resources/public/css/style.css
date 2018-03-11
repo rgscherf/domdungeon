@@ -17,16 +17,17 @@ html {
 }
 
 .battleViz {
-    grid-area: 1 / 1 / span 5 / span 16;
+    grid-area: 6 / 13 / span 6 / span 4;
     border: 3px solid lightgray;
     border-radius: 8px;
     margin: 2px;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .battleVis__logItem {
-    font-size: 200%;
+    font-size: 100%;
     line-height: 1em;
 }
 
@@ -72,15 +73,25 @@ html {
 }
 
 /*ENEMY CARDS*/
+.enemyViz {
+    grid-area: 1 / 1 / span 5 / span 16;
+    border: 3px solid lightgray;
+    border-radius: 8px;
+    height: 100%;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
 
 .enemyGrid {
     display: grid;
     grid-template: repeat(6, 1fr) / repeat(18, 1fr);
-    width: 100%;
-    height: 100%;
+    width: 25%;
+    height: 40%;
     border: 1px solid darkGray;
     border-radius: 4px;
-    margin-right: 3%;
     position: relative;
     right: 0.75rem;
 }

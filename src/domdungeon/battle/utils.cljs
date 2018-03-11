@@ -96,7 +96,7 @@
   (reduce (fn [collector n] (assoc collector (:id n) n))
           {}
           (map (partial make-enemy :goomba)
-               (range 1 4)
+               (range 1 6)
                (seq "ABCDEFGHIJKLMNOP"))))
 
 (defn event-game-coords

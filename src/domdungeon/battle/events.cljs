@@ -32,7 +32,8 @@
   ;; e.g. the mouse moves to the gutter between two targetable enemies.
   :mouse-unset-friendly-state
   (fn [db [_ event]]
-    (if (or (not (= "screen__grid" event))
+    (println event)
+    (if (or (not (#{"screen__grid" "battleViz"} event))
             (not (:active-targeting db))
             (not (mouse-pos-is-targetable? db)))
       db
