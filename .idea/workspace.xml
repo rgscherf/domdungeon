@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f64e007-46c7-4d59-bfc5-57032e530a77" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/domdungeon/battle/events.cljs" afterPath="$PROJECT_DIR$/src/domdungeon/battle/events.cljs" />
+      <change beforePath="$PROJECT_DIR$/src/domdungeon/battle/skills.cljs" afterPath="$PROJECT_DIR$/src/domdungeon/db/skills.cljs" />
       <change beforePath="$PROJECT_DIR$/src/domdungeon/battle/subs.cljs" afterPath="$PROJECT_DIR$/src/domdungeon/battle/subs.cljs" />
+      <change beforePath="$PROJECT_DIR$/src/domdungeon/battle/utils.cljs" afterPath="$PROJECT_DIR$/src/domdungeon/db/entities.cljs" />
       <change beforePath="$PROJECT_DIR$/src/domdungeon/battle/views/character.cljs" afterPath="$PROJECT_DIR$/src/domdungeon/battle/views/character.cljs" />
       <change beforePath="$PROJECT_DIR$/src/domdungeon/battle/views/enemy.cljs" afterPath="$PROJECT_DIR$/src/domdungeon/battle/views/enemy.cljs" />
       <change beforePath="$PROJECT_DIR$/src/domdungeon/battle/views/main.cljs" afterPath="$PROJECT_DIR$/src/domdungeon/battle/views/main.cljs" />
@@ -22,31 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="events.cljs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/events.cljs">
+      <file leaf-file-name="skills.cljs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/domdungeon/db/skills.cljs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-144">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="character.cljs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/character.cljs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="subs.cljs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/subs.cljs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="48" column="61" lean-forward="false" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
+            <state relative-caret-position="281">
+              <caret line="122" column="71" lean-forward="true" selection-start-line="122" selection-start-column="71" selection-end-line="122" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -55,18 +38,58 @@
       <file leaf-file-name="core.cljs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/domdungeon/core.cljs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="7" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+            <state relative-caret-position="295">
+              <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="main.cljs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/main.cljs">
+        <entry file="file://$PROJECT_DIR$/src/domdungeon/db/main.cljs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="52" column="57" lean-forward="false" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
+            <state relative-caret-position="378">
+              <caret line="21" column="38" lean-forward="false" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="subs.cljs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/subs.cljs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-205">
+              <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="character.cljs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/character.cljs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="13" column="32" lean-forward="false" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="events.cljs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/events.cljs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="388">
+              <caret line="39" column="25" lean-forward="false" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.cljs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/main.cljs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -75,18 +98,28 @@
       <file leaf-file-name="utils.cljs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/utils.cljs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+            <state relative-caret-position="90">
+              <caret line="5" column="11" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="enemy.cljs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/enemy.cljs">
+      <file leaf-file-name="entities.cljs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/domdungeon/db/entities.cljs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+            <state relative-caret-position="160">
+              <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.cljs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/main.cljs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-268">
+              <caret line="29" column="42" lean-forward="false" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -104,10 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>script</find>
-      <find>line-h</find>
-      <find>currentmana</find>
-      <find>r/</find>
       <find>leftpad</find>
       <find>leftpa</find>
       <find>increment-atb</find>
@@ -124,11 +153,30 @@
       <find>increment-</find>
       <find>timestamp</find>
       <find>::</find>
+      <find>draw</find>
+      <find>action</find>
+      <find>enqueue-action</find>
+      <find>player-</find>
+      <find>:team</find>
+      <find>::db/</find>
+      <find>submen</find>
+      <find>submenu</find>
+      <find>#:entities</find>
+      <find>:skills/</find>
+      <find>:entities/</find>
+      <find>#:skills</find>
+      <find>println</find>
+      <find>team</find>
     </findStrings>
     <replaceStrings>
       <replace>mana</replace>
       <replace>skill/skills</replace>
       <replace>bs/skills</replace>
+      <replace>:domdungeon.db.main/</replace>
+      <replace>#:actor</replace>
+      <replace>:skill/</replace>
+      <replace>:actor/</replace>
+      <replace>#:skill</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -140,21 +188,29 @@
         <option value="$PROJECT_DIR$/script/repl.clj" />
         <option value="$PROJECT_DIR$/script/fig_repl.clj" />
         <option value="$PROJECT_DIR$/src/figrepl/old.cljs" />
-        <option value="$PROJECT_DIR$/project.clj" />
         <option value="$PROJECT_DIR$/src/figrepl/core.cljs" />
         <option value="$PROJECT_DIR$/resources/public/index.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/domdungeon/battle/main.cljs" />
         <option value="$PROJECT_DIR$/src/domdungeon/battle/utils.cljs" />
         <option value="$PROJECT_DIR$/resources/public/css/style.css" />
+        <option value="$PROJECT_DIR$/project.clj" />
+        <option value="$PROJECT_DIR$/src/domdungeon/db.cljs" />
         <option value="$PROJECT_DIR$/src/domdungeon/battle/skills.cljs" />
+        <option value="$PROJECT_DIR$/src/domdungeon/db/skills/skills.cljs" />
+        <option value="$PROJECT_DIR$/src/domdungeon/db/db.cljs" />
+        <option value="$PROJECT_DIR$/src/domdungeon/db/mainA.cljs" />
+        <option value="$PROJECT_DIR$/src/domdungeon/battle/entities.cljs" />
+        <option value="$PROJECT_DIR$/src/domdungeon/db/entities.cljs" />
         <option value="$PROJECT_DIR$/src/domdungeon/battle/views/utils.cljs" />
+        <option value="$PROJECT_DIR$/src/domdungeon/battle/views/main.cljs" />
+        <option value="$PROJECT_DIR$/src/domdungeon/battle/views/enemy.cljs" />
+        <option value="$PROJECT_DIR$/src/domdungeon/db/main.cljs" />
+        <option value="$PROJECT_DIR$/src/domdungeon/core.cljs" />
         <option value="$PROJECT_DIR$/src/domdungeon/battle/subs.cljs" />
         <option value="$PROJECT_DIR$/src/domdungeon/battle/events.cljs" />
         <option value="$PROJECT_DIR$/src/domdungeon/battle/views/character.cljs" />
-        <option value="$PROJECT_DIR$/src/domdungeon/battle/views/enemy.cljs" />
-        <option value="$PROJECT_DIR$/src/domdungeon/battle/views/main.cljs" />
-        <option value="$PROJECT_DIR$/src/domdungeon/core.cljs" />
+        <option value="$PROJECT_DIR$/src/domdungeon/db/skills.cljs" />
       </list>
     </option>
   </component>
@@ -188,7 +244,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,24 +278,38 @@
               <item name="battle" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="domdungeon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="domdungeon" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="domdungeon" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="SearchEverywhereHistoryKey" value="projec&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/project.clj&#10;core&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/core.cljs&#10;project.clj&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/project.clj&#10;skills&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/skills.cljs&#10;style.css&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/resources/public/css/style.css&#10;utils&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/utils.cljs&#10;sub&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/subs.cljs&#10;views&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/views&#10;style&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/resources/public/css/style.css&#10;.md&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/finaldungeon.md&#10;utils.&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/utils.cljs&#10;events.&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/events.cljs&#10;charac&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/views/character.cljs&#10;index&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/resources/public/index.html&#10;index.&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/resources/public/index.html&#10;project.&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/figrepl/project.clj&#10;proje&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/figrepl/project.clj" />
+    <property name="SearchEverywhereHistoryKey" value="skill&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/skills.cljs&#10;struc&#9;ACTION&#9;ActivateStructureToolWindow&#10;pro&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/project.clj&#10;projec&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/project.clj&#10;core&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/core.cljs&#10;project.clj&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/project.clj&#10;skills&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/skills.cljs&#10;style.css&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/resources/public/css/style.css&#10;utils&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/utils.cljs&#10;sub&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/subs.cljs&#10;views&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/views&#10;style&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/resources/public/css/style.css&#10;.md&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/finaldungeon.md&#10;utils.&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/utils.cljs&#10;events.&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/events.cljs&#10;charac&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/src/domdungeon/battle/views/character.cljs&#10;index&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/resources/public/index.html&#10;index.&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/domdungeon/resources/public/index.html&#10;project.&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/figrepl/project.clj&#10;proje&#9;FILE&#9;file:///Users/rgscherf/projects/clojure/figrepl/project.clj" />
     <property name="cursive.last.file.extension./Users/rgscherf/projects/clojure/figrepl/src" value="cljs" />
     <property name="add_unversioned_files" value="true" />
     <property name="cursive.last.file.extension./Users/rgscherf/projects/clojure/domdungeon/src" value="cljs" />
   </component>
-  <component name="ReplState" timestamp="1520798845091">{:repl-history {:ide [], :local [{:command &quot;(rf/reg-sub\n  :atb-time\n  (fn [db _]\n    (:atb-time db)))&quot;, :offset 57, :ns &quot;domdungeon.core&quot;} {:command &quot;(rf/reg-sub\n  :characters\n  (fn [db _]\n    (:characters db)))&quot;, :offset 61, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn skill-card\n  [{:keys [atb skills]} rowstart colstart]\n  [:div.charCard {:style {:grid-area (str rowstart \&quot;/ \&quot; colstart \&quot;/ span 2 / span 2\&quot;)}}\n   (map #([:div.charCard__skillName %]) skills)\n   ])&quot;, :offset 201, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn character-card\n  [{:keys [maxhealth health maxmana mana name atb skills]} rowstart colstart]\n  [:div.charCard {:style {:grid-area (str rowstart \&quot; / \&quot; colstart \&quot; / span 2 / span 5\&quot;)}}\n   [:div.charCard__row #_{:style {:margin-top \&quot;5px\&quot; :margin-bottom \&quot;5px\&quot;}}\n    [:div.charCard__name name]\n    [:div.charCard__hp (str health \&quot;/\&quot; maxhealth)]\n    [:div.charCard__mp (str mana \&quot;/\&quot; maxmana)]]\n   [:div.charCard__row.charCard__atb\n    [:div {:style {:background \&quot;white\&quot;\n\n                   :height     \&quot;100%\&quot;\n                   :width      (str (Math/floor atb) \&quot;%\&quot;)}}]]\n   #_[:div.charCard__row {:style {:flex            \&quot;2 2 auto\&quot;\n                                :align-items     \&quot;center\&quot;\n                                :justify-content \&quot;space-between\&quot;}}\n    (map skill-card skills)]]\n  )&quot;, :offset 791, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn battle-viz\n  []\n  [:div.battleViz])&quot;, :offset 41, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn enemy-card\n  [rowstart colstart]\n  [:div.enemyCard {:style {:grid-area (str rowstart \&quot; / \&quot; colstart \&quot; / span 1 / span 3\&quot;)}}\n   [:div.charCard__row\n    [:div.charCard__name \&quot;ENEMY\&quot;]\n    [:div.charCard__hp \&quot;HEALTHY\&quot;]]\n   [:div.charCard__row\n    [:div.charCard__name \&quot;Waiting...\&quot;]]])&quot;, :offset 286, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn root []\n  [:div.screen__background\n   [:div.screen__grid\n    (map character-card @(rf/subscribe [:characters]) [7 9 11] (repeat 1))\n    (map skill-card @(rf/subscribe [:characters]) [7 9 11] (repeat 6))\n    [battle-viz]\n    [enemy-card 6 2]\n    [enemy-card 6 5]\n    [enemy-card 6 8]\n    [enemy-card 6 11]\n    ]]\n  )&quot;, :offset 321, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn mount []\n  (init-app)\n  (r/render [root]\n            (.getElementById js/document \&quot;app\&quot;)))&quot;, :offset 96, :ns &quot;domdungeon.core&quot;} {:command &quot;(defonce set-interval!\n         (.setInterval js/window increment-time (/ 1000 60)))&quot;, :offset 84, :ns &quot;domdungeon.core&quot;} {:command &quot;(mount)&quot;, :offset 7, :ns &quot;domdungeon.core&quot;} {:command &quot;(map println {1 :hello 2 [1 2 34]})&quot;, :offset 35, :ns &quot;domdungeon.core&quot;} {:command &quot;(let [start [[1 {:hello \&quot;world\&quot;}] \n             [2 {:whatsup \&quot;doc\&quot;}]]]\n  (into {} start))&quot;, :offset 89, :ns &quot;domdungeon.core&quot;} {:command &quot;(def enemies {1 {:name      \&quot;GOOMBA1\&quot;\n                 :id        1\n                 :maxhealth 50\n                 :health    50\n                 :speed     40\n                 :atb       0}\n              2 {:name      \&quot;GOOMBA2\&quot;\n                 :id        2\n                 :maxhealth 50\n                 :health    40\n                 :speed     40\n                 :atb       0}\n              3 {:name      \&quot;GOOMBA3\&quot;\n                 :id        3\n                 :maxhealth 50\n                 :health    40\n                 :speed     40\n                 :atb       0}\n              4 {:name      \&quot;GOOMBA4\&quot;\n                 :id        4\n                 :maxhealth 50\n                 :health    40\n                 :speed     40\n                 :atb       0}})&quot;, :offset 769, :ns &quot;domdungeon.core&quot;} {:command &quot;(into {} (map (fn [a b] [a b]) enemies))&quot;, :offset 40, :ns &quot;domdungeon.core&quot;} {:command &quot;(apply hash-map (map (fn [a b] [a b]) enemies))&quot;, :offset 47, :ns &quot;domdungeon.core&quot;} {:command &quot;(let [start [[1 {:hello \&quot;world\&quot;}]\n             [2 {:whatsup \&quot;doc\&quot;}]]]\n  (into {} start))&quot;, :offset 88, :ns &quot;domdungeon.core&quot;} {:command &quot;(map println characters )&quot;, :offset 25, :ns &quot;domdungeon.core&quot;} {:command &quot;(into {} (map println characters))&quot;, :offset 34, :ns &quot;domdungeon.core&quot;} {:command &quot;(map println characters)&quot;, :offset 24, :ns &quot;domdungeon.core&quot;} {:command &quot;(into {} (map identity characters))&quot;, :offset 35, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (into {}\n        (map (fn [i c] [i (assoc c :atb\n                                   (min 100 (+ (/ (:speed c) 500) ;; 40 spd is about 50% faster than 0\n                                               timescale\n                                               (:atb c))))])\n             chars)))&quot;, :offset 327, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (map (fn [i c] [i (assoc c :atb\n                             (min 100 (+ (/ (:speed c) 500) ;; 40 spd is about 50% faster than 0\n                                         timescale\n                                         (:atb c))))])\n       chars))&quot;, :offset 285, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (map (fn [i c] [i c #_(assoc c :atb\n                             (min 100 (+ (/ (:speed c) 500) ;; 40 spd is about 50% faster than 0\n                                         timescale\n                                         (:atb c))))])\n       chars))&quot;, :offset 289, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn inc-atb*\n  [chars timescale]\n  (map (fn [i c] [i c])\n       chars))&quot;, :offset 73, :ns &quot;domdungeon.core&quot;} {:command &quot;(def characters {1 {:name      \&quot;ZEKE\&quot;\n                    :id        1\n                    :maxhealth 150\n                    :maxmana   50\n                    :health    70\n                    :mana      12\n                    :speed     1\n                    :atb       0\n                    :skills    [:attack :item :blackmagic]}\n                 2 {:name      \&quot;HELIO\&quot;\n                    :id        2\n                    :maxhealth 100\n                    :maxmana   230\n                    :health    80\n                    :mana      210\n                    :speed     20\n                    :atb       0\n                    :skills    [:blackmagic :whitemagic :attack]}\n                 3 {:name      \&quot;BUSTR\&quot;\n                    :id        3\n                    :maxhealth 50\n                    :maxmana   100\n                    :health    40\n                    :mana      100\n                    :speed     40\n                    :atb       0\n                    :skills    [:rage :item :blackmagic]}})&quot;, :offset 1014, :ns &quot;domdungeon.core&quot;} {:command &quot;characters&quot;, :offset 10, :ns &quot;domdungeon.core&quot;} {:command &quot;(map identity characters)&quot;, :offset 25, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn inc-atb*\n  [chars timescale]\n  (map (fn [[i c]] [i c])\n       chars))&quot;, :offset 75, :ns &quot;domdungeon.core&quot;} {:command &quot;(inc-atb* characters 0.1)&quot;, :offset 25, :ns &quot;domdungeon.core&quot;} {:command &quot;(into {} (inc-atb* characters 0.1))&quot;, :offset 35, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (map (fn [[i c]] [i (assoc c :atb\n                             (min 100 (+ (/ (:speed c) 500) ;; 40 spd is about 50% faster than 0\n                                         timescale\n                                         (:atb c))))])\n       chars))&quot;, :offset 287, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (into {}\n        (map (fn [[i c]] [i (assoc c :atb\n                                     (min 100 (+ (/ (:speed c) 500) ;; 40 spd is about 50% faster than 0\n                                                 timescale\n                                                 (:atb c))))])\n             chars)))&quot;, :offset 335, :ns &quot;domdungeon.core&quot;} {:command &quot;(inc-atb characters 0.1)&quot;, :offset 24, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn skill-click\n  [char-id skill]\n  (rf/dispatch [:skill-click char-id skill]))&quot;, :offset 81, :ns &quot;domdungeon.core&quot;} {:command &quot;(ns domdungeon.core\n  (:require [re-frame.core :as rf]\n            [reagent.core :as r]))&quot;, :offset 89, :ns &quot;dev:cljs.user&quot;} {:command &quot;(defn draw-targeting-line\n  [x1 y1 x2 y2]\n  (let [length (Math/sqrt (+ (* (- x1 x2)\n                                (- x1 x2))\n                             (* (- y1 y2)\n                                (- y1 y2))))\n        angle (* (Math/atan2 (- y2 y1) (- x2 x1))\n                 (/ 180 (.-pi Math)))]))&quot;, :offset 304, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn draw-targeting-line\n  [x1 y1 x2 y2]\n  (let [length (Math/sqrt (+ (* (- x1 x2)\n                                (- x1 x2))\n                             (* (- y1 y2)\n                                (- y1 y2))))\n        angle (* (Math/atan2 (- y2 y1) (- x2 x1))\n                 (/ 180 Math/pi))]))&quot;, :offset 300, :ns &quot;domdungeon.core&quot;} {:command &quot;(into [] {:x 1 :y 2})&quot;, :offset 21, :ns &quot;domdungeon.core&quot;} {:command &quot;Math/pi&quot;, :offset 7, :ns &quot;domdungeon.core&quot;} {:command &quot;(.-pi Math)&quot;, :offset 11, :ns &quot;domdungeon.core&quot;} {:command &quot;(.pi Math)&quot;, :offset 10, :ns &quot;domdungeon.core&quot;} {:command &quot;Math/PI&quot;, :offset 7, :ns &quot;domdungeon.core&quot;} {:command &quot;(take 5 (iterate #(+ % 3) 2))&quot;, :offset 29, :ns &quot;domdungeon.battle.views.enemy&quot;} {:command &quot;(/ 40 50)&quot;, :offset 9, :ns &quot;domdungeon.battle.views.enemy&quot;} {:command &quot;(12 * 1.3)&quot;, :offset 10, :ns &quot;domdungeon.battle.views.enemy&quot;} {:command &quot;(* 12 1.3)&quot;, :offset 10, :ns &quot;domdungeon.battle.views.enemy&quot;} {:command &quot;(+ 1 1)&quot;, :offset 7, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(update {:queue [1 2 3]} :queue conj 3)&quot;, :offset 39, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(update {:queue [1 2 3]} :queue conj 4)&quot;, :offset 39, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(sort-by :a [{:a 3} {:a 2} {:a 10}])&quot;, :offset 36, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(first '())&quot;, :offset 11, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(rest [1])&quot;, :offset 10, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(&gt;= 10 11)&quot;, :offset 10, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(&gt;= 11 11)&quot;, :offset 10, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(&gt;= 11 10)&quot;, :offset 10, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(- 40 10)&quot;, :offset 9, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(inc (rand-int [:1 :2 :3 :4]))&quot;, :offset 30, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(inc (rand-int (count [:1 :2 :3 :4])))&quot;, :offset 38, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies*\n  (map (partial make-enemy :goomba) (range 1 4)))&quot;, :offset 63, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(defn make-enemy\n  [proto id]\n  (let [enemy (proto enemies)]\n    (assoc enemy :id id)))&quot;, :offset 87, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(make-enemy :goobma 1)&quot;, :offset 22, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(assoc nil :hello 1)&quot;, :offset 20, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(defn make-enemy\n  [proto id]\n  (let [enemy (get enemies proto)]\n    (assoc enemy :id id)))&quot;, :offset 91, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies {:goomba {:maxhealth 60\n                       :health 60\n                       :team :enemies\n                       :speed 40\n                       :pstr 40\n                       :mstr 40\n                       :pdef 40\n                       :mdef 20}})&quot;, :offset 272, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(get enemies :goomba)&quot;, :offset 21, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def bestiary {:goomba {:maxhealth 60\n                       :health 60\n                       :team :enemies\n                       :speed 40\n                       :pstr 40\n                       :mstr 40\n                       :pdef 40\n                       :mdef 20}})&quot;, :offset 273, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(defn make-enemy\n  [proto id]\n  (let [enemy (get bestiary proto)]\n    (assoc enemy :id id)))&quot;, :offset 92, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (map (partial make-enemy :goomba) (range 1 4)))&quot;, :offset 62, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(list \&quot;ABCDEF\&quot;)&quot;, :offset 15, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(seq \&quot;ABCDEF\&quot;)&quot;, :offset 14, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(defn make-enemy\n  [proto id tag]\n  (let [enemy (get bestiary proto)]\n    (-&gt; enemy\n        (assoc :id id)\n        (assoc :tag tag))))&quot;, :offset 134, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (map (partial make-enemy :goomba)\n       (range 1 4)\n       (seq \&quot;ABCDEFGHIJ\&quot;)))&quot;, :offset 95, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (map #({(:id %) %})\n       (map (partial make-enemy :goomba)\n            (range 1 4)\n            (seq \&quot;ABCDEFGHIJ\&quot;))))&quot;, :offset 133, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (reduce (fn [collector n]\n            (assoc collector\n              (:id n)\n\n              n))\n          (map (partial make-enemy :goomba)\n               (range 1 4)\n               (seq \&quot;ABCDEFGHIJ\&quot;))))&quot;, :offset 218, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (reduce (fn [collector n]\n            (assoc collector\n              (:id n)\n              n))\n          {}\n          (map (partial make-enemy :goomba)\n               (range 1 4)\n               (seq \&quot;ABCDEFGHIJ\&quot;))))&quot;, :offset 230, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (reduce (fn [collector n]\n            (assoc collector\n              (:id n)\n              n))\n          {}\n          (map (partial make-enemy :goomba)\n               (range 1 6)\n               (seq \&quot;ABCDEFGHIJ\&quot;))))&quot;, :offset 230, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;enemies&quot;, :offset 7, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (reduce (fn [collector n]\n            (assoc collector (:id n) n))\n          {}\n          (map (partial make-enemy :goomba)\n               (range 1 6)\n               (seq \&quot;ABCDEFGHIJ\&quot;))))&quot;, :offset 202, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (reduce (fn [collector n] (assoc collector (:id n) n))\n          {}\n          (map (partial make-enemy :goomba)\n               (range 1 6)\n               (seq \&quot;ABCDEFGHIJ\&quot;))))&quot;, :offset 190, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(contains? [:yes :no] :no)&quot;, :offset 26, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(conj #{:poison} :dead)&quot;, :offset 23, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(#{:yes :maybe} :no)&quot;, :offset 20, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(#{:yes :maybe} :yes)&quot;, :offset 21, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(#{} :hello)&quot;, :offset 12, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(take 4 [1 2])&quot;, :offset 14, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(sort #{2 3 4 1 })&quot;, :offset 18, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(get skills :items/potion)&quot;, :offset 26, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def skills {:item         {:name          \&quot;ITEM\&quot;\n                            :action-delay  2000\n                            :submenu?      true\n                            :submenu-items #{:items/potion}\n                            :targeting-fn  target-random-friendly\n                            :action-fn     nil #_(fn [targeter target this]\n                                                   (let [{:keys [action-fn]} (get items (:selected-item this))\n                                                         [newentity msgstub] (action-fn target)]\n                                                     [newentity\n                                                      (str (:name targeter) msgstub)]))}\n\n             :items/potion {:name         \&quot;POTION\&quot;\n                            :description  \&quot;Heals 20 HP\&quot;\n                            :action-delay 2000\n                            :submenu?     false\n                            :friendly?    true\n                            :targeting-fn target-random-friendly\n                            :action-fn    (item-action-fn-wrap (fn [target]\n                                                                 (let [newhealth (min (+ 20 (:health target))\n                                                                                      (:maxhealth target))]\n                                                                   [(assoc target :health newhealth)\n                                                                    (str \&quot; healed \&quot;\n                                                                         (:name target)\n                                                                         \&quot; for \&quot;\n                                                                         (- newhealth (:health target)))])))}\n             :rage         {:name \&quot;RAGE\&quot;}\n             :tools        {:name \&quot;TOOLS\&quot;}\n             :blackmagic   {:name \&quot;B.MAG\&quot;}\n             :whitemagic   {:name \&quot;W.MAG\&quot;}\n\n             :fight        {:name         \&quot;FIGHT\&quot;\n                            :action-delay 2000\n                            :submenu?     false\n                            :friendly?    false\n                            :targeting-fn target-random-opponent\n                            :action-fn    (fn [targeter target _]\n                                            (let [newhealth (max 0\n                                                                 (- (:health target)\n                                                                    (:pstr targeter)))\n                                                  newstate (assoc target :health newhealth)]\n                                              [(if (&gt;= 0 newhealth)\n                                                 (assoc newstate :status #{:dead})\n                                                 newstate)\n                                               (str\n                                                 (:name targeter)\n                                                 \&quot; hit \&quot;\n                                                 (:name target)\n                                                 \&quot; for \&quot;\n                                                 (- (:health target) (:health newstate))\n                                                 \&quot; damage!\&quot;)]))}})&quot;, :offset 3271, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(map nil nil)&quot;, :offset 13, :ns &quot;domdungeon.battle.subs&quot;} {:command &quot;(seq [1 2 3 4])&quot;, :offset 15, :ns &quot;domdungeon.battle.views.main&quot;} {:command &quot;(#{1 2} 3)&quot;, :offset 10, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(#{1 2} 1 3)&quot;, :offset 12, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(#{1 2} 1 1)&quot;, :offset 12, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(conj {:a 2} {:hi \&quot;there\&quot;})&quot;, :offset 27, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(reduce (fn [coll [a b]] (conj coll {a b}))\n        {}\n        {:hello :there :how :are :you :today})&quot;, :offset 101, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(:id nil)&quot;, :offset 9, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(if [] 1 0)&quot;, :offset 11, :ns &quot;domdungeon.battle.subs&quot;} {:command &quot;(let [target 60]\n  (rand-int (range (* target 0.9) (* target 1.2))))&quot;, :offset 68, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(let [target 50]\n  (range (* target 0.9) (* target 1.2)))&quot;, :offset 57, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(let [target 60]\n  (rand-nth (range (* target 0.9) (* target 1.2))))&quot;, :offset 68, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(count {:a :b :c :d})&quot;, :offset 21, :ns &quot;domdungeon.battle.events&quot;}], :remote []}}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/domdungeon/db" />
+      <recent name="$PROJECT_DIR$/src/domdungeon/db/skills" />
+      <recent name="$PROJECT_DIR$/src/domdungeon/" />
+    </key>
+  </component>
+  <component name="ReplState" timestamp="1521059579013">{:repl-history {:ide [], :local [{:command &quot;(inc-atb* characters 0.1)&quot;, :offset 25, :ns &quot;domdungeon.core&quot;} {:command &quot;(into {} (inc-atb* characters 0.1))&quot;, :offset 35, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (map (fn [[i c]] [i (assoc c :atb\n                             (min 100 (+ (/ (:speed c) 500) ;; 40 spd is about 50% faster than 0\n                                         timescale\n                                         (:atb c))))])\n       chars))&quot;, :offset 287, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn inc-atb\n  [chars timescale]\n  (into {}\n        (map (fn [[i c]] [i (assoc c :atb\n                                     (min 100 (+ (/ (:speed c) 500) ;; 40 spd is about 50% faster than 0\n                                                 timescale\n                                                 (:atb c))))])\n             chars)))&quot;, :offset 335, :ns &quot;domdungeon.core&quot;} {:command &quot;(inc-atb characters 0.1)&quot;, :offset 24, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn skill-click\n  [char-id skill]\n  (rf/dispatch [:skill-click char-id skill]))&quot;, :offset 81, :ns &quot;domdungeon.core&quot;} {:command &quot;(ns domdungeon.core\n  (:require [re-frame.core :as rf]\n            [reagent.core :as r]))&quot;, :offset 89, :ns &quot;dev:cljs.user&quot;} {:command &quot;(defn draw-targeting-line\n  [x1 y1 x2 y2]\n  (let [length (Math/sqrt (+ (* (- x1 x2)\n                                (- x1 x2))\n                             (* (- y1 y2)\n                                (- y1 y2))))\n        angle (* (Math/atan2 (- y2 y1) (- x2 x1))\n                 (/ 180 (.-pi Math)))]))&quot;, :offset 304, :ns &quot;domdungeon.core&quot;} {:command &quot;(defn draw-targeting-line\n  [x1 y1 x2 y2]\n  (let [length (Math/sqrt (+ (* (- x1 x2)\n                                (- x1 x2))\n                             (* (- y1 y2)\n                                (- y1 y2))))\n        angle (* (Math/atan2 (- y2 y1) (- x2 x1))\n                 (/ 180 Math/pi))]))&quot;, :offset 300, :ns &quot;domdungeon.core&quot;} {:command &quot;(into [] {:x 1 :y 2})&quot;, :offset 21, :ns &quot;domdungeon.core&quot;} {:command &quot;Math/pi&quot;, :offset 7, :ns &quot;domdungeon.core&quot;} {:command &quot;(.-pi Math)&quot;, :offset 11, :ns &quot;domdungeon.core&quot;} {:command &quot;(.pi Math)&quot;, :offset 10, :ns &quot;domdungeon.core&quot;} {:command &quot;Math/PI&quot;, :offset 7, :ns &quot;domdungeon.core&quot;} {:command &quot;(take 5 (iterate #(+ % 3) 2))&quot;, :offset 29, :ns &quot;domdungeon.battle.views.enemy&quot;} {:command &quot;(/ 40 50)&quot;, :offset 9, :ns &quot;domdungeon.battle.views.enemy&quot;} {:command &quot;(12 * 1.3)&quot;, :offset 10, :ns &quot;domdungeon.battle.views.enemy&quot;} {:command &quot;(* 12 1.3)&quot;, :offset 10, :ns &quot;domdungeon.battle.views.enemy&quot;} {:command &quot;(+ 1 1)&quot;, :offset 7, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(update {:queue [1 2 3]} :queue conj 3)&quot;, :offset 39, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(update {:queue [1 2 3]} :queue conj 4)&quot;, :offset 39, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(sort-by :a [{:a 3} {:a 2} {:a 10}])&quot;, :offset 36, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(first '())&quot;, :offset 11, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(rest [1])&quot;, :offset 10, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(&gt;= 10 11)&quot;, :offset 10, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(&gt;= 11 11)&quot;, :offset 10, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(&gt;= 11 10)&quot;, :offset 10, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(- 40 10)&quot;, :offset 9, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(inc (rand-int [:1 :2 :3 :4]))&quot;, :offset 30, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(inc (rand-int (count [:1 :2 :3 :4])))&quot;, :offset 38, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies*\n  (map (partial make-enemy :goomba) (range 1 4)))&quot;, :offset 63, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(defn make-enemy\n  [proto id]\n  (let [enemy (proto enemies)]\n    (assoc enemy :id id)))&quot;, :offset 87, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(make-enemy :goobma 1)&quot;, :offset 22, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(assoc nil :hello 1)&quot;, :offset 20, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(defn make-enemy\n  [proto id]\n  (let [enemy (get enemies proto)]\n    (assoc enemy :id id)))&quot;, :offset 91, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies {:goomba {:maxhealth 60\n                       :health 60\n                       :team :enemies\n                       :speed 40\n                       :pstr 40\n                       :mstr 40\n                       :pdef 40\n                       :mdef 20}})&quot;, :offset 272, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(get enemies :goomba)&quot;, :offset 21, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def bestiary {:goomba {:maxhealth 60\n                       :health 60\n                       :team :enemies\n                       :speed 40\n                       :pstr 40\n                       :mstr 40\n                       :pdef 40\n                       :mdef 20}})&quot;, :offset 273, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(defn make-enemy\n  [proto id]\n  (let [enemy (get bestiary proto)]\n    (assoc enemy :id id)))&quot;, :offset 92, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (map (partial make-enemy :goomba) (range 1 4)))&quot;, :offset 62, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(list \&quot;ABCDEF\&quot;)&quot;, :offset 15, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(seq \&quot;ABCDEF\&quot;)&quot;, :offset 14, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(defn make-enemy\n  [proto id tag]\n  (let [enemy (get bestiary proto)]\n    (-&gt; enemy\n        (assoc :id id)\n        (assoc :tag tag))))&quot;, :offset 134, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (map (partial make-enemy :goomba)\n       (range 1 4)\n       (seq \&quot;ABCDEFGHIJ\&quot;)))&quot;, :offset 95, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (map #({(:id %) %})\n       (map (partial make-enemy :goomba)\n            (range 1 4)\n            (seq \&quot;ABCDEFGHIJ\&quot;))))&quot;, :offset 133, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (reduce (fn [collector n]\n            (assoc collector\n              (:id n)\n\n              n))\n          (map (partial make-enemy :goomba)\n               (range 1 4)\n               (seq \&quot;ABCDEFGHIJ\&quot;))))&quot;, :offset 218, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (reduce (fn [collector n]\n            (assoc collector\n              (:id n)\n              n))\n          {}\n          (map (partial make-enemy :goomba)\n               (range 1 4)\n               (seq \&quot;ABCDEFGHIJ\&quot;))))&quot;, :offset 230, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (reduce (fn [collector n]\n            (assoc collector\n              (:id n)\n              n))\n          {}\n          (map (partial make-enemy :goomba)\n               (range 1 6)\n               (seq \&quot;ABCDEFGHIJ\&quot;))))&quot;, :offset 230, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;enemies&quot;, :offset 7, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (reduce (fn [collector n]\n            (assoc collector (:id n) n))\n          {}\n          (map (partial make-enemy :goomba)\n               (range 1 6)\n               (seq \&quot;ABCDEFGHIJ\&quot;))))&quot;, :offset 202, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def enemies\n  (reduce (fn [collector n] (assoc collector (:id n) n))\n          {}\n          (map (partial make-enemy :goomba)\n               (range 1 6)\n               (seq \&quot;ABCDEFGHIJ\&quot;))))&quot;, :offset 190, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(contains? [:yes :no] :no)&quot;, :offset 26, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(conj #{:poison} :dead)&quot;, :offset 23, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(#{:yes :maybe} :no)&quot;, :offset 20, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(#{:yes :maybe} :yes)&quot;, :offset 21, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(#{} :hello)&quot;, :offset 12, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(take 4 [1 2])&quot;, :offset 14, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(sort #{2 3 4 1 })&quot;, :offset 18, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(get skills :items/potion)&quot;, :offset 26, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(def skills {:item         {:name          \&quot;ITEM\&quot;\n                            :action-delay  2000\n                            :submenu?      true\n                            :submenu-items #{:items/potion}\n                            :targeting-fn  target-random-friendly\n                            :action-fn     nil #_(fn [targeter target this]\n                                                   (let [{:keys [action-fn]} (get items (:selected-item this))\n                                                         [newentity msgstub] (action-fn target)]\n                                                     [newentity\n                                                      (str (:name targeter) msgstub)]))}\n\n             :items/potion {:name         \&quot;POTION\&quot;\n                            :description  \&quot;Heals 20 HP\&quot;\n                            :action-delay 2000\n                            :submenu?     false\n                            :friendly?    true\n                            :targeting-fn target-random-friendly\n                            :action-fn    (item-action-fn-wrap (fn [target]\n                                                                 (let [newhealth (min (+ 20 (:health target))\n                                                                                      (:maxhealth target))]\n                                                                   [(assoc target :health newhealth)\n                                                                    (str \&quot; healed \&quot;\n                                                                         (:name target)\n                                                                         \&quot; for \&quot;\n                                                                         (- newhealth (:health target)))])))}\n             :rage         {:name \&quot;RAGE\&quot;}\n             :tools        {:name \&quot;TOOLS\&quot;}\n             :blackmagic   {:name \&quot;B.MAG\&quot;}\n             :whitemagic   {:name \&quot;W.MAG\&quot;}\n\n             :fight        {:name         \&quot;FIGHT\&quot;\n                            :action-delay 2000\n                            :submenu?     false\n                            :friendly?    false\n                            :targeting-fn target-random-opponent\n                            :action-fn    (fn [targeter target _]\n                                            (let [newhealth (max 0\n                                                                 (- (:health target)\n                                                                    (:pstr targeter)))\n                                                  newstate (assoc target :health newhealth)]\n                                              [(if (&gt;= 0 newhealth)\n                                                 (assoc newstate :status #{:dead})\n                                                 newstate)\n                                               (str\n                                                 (:name targeter)\n                                                 \&quot; hit \&quot;\n                                                 (:name target)\n                                                 \&quot; for \&quot;\n                                                 (- (:health target) (:health newstate))\n                                                 \&quot; damage!\&quot;)]))}})&quot;, :offset 3271, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(map nil nil)&quot;, :offset 13, :ns &quot;domdungeon.battle.subs&quot;} {:command &quot;(seq [1 2 3 4])&quot;, :offset 15, :ns &quot;domdungeon.battle.views.main&quot;} {:command &quot;(#{1 2} 3)&quot;, :offset 10, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(#{1 2} 1 3)&quot;, :offset 12, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(#{1 2} 1 1)&quot;, :offset 12, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(conj {:a 2} {:hi \&quot;there\&quot;})&quot;, :offset 27, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(reduce (fn [coll [a b]] (conj coll {a b}))\n        {}\n        {:hello :there :how :are :you :today})&quot;, :offset 101, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(:id nil)&quot;, :offset 9, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(if [] 1 0)&quot;, :offset 11, :ns &quot;domdungeon.battle.subs&quot;} {:command &quot;(let [target 60]\n  (rand-int (range (* target 0.9) (* target 1.2))))&quot;, :offset 68, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(let [target 50]\n  (range (* target 0.9) (* target 1.2)))&quot;, :offset 57, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(let [target 60]\n  (rand-nth (range (* target 0.9) (* target 1.2))))&quot;, :offset 68, :ns &quot;domdungeon.battle.utils&quot;} {:command &quot;(count {:a :b :c :d})&quot;, :offset 21, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(:item skills)&quot;, :offset 14, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(def skills {:item           #::{:name          \&quot;ITEM\&quot;\n                              :action-delay  standard-action-delay\n                              :submenu-items #{:items-potion :items-ambrosia}\n                              :targeting-fn  target-random-friendly\n                              :action-fn     nil}\n\n             :items-ambrosia #::{:name         \&quot;AMBROSIA\&quot;\n                              :description  \&quot;Ally: heal 40MP\&quot;\n                              :action-delay standard-action-delay\n                              :parent-skill :items\n                              :friendly?    true\n                              :targeting-fn target-random-friendly\n                              :action-fn    (item-action-fn-wrap (fn [target]\n                                                                   (let [newmana (min (+ 40 (:mana target))\n                                                                                      (:maxmana target))]\n                                                                     [(assoc target :mana newmana)\n                                                                      (str \&quot;restored \&quot;\n                                                                           (- newmana (:mana target))\n                                                                           \&quot;MP\&quot;)])))}\n\n             :items-potion   {:name         \&quot;POTION\&quot;\n                              :description  \&quot;Ally: heal 20HP\&quot;\n                              :action-delay standard-action-delay\n                              :parent-skill :items\n                              :friendly?    true\n                              :targeting-fn target-random-friendly\n                              :action-fn    (item-action-fn-wrap (fn [target]\n                                                                   (let [newhealth (min (+ 20 (:health target))\n                                                                                        (:maxhealth target))]\n                                                                     [(assoc target :health newhealth)\n                                                                      (str \&quot;healed \&quot;\n                                                                           (- newhealth (:health target))\n                                                                           \&quot;HP\&quot;)])))}\n\n             :rage           {:name         \&quot;RAGE\&quot;\n                              :action-delay standard-action-delay\n                              :friendly?    false\n                              :targeting-fn target-random-opponent\n                              :action-fn    (fn [targeter target this]\n                                              (let [ragefactor 2\n                                                    newhealth (max 0\n                                                                   (Math/round (- (:health target)\n                                                                                  (* ragefactor\n                                                                                     (:pstr targeter)))))\n                                                    newstate (assoc target :health newhealth)]\n                                                [(if (&gt;= 0 newhealth)\n                                                   (assoc newstate :status #{:dead})\n                                                   newstate)\n                                                 (wrap-battle-log-msg targeter target this\n                                                                      (str (- (:health target) (:health newstate))\n                                                                           \&quot; DMG\&quot;))]))}\n\n             :tools          {:name \&quot;TOOLS\&quot;}\n             :blackmagic     {:name \&quot;B.MAG\&quot;}\n             :whitemagic     {:name \&quot;W.MAG\&quot;}\n\n             :fight          {:name         \&quot;FIGHT\&quot;\n                              :action-delay standard-action-delay\n                              :friendly?    false\n                              :targeting-fn target-random-opponent\n                              :action-fn    (fn [targeter target this]\n                                              (let [newhealth (max 0\n                                                                   (Math/round (- (:health target)\n                                                                                  (:pstr targeter))))\n                                                    damage (- (:health target) newhealth)\n                                                    newstate (assoc target :health newhealth)]\n                                                [(if (&gt;= 0 newhealth)\n                                                   (assoc newstate :status #{:dead})\n                                                   newstate)\n                                                 (wrap-battle-log-msg targeter target this\n                                                                      (str damage \&quot; DMG\&quot;))]))}})&quot;, :offset 5014, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(defn other-team [team]\n  (if (= team :enemies) :characters :enemies))&quot;, :offset 70, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(defn target-random-friendly\n  \&quot;Target a random friendly.\&quot;\n  [targeter db]\n  (let [myself (get-in db targeter)\n        targeted-member (-&gt;&gt; myself :team (get db) vals (remove #((:status %) :dead)) (map :id) rand-nth)]\n    [(:team myself) targeted-member]))&quot;, :offset 256, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(defn target-random-opponent\n  \&quot;Target a random opponent.\&quot;\n  [targeter db]\n  (let [myself (get-in db targeter)\n        other-chars (get db (-&gt; myself :team other-team))\n        targeted-member (-&gt;&gt; other-chars vals (remove #((:status %) :dead)) (map :id) rand-nth)]\n    [(other-team (:team myself)) targeted-member]))&quot;, :offset 317, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(defn wrap-target-fn\n  \&quot;Wrap a skill's default targeting fn with the desired coordinates.\&quot;\n  [desired-coords default-fn]\n  (fn [targeter db]\n    (if (get-in db desired-coords)\n      desired-coords\n      (default-fn targeter db))))&quot;, :offset 230, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(defn wrap-battle-log-msg\n  [targeter target this rest]\n  (str (:name targeter)\n       \&quot;: \&quot;\n       (:name this)\n       \&quot; \&quot;\n       (:name target)\n       \&quot;, \&quot;\n       rest))&quot;, :offset 170, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(defn item-action-fn-wrap\n  \&quot;Wraps item action-fns to include targeter information.\&quot;\n  [action-fn]\n  (fn [targeter target this]\n    (let [[newentity msgstub] (action-fn target)]\n      [newentity\n       (wrap-battle-log-msg targeter target this msgstub)])))&quot;, :offset 256, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(def standard-action-delay 5000)&quot;, :offset 32, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(def skills {:item           #::{:name          \&quot;ITEM\&quot;\n                                 :action-delay  standard-action-delay\n                                 :submenu-items #{:items-potion :items-ambrosia}\n                                 :targeting-fn  target-random-friendly\n                                 :action-fn     nil}\n\n             :items-ambrosia #::{:name         \&quot;AMBROSIA\&quot;\n                                 :description  \&quot;Ally: heal 40MP\&quot;\n                                 :action-delay standard-action-delay\n                                 :parent-skill :items\n                                 :friendly?    true\n                                 :targeting-fn target-random-friendly\n                                 :action-fn    (item-action-fn-wrap (fn [target]\n                                                                      (let [newmana (min (+ 40 (:mana target))\n                                                                                         (:maxmana target))]\n                                                                        [(assoc target :mana newmana)\n                                                                         (str \&quot;restored \&quot;\n                                                                              (- newmana (:mana target))\n                                                                              \&quot;MP\&quot;)])))}\n\n             :items-potion   #::{:name         \&quot;POTION\&quot;\n                                 :description  \&quot;Ally: heal 20HP\&quot;\n                                 :action-delay standard-action-delay\n                                 :parent-skill :items\n                                 :friendly?    true\n                                 :targeting-fn target-random-friendly\n                                 :action-fn    (item-action-fn-wrap (fn [target]\n                                                                      (let [newhealth (min (+ 20 (:health target))\n                                                                                           (:maxhealth target))]\n                                                                        [(assoc target :health newhealth)\n                                                                         (str \&quot;healed \&quot;\n                                                                              (- newhealth (:health target))\n                                                                              \&quot;HP\&quot;)])))}\n\n             :rage           #::{:name         \&quot;RAGE\&quot;\n                                 :action-delay standard-action-delay\n                                 :friendly?    false\n                                 :targeting-fn target-random-opponent\n                                 :action-fn    (fn [targeter target this]\n                                                 (let [ragefactor 2\n                                                       newhealth (max 0\n                                                                      (Math/round (- (:health target)\n                                                                                     (* ragefactor\n                                                                                        (:pstr targeter)))))\n                                                       newstate (assoc target :health newhealth)]\n                                                   [(if (&gt;= 0 newhealth)\n                                                      (assoc newstate :status #{:dead})\n                                                      newstate)\n                                                    (wrap-battle-log-msg targeter target this\n                                                                         (str (- (:health target) (:health newstate))\n                                                                              \&quot; DMG\&quot;))]))}\n\n             :tools          #::{:name \&quot;TOOLS\&quot;}\n             :blackmagic     #::{:name \&quot;B.MAG\&quot;}\n             :whitemagic     #::{:name \&quot;W.MAG\&quot;}\n\n             :fight          #::{:name         \&quot;FIGHT\&quot;\n                                 :action-delay standard-action-delay\n                                 :friendly?    false\n                                 :targeting-fn target-random-opponent\n                                 :action-fn    (fn [targeter target this]\n                                                 (let [newhealth (max 0\n                                                                      (Math/round (- (:health target)\n                                                                                     (:pstr targeter))))\n                                                       damage (- (:health target) newhealth)\n                                                       newstate (assoc target :health newhealth)]\n                                                   [(if (&gt;= 0 newhealth)\n                                                      (assoc newstate :status #{:dead})\n                                                      newstate)\n                                                    (wrap-battle-log-msg targeter target this\n                                                                         (str damage \&quot; DMG\&quot;))]))}})&quot;, :offset 5206, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(ns domdungeon.db.skills\n  (:require [clojure.spec.alpha :as s]))&quot;, :offset 65, :ns &quot;dev:cljs.user&quot;} {:command &quot;(s/def ::name (s/and string? #(&lt;= (count %) 8)))&quot;, :offset 48, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(s/def ::action-delay pos-int?)&quot;, :offset 31, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(s/def ::action-fn fn?)&quot;, :offset 23, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(s/def ::targeting-fn fn?)&quot;, :offset 26, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(s/def ::description (s/and string? #(&lt;= (count %) 24)))&quot;, :offset 56, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(s/def ::parent-skill (s/and keyword?\n                             #((-&gt; skills keys set) %)))&quot;, :offset 94, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(s/def ::friendly? boolean?)&quot;, :offset 28, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(s/def ::skill (s/keys {:req [::name ::action-delay ::action-fn ::targeting-fn]\n                        :opt [::description ::parent-skill ::friendly?]}))&quot;, :offset 154, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(s/def ::skill (s/keys :req [::name ::action-delay ::action-fn ::targeting-fn]\n                       :opt [::description ::parent-skill ::friendly?]))&quot;, :offset 151, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(s/conform ::skill (:item skills))&quot;, :offset 34, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(s/def ::submenu-items (s/and set? (s/* keyword?)))&quot;, :offset 51, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(s/def ::skill (s/keys :req [::name ::action-delay ::targeting-fn]\n                       :opt [::description ::parent-skill ::friendly? ::submenu-items\n                             ::action-fn]))&quot;, :offset 196, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(def skills {:item           #::{:name          \&quot;ITEM\&quot;\n                                 :action-delay  standard-action-delay\n                                 :submenu-items #{:items-potion :items-ambrosia}\n                                 :targeting-fn  target-random-friendly}\n\n             :items-ambrosia #::{:name         \&quot;AMBROSIA\&quot;\n                                 :description  \&quot;Ally: heal 40MP\&quot;\n                                 :action-delay standard-action-delay\n                                 :parent-skill :items\n                                 :friendly?    true\n                                 :targeting-fn target-random-friendly\n                                 :action-fn    (item-action-fn-wrap (fn [target]\n                                                                      (let [newmana (min (+ 40 (:mana target))\n                                                                                         (:maxmana target))]\n                                                                        [(assoc target :mana newmana)\n                                                                         (str \&quot;restored \&quot;\n                                                                              (- newmana (:mana target))\n                                                                              \&quot;MP\&quot;)])))}\n\n             :items-potion   #::{:name         \&quot;POTION\&quot;\n                                 :description  \&quot;Ally: heal 20HP\&quot;\n                                 :action-delay standard-action-delay\n                                 :parent-skill :items\n                                 :friendly?    true\n                                 :targeting-fn target-random-friendly\n                                 :action-fn    (item-action-fn-wrap (fn [target]\n                                                                      (let [newhealth (min (+ 20 (:health target))\n                                                                                           (:maxhealth target))]\n                                                                        [(assoc target :health newhealth)\n                                                                         (str \&quot;healed \&quot;\n                                                                              (- newhealth (:health target))\n                                                                              \&quot;HP\&quot;)])))}\n\n             :rage           #::{:name         \&quot;RAGE\&quot;\n                                 :action-delay standard-action-delay\n                                 :friendly?    false\n                                 :targeting-fn target-random-opponent\n                                 :action-fn    (fn [targeter target this]\n                                                 (let [ragefactor 2\n                                                       newhealth (max 0\n                                                                      (Math/round (- (:health target)\n                                                                                     (* ragefactor\n                                                                                        (:pstr targeter)))))\n                                                       newstate (assoc target :health newhealth)]\n                                                   [(if (&gt;= 0 newhealth)\n                                                      (assoc newstate :status #{:dead})\n                                                      newstate)\n                                                    (wrap-battle-log-msg targeter target this\n                                                                         (str (- (:health target) (:health newstate))\n                                                                              \&quot; DMG\&quot;))]))}\n\n             :tools          #::{:name \&quot;TOOLS\&quot;}\n             :blackmagic     #::{:name \&quot;B.MAG\&quot;}\n             :whitemagic     #::{:name \&quot;W.MAG\&quot;}\n\n             :fight          #::{:name         \&quot;FIGHT\&quot;\n                                 :action-delay standard-action-delay\n                                 :friendly?    false\n                                 :targeting-fn target-random-opponent\n                                 :action-fn    (fn [targeter target this]\n                                                 (let [newhealth (max 0\n                                                                      (Math/round (- (:health target)\n                                                                                     (:pstr targeter))))\n                                                       damage (- (:health target) newhealth)\n                                                       newstate (assoc target :health newhealth)]\n                                                   [(if (&gt;= 0 newhealth)\n                                                      (assoc newstate :status #{:dead})\n                                                      newstate)\n                                                    (wrap-battle-log-msg targeter target this\n                                                                         (str damage \&quot; DMG\&quot;))]))}})&quot;, :offset 5154, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(s/explain ::skill (:item skills))&quot;, :offset 34, :ns &quot;domdungeon.db.skills&quot;} {:command &quot;(keyword \&quot;hello\&quot;)&quot;, :offset 17, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(keyword \&quot;db/team\&quot;)&quot;, :offset 19, :ns &quot;domdungeon.battle.events&quot;} {:command &quot;(keyword \&quot;db\&quot; :team)&quot;, :offset 20, :ns &quot;domdungeon.battle.events&quot;}], :remote []}}</component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -406,8 +476,8 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="StructureViewFactory">
-    <option name="AUTOSCROLL_MODE" value="false" />
     <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
+    <option name="ACTIVE_ACTIONS" value=",CLOJURE_COMPARATOR" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -418,20 +488,20 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="REPL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32941177" sideWeight="0.5083333" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282353" sideWeight="0.49375" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="REPL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50941175" sideWeight="0.5104167" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282353" sideWeight="0.49375" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Leiningen" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14444445" sideWeight="0.4798599" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16666667" sideWeight="0.4798599" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32941177" sideWeight="0.49166667" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50941175" sideWeight="0.48958334" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15555556" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14444445" sideWeight="0.5201401" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -453,22 +523,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/events.cljs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/enemy.cljs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/character.cljs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
@@ -477,7 +531,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/utils.cljs">
+    <entry file="file://$PROJECT_DIR$/src/domdungeon/db/entities.cljs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="31" lean-forward="false" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
@@ -619,29 +673,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/main.cljs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/finaldungeon.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="306">
             <caret line="27" column="14" lean-forward="false" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
-            <folding />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/utils.cljs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="88" column="14" lean-forward="true" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -649,78 +687,108 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/skills.cljs">
+    <entry file="file://$PROJECT_DIR$/project.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-          <folding />
+        <state relative-caret-position="206">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/utils.cljs">
+    <entry file="file://$PROJECT_DIR$/src/domdungeon/db/entities.cljs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/subs.cljs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="48" column="61" lean-forward="false" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/enemy.cljs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        <state relative-caret-position="720">
+          <caret line="40" column="65" lean-forward="false" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/character.cljs">
+    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/main.cljs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/main.cljs">
+    <entry file="file://$PROJECT_DIR$/src/domdungeon/db/main.cljs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="52" column="57" lean-forward="false" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
+        <state relative-caret-position="378">
+          <caret line="21" column="38" lean-forward="false" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/domdungeon/core.cljs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="7" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="295">
+          <caret line="18" column="46" lean-forward="false" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/events.cljs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state relative-caret-position="388">
+          <caret line="39" column="25" lean-forward="false" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/subs.cljs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-205">
+          <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/main.cljs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-268">
+          <caret line="29" column="42" lean-forward="false" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/character.cljs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="13" column="32" lean-forward="false" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domdungeon/battle/views/utils.cljs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="11" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domdungeon/db/entities.cljs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/domdungeon/db/skills.cljs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="122" column="71" lean-forward="true" selection-start-line="122" selection-start-column="71" selection-end-line="122" selection-end-column="71" />
           <folding />
         </state>
       </provider>

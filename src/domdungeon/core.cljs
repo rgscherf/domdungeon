@@ -1,19 +1,22 @@
 (ns domdungeon.core
-  (:require [domdungeon.battle.subs]
-            [domdungeon.battle.events :as bevts]
-            [domdungeon.battle.views.main :as bv]
+  (:require [clojure.spec.alpha :as s]
+            [domdungeon.battle.subs]
+            [domdungeon.battle.events :as battle-events]
+            [domdungeon.battle.views.main :as battle-views]
             [re-frame.core :as rf]
             [reagent.core :as r]))
+
+(s/check-asserts true)
 (enable-console-print!)
 
 (defn mount []
-  (bevts/init-app)
-  (r/render [bv/root]
+  (battle-events/init-app)
+  (r/render [battle-views/root]
             (.getElementById js/document "app")))
 
 (def one-frame (/ 1000 24))
 
-(js/window.setInterval #(rf/dispatch [::bevts/increment-atb]) one-frame)
-(js/window.setInterval #(rf/dispatch [::bevts/timestamp]) one-frame)
+(js/window.setInterval #(rf/dispatch [::battle-events/increment-atb]) one-frame)
+(js/window.setInterval #(rf/dispatch [::battle-events/timestamp]) one-frame)
 
 (mount)

@@ -1,12 +1,12 @@
 (ns domdungeon.battle.views.character
   (:require [re-frame.core :as rf]
             [domdungeon.battle.events :as bevts]
-            [domdungeon.battle.skills :as bs]
+            [domdungeon.db.skills :as bs]
             [domdungeon.battle.views.utils :as vu]))
 
 (defn charGrid
-  [[_ {:keys [id maxhealth health maxmana mana name atb skills
-              pstr pdef mstr mdef status] :as char}] rowstart colstart]
+  [[_ {:keys [actor/id actor/maxhealth actor/health actor/maxmana actor/mana actor/name actor/atb actor/skills
+              actor/pstr actor/pdef actor/mstr actor/mdef actor/status] :as char}] rowstart colstart]
   ^{:key rowstart}
   [:div.charGrid {:on-click       #(do
                                      (.stopPropagation %)
@@ -42,7 +42,7 @@
    ;; atb gauge
    [:div.charGrid__atb
     [:div.charGrid__atbOutline
-     [:div.charGrid__atbFill {:style {:background (if (:atb-on? char) "white" "cyan")
+     [:div.charGrid__atbFill {:style {:background (if (:actor/atb-on? char) "white" "cyan")
                                       :width (vu/atb-pct-fill char)}}]]]
 
    ;; border
@@ -59,6 +59,6 @@
                         {:on-click #(do
                                       (.stopPropagation %)
                                       (rf/dispatch [::bevts/skill-click id s]))}
-                        (get-in bs/skills [s :name])])
+                        (get-in bs/skills [s :skill/name])])
            skills)])])
 

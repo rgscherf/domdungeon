@@ -2,7 +2,7 @@
   (:require [re-frame.core :as rf]
             [domdungeon.battle.subs :as bsubs]
             [domdungeon.battle.events :as bevts]
-            [domdungeon.battle.utils :as bu]
+            [domdungeon.battle.views.utils :as vutils]
             [domdungeon.battle.views.enemy :as enemy]
             [domdungeon.battle.views.character :as char]))
 
@@ -24,15 +24,15 @@
   ^{:key (:id entry)}
   [:div.skillsSubMenu__entry {:on-click #(do
                                            (.stopPropagation %)
-                                           (rf/dispatch [::bevts/skill-click char-id (:id entry)]))}
+                                           (rf/dispatch [::bevts/skill-click char-id (:skill/id entry)]))}
    [:div.skillsSubMenu__entryNum "55"]
-   [:div.skillsSubMenu__entryName (:name entry)]
-   [:div.skillsSubMenu__entryDesc (:description entry)]
+   [:div.skillsSubMenu__entryName (:skill/name entry)]
+   [:div.skillsSubMenu__entryDesc (:skill/description entry)]
    ])
 
 (defn submenu
-  [{:keys [char-id items]}]
-  (let [sorted (sort-by :name items)]
+  [{:keys [db/char-id db/items]}]
+  (let [sorted (sort-by :skill/name items)]
     [:div.skillsSubMenu
      (map (partial submenu-entry char-id) sorted)]))
 
@@ -40,13 +40,13 @@
   [:div.screen__background
    (let [battle-outcome @(rf/subscribe [::bsubs/battle-outcome])]
      (cond
-       (= battle-outcome :player-wins)
+       (= battle-outcome :db/player-wins)
        [:div "YOU WIN."]
 
-       (= battle-outcome :player-loses)
+       (= battle-outcome :db/player-loses)
        [:div "YOU LOST."]
 
-       (= battle-outcome :undecided)
+       (= battle-outcome :db/undecided)
        [:div#game.screen__grid {:on-mouse-move #(bevts/record-mouse-coords %)
                                 :on-key-up     #(do
                                                   (js/console.log (-> % .-key))
@@ -64,5 +64,4 @@
         (when @(rf/subscribe [::bsubs/skills-submenu])
           [submenu @(rf/subscribe [::bsubs/skills-submenu])])
         (when @(rf/subscribe [::bsubs/target-line])
-          (bu/draw-targeting-line @(rf/subscribe [::bsubs/target-line])))
-        ]))])
+          (vutils/draw-targeting-line @(rf/subscribe [::bsubs/target-line])))]))])

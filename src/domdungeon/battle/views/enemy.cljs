@@ -1,12 +1,11 @@
 (ns domdungeon.battle.views.enemy
   (:require [re-frame.core :as rf]
             [domdungeon.battle.events :as bevts]
-            [domdungeon.battle.views.utils :as vu]
-            [domdungeon.battle.events :as be]))
+            [domdungeon.battle.views.utils :as vu]))
 
 (defn enemy-card
-  [[_ {:keys [id name maxhealth health
-              pstr pdef mstr mdef status] :as enemy}]]
+  [[_ {:keys [actor/id actor/name actor/maxhealth actor/health
+              actor/pstr actor/pdef actor/mstr actor/mdef actor/status] :as enemy}]]
   ^{:key id}
   [:div.enemyGrid {:on-click      #(do
                                      (.stopPropagation %)
@@ -16,7 +15,7 @@
    [:div.enemyGrid__name.leftPad name]
    [:div.enemyGrid__status (let [healthpct (* 100 (/ health maxhealth))]
                              (cond
-                               (status :dead) "DEAD"
+                               (status :actor/dead) "DEAD"
                                (< healthpct 10) "CRIT"
                                (< healthpct 25) "LOW"
                                (< healthpct 50) "WOUND"
@@ -39,6 +38,6 @@
    [:div.enemyGrid__atb
     [:div.charGrid__atbOutline
      [:div.charGrid__atbFill {:style {:width (vu/atb-pct-fill enemy)
-                                      :background (if (:atb-on? enemy) "white" "cyan")}}]]]
+                                      :background (if (:actor/atb-on? enemy) "white" "cyan")}}]]]
    ])
 
