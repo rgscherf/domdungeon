@@ -9,15 +9,15 @@
 (defn enemy-viz
   []
   [:div.enemyViz
-   (map enemy/enemy-card @(rf/subscribe [::bsubs/enemies]))])
+   (doall
+     (map enemy/enemy-card @(rf/subscribe [::bsubs/enemies])))])
 
 (defn battle-viz
   []
   [:div.battleViz
-   (map (fn [msg id]
-          ^{:key id} [:div.battleVis__logItem msg])
-        @(rf/subscribe [::bsubs/battle-log])
-        (range))])
+   (map (fn [[time msg]]
+          ^{:key time} [:div.battleVis__logItem msg])
+        @(rf/subscribe [::bsubs/battle-log]))])
 
 (defn submenu-entry
   [char-id entry]
@@ -49,16 +49,17 @@
        (= battle-outcome :db/undecided)
        [:div#game.screen__grid {:on-mouse-move #(bevts/record-mouse-coords %)
                                 :on-key-up     #(do
-                                                  (js/console.log (-> % .-key))
+                                                  (js/console.log (str "Pressed key: " (-> % .-key)))
                                                   (if (-> % .-key (= "P"))
                                                     (rf/dispatch [::bevts/toggle-time])))
                                 :on-click      #(do
                                                   (js/console.log (.-target %))
                                                   (rf/dispatch [::bevts/cancel-click]))}
-        (map char/charGrid
-             @(rf/subscribe [::bsubs/characters])
-             (iterate #(+ 2 %) 6)
-             (repeat 1))
+        (doall
+          (map char/charGrid
+               @(rf/subscribe [::bsubs/characters])
+               (iterate #(+ 2 %) 6)
+               (repeat 1)))
         [enemy-viz]
         [battle-viz]
         (when @(rf/subscribe [::bsubs/skills-submenu])

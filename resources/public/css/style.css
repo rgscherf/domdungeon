@@ -17,7 +17,8 @@ html {
 }
 
 .battleViz {
-    grid-area: 6 / 13 / span 6 / span 4;
+    padding: 0.25rem;
+    grid-area: 6 / 12 / span 6 / span 5;
     border: 3px solid lightgray;
     border-radius: 8px;
     margin: 2px;
@@ -29,10 +30,24 @@ html {
 .battleVis__logItem {
     font-size: 100%;
     line-height: 1em;
+    animation-name: logItem__flash;
+    animation-duration: .1s;
+    animation-iteration-count: 10;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+}
+
+@keyframes logItem__flash {
+    from {
+        color: white;
+    }
+    to {
+        color: deepskyblue;
+    }
 }
 
 .skillsSubMenu {
-    grid-area: 6 / 7 / span 6 / span 6;
+    grid-area: 6 / 7 / span 6 / span 5;
     border: 2px solid lightgray;
     margin-left: 3%;
     line-height: 1em;
@@ -68,7 +83,7 @@ html {
     grid-template: repeat(12, 1fr) / repeat(16, 1fr);
     grid-gap: 1%;
     font-size: 2.1vmin;
-    line-height: 0;
+    line-height: 1rem;
 
 }
 
@@ -96,16 +111,33 @@ html {
     right: 0.75rem;
 }
 
+.enemyGrid__portrait {
+    grid-area: 1 / 1/ span 2 / span 2;
+}
+
+.enemyGrid__identifier {
+    grid-area: 1 / 15 / span 2 / span 4;
+    font-size: 300%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .enemyGrid__name {
-    grid-area: 1 / 1 / span 2 / span 9;
+    grid-area: 1 / 5 / span 2 / span 9;
     /*background-color: orange;*/
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    font-size: 200%;
 }
 
+.enemyGrid__health {
+    /*background-color: blue;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .enemyGrid__status {
-    grid-area: 1 / 10 / span 2 / span 9;
     /*background-color: blue;*/
     display: flex;
     align-items: center;
@@ -114,10 +146,10 @@ html {
 
 .enemyGrid__statsAndResists {
     grid-area: 3 / 1 / span 3 / span 18;
-    /*background-color: pink;*/
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 3%;
 }
 
 .enemyGrid__stats {
@@ -130,9 +162,9 @@ html {
 }
 
 .enemyGrid__resists {
-    height: 90%;
-    /*background: green;*/
-    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .enemyGrid__atb {
@@ -182,27 +214,13 @@ html {
     font-size: 155%;
 }
 
-.charGrid__secondaryAndResists {
+.charGrid__effects {
     grid-area: 3 / 1 / span 1 / span 9;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     height: 100%;
-}
-
-.charGrid__secondaryStats {
-    height: 100%;
-    flex: 2;
-    display: grid;
-    grid-template: 2fr 1fr / repeat(4, 1fr);
-    justify-items: center;
-    align-items: center;
-}
-
-.charGrid__resists {
-    height: 100%;
-    /*background: green;*/
-    flex: 1;
+    padding: 3%;
 }
 
 .charGrid__small {
@@ -245,6 +263,7 @@ html {
 }
 
 .charGrid__skillName {
+    color: grey;
     font-size: 200%;
 }
 
@@ -267,4 +286,46 @@ html {
 
 .targetLine__notTargetable {
     background: red;
+}
+
+/*ANIMATIONS*/
+
+.charGrid__skillName--isReady {
+    animation-name: skillName--isReady;
+    animation-duration: .001s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes skillName--isReady {
+    from {
+        color: black;
+    }
+
+    50% {
+        color:white;
+    }
+
+    to {
+        color: white;
+    }
+}
+
+.charGrid__border--isTargetable {
+    animation-name: charborder--isTargetable;
+    animation-duration: .1s;
+    animation-direction:alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes charborder--isTargetable {
+    from {
+        border: 2px solid darkGray;
+    }
+
+    to {
+        border: 2px solid lime;
+    }
 }

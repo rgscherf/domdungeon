@@ -87,3 +87,9 @@ Armor mostly has Defense, with some other stats.
 
 Hand slots can be any combination of weapons, shields, trinkets, etc. Main way
 to influence stat distribution.
+
+## Equations
+
+### FIGHT damage
+
+bpwr * (clamp 0.5 (pstr / pdef) 1.5)

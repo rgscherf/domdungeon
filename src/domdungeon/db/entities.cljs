@@ -26,6 +26,7 @@
                            :atb-on?   true
                            :atb       0
                            :team      :db/characters
+                           :bpwr      40
                            :pstr      25
                            :pdef      30
                            :mstr      10
@@ -42,6 +43,7 @@
                            :atb-on?   true
                            :atb       0
                            :team      :db/characters
+                           :bpwr      40
                            :pstr      20
                            :pdef      30
                            :mstr      40
@@ -58,6 +60,7 @@
                            :atb-on?   true
                            :atb       0
                            :team      :db/characters
+                           :bpwr      40
                            :pstr      30
                            :pdef      30
                            :mstr      10
@@ -65,19 +68,33 @@
                            :speed     40
                            :skills    [:skill/rage :skill/item :skill/blackmagic]}})
 
-(def bestiary #:actor{:goomba #:actor{:name      "GOOMBA"
-                                      :status    #{}
-                                      :atb-on?   true
-                                      :atb       0
-                                      :maxhealth 200
-                                      :health    200
-                                      :team      :db/enemies
-                                      :skills    [:skill/fight]
-                                      :speed     40
-                                      :pstr      10
-                                      :mstr      40
-                                      :pdef      40
-                                      :mdef      20}})
+(def base-enemy
+  #:actor{:status  #{}
+          :atb     0
+          :atb-on? true
+          :team    :db/enemies})
+(def bestiary #:actor{:goomba  (merge base-enemy
+                                      #:actor{:name      "GOOMBA"
+                                              :maxhealth 200
+                                              :health    200
+                                              :skills    [:skill/fight]
+                                              :speed     40
+                                              :pstr      10
+                                              :mstr      40
+                                              :pdef      40
+                                              :bpwr      25
+                                              :mdef      20})
+                      :phoenix (merge base-enemy
+                                      #:actor{:name      "PHOENIX"
+                                              :maxhealth 100
+                                              :health    100
+                                              :skills    [:skill/item-potion]
+                                              :speed     60
+                                              :pstr      1
+                                              :pdef      50
+                                              :mstr      1
+                                              :mdef      1
+                                              :bpwr      10 })})
 
 (defn rand-in-10pct-range
   [n]
@@ -91,6 +108,7 @@
         new-max-health (rand-in-10pct-range (:actor/maxhealth prototype))]
     (assoc prototype :actor/maxhealth new-max-health
                      :actor/health new-max-health
+                     :actor/bpwr (rand-in-10pct-range (:actor/bpwr prototype))
                      :actor/pstr (rand-in-10pct-range (:actor/pstr prototype))
                      :actor/mstr (rand-in-10pct-range (:actor/mstr prototype))
                      :actor/speed (rand-in-10pct-range (:actor/speed prototype))
@@ -108,7 +126,8 @@
 (def enemies
   (reduce (fn [collector n] (assoc collector (:actor/id n) n))
           {}
-          (map (partial make-enemy :actor/goomba)
+          (map make-enemy
+               [:actor/goomba :actor/goomba :actor/goomba :actor/phoenix]
                (range 1 6)
                (seq "ABCDEFGHIJKLMNOP"))))
 

@@ -27,6 +27,14 @@
           (get-in db [:db/active-targeting :db/skill-is-friendly?]))])))
 
 (rf/reg-sub
+  ::current-target-team
+  (fn [db _]
+    (when (:db/active-targeting db)
+      (if (get-in db [:db/active-targeting :db/skill-is-friendly?])
+        :db/characters
+        :db/enemies))))
+
+(rf/reg-sub
   ::battle-log
   (fn [db _]
     (:db/battle-log db)))

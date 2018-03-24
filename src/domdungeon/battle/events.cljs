@@ -221,7 +221,7 @@
     (let [action-data (get skills/skills (get-in db [:db/active-targeting :db/skill]))
           action (-> action-data
                      (assoc :skill/targeting-fn (skills/wrap-target-fn target-coords
-                                                                        (:skill/targeting-fn action-data)))
+                                                                       (:skill/targeting-fn action-data)))
                      (assoc :skill/targeter [:db/characters (get-in db [:db/active-targeting :db/char-id])]))]
       {:dispatch [::enqueue-action action]
        :db       (-> db
@@ -263,31 +263,48 @@
         (assoc-in (:skill/targeter action) new-targeter-state)))))
 
 
+(rf/reg-event-fx
+  ::is-dead?
+  (fn [{:keys [db]} [_ entity-coords]]
+    (s/assert (s/tuple :db/team :actor/id) entity-coords)
+    (let [entity (get-in db entity-coords)]
+      (if (<= (:actor/health entity) 0)
+        {:db       db
+         :dispatch [::is-dead entity-coords]}
+        {:db db}))))
+
 (rf/reg-event-db
   ::is-dead
-  (fn [db [_ db/team actor/id]]
-    (s/assert :db/team team)
-    (s/assert :actor/id id)
+  (fn [db [_ entity-coords]]
+    (s/assert (s/tuple :db/team :actor/id) entity-coords)
     (let [new-entity-state
-          (-> (get-in db [(keyword "db" team) (keyword "actor" id)])
+          (-> (get-in db entity-coords)
               (assoc :actor/atb-on? false)
               (assoc :actor/status #{:actor/dead}))]
-      (assoc-in db [(keyword "db" team) (keyword "actor" id)] new-entity-state))))
+      (assoc-in db entity-coords new-entity-state))))
 
 (rf/reg-event-fx
   ::perform-action
   (fn [{:keys [db]} [_ {:keys [skill/targeting-fn skill/action-fn skill/targeter] :as action}]]
     (s/assert :skill/action action)
     (let [target-coords (targeting-fn targeter db)
-          [new-entity-state logmsg] (action-fn
-                                      (get-in db targeter)
-                                      (get-in db target-coords)
-                                      action)
+          [new-targeter-state new-target-state logmsg] (action-fn
+                                                         (get-in db targeter)
+                                                         (get-in db target-coords)
+                                                         action)
           new-db (-> db
-                     (update :db/battle-log conj logmsg)
-                     (assoc-in target-coords new-entity-state)
+                     (assoc-in target-coords new-target-state)
+                     (assoc-in targeter new-targeter-state)
                      (assoc-in (conj targeter :actor/atb-on?) true))]
-      {:db new-db})))
+      {:db         new-db
+       :dispatch-n (list [::is-dead? target-coords]
+                         [::new-logmsg logmsg])})))
+
+(rf/reg-event-db
+  ::new-logmsg
+  (fn [db [_ msg]]
+    (let [current-time (:db/current-time db)]
+      (update db :db/battle-log conj [current-time msg]))))
 
 (rf/reg-event-db
   ::toggle-time
