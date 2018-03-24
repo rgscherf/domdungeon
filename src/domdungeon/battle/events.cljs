@@ -8,14 +8,6 @@
 ;; 1: event dispatch : call these to init rf/dispatch
 
 
-(defn init-app
-  []
-  (rf/dispatch-sync [::init]))
-
-(defn click-enemy
-  [enemy-id]
-  (rf/dispatch [::enemy-click enemy-id]))
-
 (defn record-mouse-coords
   [event]
   (rf/dispatch [::mouse-coords (vutils/event-game-coords event)]))

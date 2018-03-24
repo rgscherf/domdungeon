@@ -9,7 +9,7 @@
   ^{:key id}
   [:div.enemyGrid {:on-click      #(do
                                      (.stopPropagation %)
-                                     (bevts/click-enemy id))
+                                     (rf/dispatch [::bevts/enemy-click id]))
                    :on-mouse-over #(rf/dispatch [::bevts/mouse-is-on-enemy])
                    :on-mouse-out  #(rf/dispatch [::bevts/mouse-unset-friendly-state (-> % .-relatedTarget .-className)])}
    [:div.enemyGrid__portrait]

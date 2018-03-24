@@ -10,7 +10,7 @@
 (enable-console-print!)
 
 (defn mount []
-  (battle-events/init-app)
+  (rf/dispatch-sync [::battle-events/init])
   (r/render [battle-views/root]
             (.getElementById js/document "app")))
 
