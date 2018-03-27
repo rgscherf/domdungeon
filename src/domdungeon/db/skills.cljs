@@ -1,5 +1,6 @@
 (ns domdungeon.db.skills
-  (:require [clojure.spec.alpha :as s]))
+  (:require [clojure.spec.alpha :as s]
+            [re-frame.core :as rf]))
 
 (defn rand-in-20pct-range
   [n]
@@ -99,32 +100,34 @@
                                               :targeting-fn  target-random-friendly}
 
                     :item-ambrosia    #:skill{:name         "AMBROSIA"
-                                              :description  "Ally: heal 40MP"
+                                              :description  "Ally: heal 20MP"
                                               :action-delay standard-action-delay
                                               :parent-skill :skill/item
                                               :friendly?    true
                                               :targeting-fn target-random-friendly
-                                              :action-fn    (item-action-fn-wrap (fn [target]
-                                                                                   (let [newmana (min (+ 40 (:actor/mana target))
-                                                                                                      (:actor/maxmana target))]
-                                                                                     [(assoc target :actor/mana newmana)
-                                                                                      (str "restored "
-                                                                                           (- newmana (:actor/mana target))
-                                                                                           "MP")])))}
+                                              :action-fn    (fn [targeter target this-skill]
+                                                              (list [:domdungeon.battle.events/modify-actor-mana
+                                                                     targeter
+                                                                     target
+                                                                     this-skill
+                                                                     +
+                                                                     20
+                                                                     (fn [mp] "restored " mp " MP")]))}
 
                     :item-potion      #:skill{:name         "POTION"
-                                              :description  "Ally: heal 20HP"
+                                              :description  "Ally: heal 40HP"
                                               :action-delay standard-action-delay
                                               :parent-skill :skill/item
                                               :friendly?    true
                                               :targeting-fn target-random-friendly
-                                              :action-fn    (item-action-fn-wrap (fn [target]
-                                                                                   (let [newhealth (min (+ 20 (:actor/health target))
-                                                                                                        (:actor/maxhealth target))]
-                                                                                     [(assoc target :actor/health newhealth)
-                                                                                      (str "heal "
-                                                                                           (- newhealth (:actor/health target))
-                                                                                           "HP")])))}
+                                              :action-fn    (fn [targeter target this-skill]
+                                                              (list [:domdungeon.battle.events/modify-actor-health
+                                                                     targeter
+                                                                     target
+                                                                     this-skill
+                                                                     +
+                                                                     40
+                                                                     (fn [heal] "healed for " heal)]))}
 
                     :rage             #:skill{:name            "RAGE"
                                               :rage-dmg-factor 2
@@ -132,15 +135,15 @@
                                               :friendly?       false
                                               :targeting-fn    target-random-opponent
                                               :action-fn       (fn [targeter target this]
-                                                                 (let [[newhealth damage-dealt] (new-health-damaging targeter
-                                                                                                                     target
-                                                                                                                     (* (:skill/rage-dmg-factor this)
-                                                                                                                        (calc-fight-dmg targeter target)))]
-                                                                   [targeter
-                                                                    (assoc target :actor/health newhealth)
-                                                                    (wrap-battle-log-msg targeter target this (str "dealt "
-                                                                                                                   damage-dealt
-                                                                                                                   " DMG"))]))}
+                                                                 (list
+                                                                   [:domdungeon.battle.events/modify-actor-health
+                                                                    targeter
+                                                                    target
+                                                                    this
+                                                                    -
+                                                                    (* (:skill/rage-dmg-factor this)
+                                                                       (calc-fight-dmg targeter target))
+                                                                    (fn [dmg] (str "dealt " dmg " DMG with anger"))]))}
 
                     :tools            #:skill{:name "TOOLS"}
                     :blackmagic       #:skill{:name          "B.MAG"
@@ -154,23 +157,27 @@
                                               :parent-skill :skill/blackmagic
                                               :manacost     5
                                               :spellpwr     100
-                                              :action-fn    (fn [targeter target this]
-                                                              (let [[newhealth damage-dealt] (new-health-damaging targeter
-                                                                                                                  target
-                                                                                                                  (calc-spell-dmg targeter target this))]
-                                                                (if (<= (:skill/manacost this)
-                                                                        (:actor/mana targeter))
-                                                                  [(update targeter :actor/mana #(- (:actor/mana targeter)
-                                                                                                    (:skill/manacost this)))
-                                                                   (assoc target :actor/health newhealth)
-                                                                   (wrap-battle-log-msg targeter target this
-                                                                                        (str "dealt "
-                                                                                             damage-dealt
-                                                                                             " DMG"))]
-                                                                  [targeter
+                                              :action-fn    (fn [targeter target this-skill]
+                                                              (if (<= (:skill/manacost this-skill)
+                                                                      (:actor/mana targeter))
+                                                                (list
+                                                                  [:domdungeon.battle.events/modify-actor-mana
+                                                                   targeter
                                                                    target
-                                                                   (wrap-battle-log-msg targeter target this
-                                                                                        (str "NOT ENOUGH MANA"))])))}
+                                                                   this-skill
+                                                                   +
+                                                                   (:skill/manacost this-skill)
+                                                                   nil]
+                                                                  [:domdungeon.battle.events/modify-actor-health
+                                                                   targeter
+                                                                   target
+                                                                   this-skill
+                                                                   -
+                                                                   (calc-spell-dmg targeter target this-skill)
+                                                                   (fn [dmg] "burned for " dmg " DMG")])
+                                                                (list [:domdungeon.battle.events/new-logmsg
+                                                                       (wrap-battle-log-msg targeter target this-skill
+                                                                                            (str "NOT ENOUGH MANA"))])))}
 
                     :whitemagic       #:skill{:name "W.MAG"}
 
@@ -178,13 +185,14 @@
                                               :action-delay standard-action-delay
                                               :friendly?    false
                                               :targeting-fn target-random-opponent
-                                              :action-fn    (fn [targeter target this]
-                                                              (let [[newhealth damage-dealt] (new-health-damaging targeter target
-                                                                                                                  (calc-fight-dmg targeter target))]
-                                                                [targeter
-                                                                 (assoc target :actor/health newhealth)
-                                                                 (wrap-battle-log-msg targeter target this
-                                                                                      (str "dealt " damage-dealt " DMG"))]))}})
+                                              :action-fn    (fn [targeter target this-skill]
+                                                              (list [:domdungeon.battle.events/modify-actor-health
+                                                                     targeter
+                                                                     target
+                                                                     this-skill
+                                                                     -
+                                                                     (calc-fight-dmg targeter target)
+                                                                     (fn [dmg] (str "dealt " dmg " DMG"))]))}})
 
 ;; VALIDATION
 (s/def :skill/name (s/and string? #(<= (count %) 8)))

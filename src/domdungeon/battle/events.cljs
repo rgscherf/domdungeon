@@ -5,6 +5,9 @@
             [domdungeon.db.main :as db]
             [domdungeon.db.skills :as skills]))
 
+(defn clamp
+  [minn n maxn]
+  (min maxn (max minn n)))
 ;; 1: event dispatch : call these to init rf/dispatch
 
 
@@ -241,20 +244,63 @@
         (assoc :db/active-targeting nil)
         (assoc :db/open-submenu nil))))
 
-(rf/reg-event-db
+;; Enqueue an action.
+(rf/reg-event-fx
   ::enqueue-action
-  (fn [db [_ action]]
+  (fn [{:keys [db]} [_ action]]
     (s/assert :skill/skill action)
     (let [action-time (+ (:skill/action-delay action)
-                         (:db/current-time db))
-          new-targeter-state (-> (get-in db (:skill/targeter action))
-                                 (assoc :actor/atb-on? false)
-                                 (assoc :actor/atb 0))]
-      (->
-        (update db :db/action-queue conj (assoc action :skill/action-time action-time))
-        (assoc-in (:skill/targeter action) new-targeter-state)))))
+                         (:db/current-time db))]
+      {:db       (update db :db/action-queue conj (assoc action :skill/action-time action-time))
+       :dispatch [::stop-atb (get-in db (:skill/targeter action))]})))
 
+(defn add-alpha-tag
+  "For enemy log messages, add the alpha tag of the enemy targeting/targeted."
+  [entity]
+  (when (= :db/enemies (:actor/team entity))
+    (str "(" (:actor/tag entity) ")")))
 
+(defn wrap-battle-log-msg
+  "Wrap a battle log message in the standard template for targeter/target information."
+  [targeter target skill rest]
+  (str (:actor/name targeter)
+       (add-alpha-tag targeter)
+       " "
+       (:skill/name skill)
+       ": "
+       (:actor/name target)
+       (add-alpha-tag target)
+       ", "
+       rest))
+
+(defn modify-target-basic-stat
+  "Modify an actor's health or mana. A skill may also send a log-expr which is a fn that takes the stat modified amount and returns a message to be displayed in the combat log."
+  [current-stat-field max-stat-field db targeter-ent target-ent skill plus-or-minus modification-expr log-expr]
+  (let [{:keys [actor/team actor/id]} target-ent
+        new-target-health (clamp 0
+                                 (Math/round (plus-or-minus (current-stat-field target-ent)
+                                                            modification-expr))
+                                 (max-stat-field target-ent))
+        health-amt-modified (- (current-stat-field target-ent)
+                               new-target-health)]
+    {:db         (assoc-in db [team id current-stat-field] new-target-health)
+     :dispatch-n (list [::is-dead? [team id]]
+                       (if log-expr
+                         [::new-logmsg (wrap-battle-log-msg targeter-ent target-ent skill (log-expr health-amt-modified))]))}))
+
+;; Modify and actor's health count. Performs bounds checking on amount.
+(rf/reg-event-fx
+  ::modify-actor-health
+  (fn [{:keys [db]} [_ targeter-ent target-ent skill plus-or-minus modification-expr log-expr]]
+    (modify-target-basic-stat :actor/health :actor/maxhealth db targeter-ent target-ent skill plus-or-minus modification-expr log-expr)))
+
+;; Modify an actor's mana count. Performs bounds checking on amount.
+(rf/reg-event-fx
+  ::modify-actor-mana
+  (fn [{:keys [db]} [_ targeter-ent target-ent skill plus-or-minus modification-expr log-expr]]
+    (modify-target-basic-stat :actor/mana :actor/maxmana db targeter-ent target-ent skill plus-or-minus modification-expr log-expr)))
+
+;; Check whether an actor should be dead.
 (rf/reg-event-fx
   ::is-dead?
   (fn [{:keys [db]} [_ entity-coords]]
@@ -262,35 +308,52 @@
     (let [entity (get-in db entity-coords)]
       (if (<= (:actor/health entity) 0)
         {:db       db
-         :dispatch [::is-dead entity-coords]}
+         :dispatch [::kill-actor entity-coords]}
         {:db db}))))
 
+;; Perform status changes and cleanup when an actor is declared dead.
 (rf/reg-event-db
-  ::is-dead
+  ::kill-actor
   (fn [db [_ entity-coords]]
     (s/assert (s/tuple :db/team :actor/id) entity-coords)
     (let [new-entity-state
           (-> (get-in db entity-coords)
+              (assoc :actor/health 0)
               (assoc :actor/atb-on? false)
               (assoc :actor/status #{:actor/dead}))]
       (assoc-in db entity-coords new-entity-state))))
 
+
+;; Stop the ATB for a character.
+(rf/reg-event-db
+  ::stop-atb
+  (fn [db [_ target-coords]]
+    (assoc-in db target-coords
+              (-> (get-in db target-coords)
+                  (assoc :actor/atb-on false)
+                  (assoc :actor/atb 0)))))
+
+;; Reset & reactivate the ATB counter, presumably after performing a skill.
+;; Automatically called by ::perform-action.
+(rf/reg-event-db
+  ::reset-atb
+  (fn [db [_ target-coords]]
+    (assoc-in db target-coords
+              (-> (get-in db target-coords)
+                  (assoc :actor/atb-on true)
+                  (assoc :actor/atb 0)))))
+
+;; Perform an euqueued action. Skills return a diapatchable vector, or nothing.
 (rf/reg-event-fx
   ::perform-action
   (fn [{:keys [db]} [_ {:keys [skill/targeting-fn skill/action-fn skill/targeter] :as action}]]
     (s/assert :skill/action action)
     (let [target-coords (targeting-fn targeter db)
-          [new-targeter-state new-target-state logmsg] (action-fn
-                                                         (get-in db targeter)
-                                                         (get-in db target-coords)
-                                                         action)
-          new-db (-> db
-                     (assoc-in target-coords new-target-state)
-                     (assoc-in targeter new-targeter-state)
-                     (assoc-in (conj targeter :actor/atb-on?) true))]
-      {:db         new-db
-       :dispatch-n (list [::is-dead? target-coords]
-                         [::new-logmsg logmsg])})))
+          actions-to-perform (action-fn (get-in db targeter)
+                                        (get-in db target-coords)
+                                        action)]
+      {:db         db
+       :dispatch-n (conj actions-to-perform [::reset-atb targeter])})))
 
 (rf/reg-event-db
   ::new-logmsg
